@@ -29,6 +29,12 @@ folder_colors={
 "res://shaders/": "purple"
 }
 
+[layer_names]
+
+2d_physics/layer_2="player"
+2d_physics/layer_3="bubble"
+2d_physics/layer_4="area"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
