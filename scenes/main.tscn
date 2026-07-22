@@ -10,6 +10,16 @@ size = Vector2(884, 433)
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
+font_size = 32
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ia6uc"]
+font_size = 324
+font_color = Color(1, 0, 0, 1)
+outline_size = 55
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
 spawn_amount = 0
@@ -79,3 +89,43 @@ offset_right = 472.0
 offset_bottom = 108.0
 text = "10 Bulles / sec"
 label_settings = SubResource("LabelSettings_4qyvc")
+
+[node name="LabelThreshold" type="Label" parent="CanvasLayer/Control/ColorRect2" unique_id=794608758]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 108.0
+offset_right = 472.0
+offset_bottom = 153.0
+text = "Threshold: 100 !!!"
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="ControlLose" type="Control" parent="CanvasLayer" unique_id=1256734271]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ControlLose" unique_id=1545265319]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlLose/Panel" unique_id=1118617675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Perdut"
+label_settings = SubResource("LabelSettings_ia6uc")
+horizontal_alignment = 1
+vertical_alignment = 1

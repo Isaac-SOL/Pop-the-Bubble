@@ -5,6 +5,7 @@ const BUBBLE_SPAWNER = preload("uid://co0ojtanaglxp")
 
 @export var spawn_amount: int = 10
 @export var spawner_spawn_amount: int = 10
+@export var lose_threshold: int = 100
 
 var spawn_rect: Rect2
 var all_bubbles: Array[Bubble] = []
@@ -25,6 +26,7 @@ func spawn_bubble(pos: Vector2, template: PackedScene = BUBBLE):
 	bubble.clicked.connect(_on_bubble_clicked, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 	bubble.spawn.connect(_on_bubble_spawn, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 	all_bubbles.append(bubble)
+	check_lose()
 
 func update_bubble_count():
 	%LabelBubbles.text = "%d bubbles" % all_bubbles.size()
@@ -32,6 +34,10 @@ func update_bubble_count():
 	for b: Bubble in all_bubbles:
 		total_per_sec += b.bubbles_per_second()
 	%LabelBubblesPerSec.text = "%d bps" % total_per_sec
+
+func check_lose():
+	if all_bubbles.size() >= lose_threshold:
+		%ControlLose.show()
 
 # -- Signals --
 
