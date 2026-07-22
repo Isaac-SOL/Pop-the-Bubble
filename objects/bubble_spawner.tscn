@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://co0ojtanaglxp"]
+
+[ext_resource type="PackedScene" uid="uid://2qworjpbh3wp" path="res://objects/bubble.tscn" id="1_klq1s"]
+[ext_resource type="Script" uid="uid://bopospicvp6u" path="res://scripts/bubble_spawner.gd" id="2_g3rs3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_klq1s"]
+radius = 48.010414
+
+[node name="BubbleSpawner" unique_id=1014004522 instance=ExtResource("1_klq1s")]
+script = ExtResource("2_g3rs3")
+spawn_on_pop = 10
+
+[node name="Sprite2D" parent="." index="0" unique_id=1219999269]
+modulate = Color(1, 0.48250002, 0.31, 1)
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(905808008) index="0" unique_id=271630885]
+shape = SubResource("CircleShape2D_klq1s")
+
+[node name="Timer" type="Timer" parent="." index="2" unique_id=460235205]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
