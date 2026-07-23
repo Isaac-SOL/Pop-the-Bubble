@@ -9,7 +9,7 @@
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_kljsu"]
 stream_count = 1
 stream_0/stream = ExtResource("3_kljsu")
-stream_0/volume = -30.0
+stream_0/volume = 4.2
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
 stream_count = 1
