@@ -9,7 +9,7 @@ const BUBBLE_SPAWNER = preload("uid://cqjldkck6wown")
 @onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Node2D = %count
 
-@export var lose_threshold: int = 500
+@export var lose_threshold: int = 200
 @export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:150}
 
 var spawn_rect: Rect2
