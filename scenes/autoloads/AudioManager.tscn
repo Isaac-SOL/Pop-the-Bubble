@@ -40,5 +40,5 @@ bus = &"Ambiant"
 [node name="AudioStreamPlayer_sfx" type="AudioStreamPlayer" parent="." unique_id=1306156676]
 process_mode = 3
 stream = SubResource("AudioStreamInteractive_doglo")
-max_polyphony = 10
+max_polyphony = 3
 bus = &"Sfx"
