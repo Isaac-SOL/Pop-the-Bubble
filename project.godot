@@ -25,10 +25,11 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
-"res://assets/sprites/": "green",
-"res://objects/": "orange",
-"res://scenes/": "gray",
-"res://scripts/": "blue",
+"res://addons/": "orange",
+"res://assets/": "green",
+"res://localization/": "red",
+"res://scenes/": "blue",
+"res://scripts/": "purple",
 "res://shaders/": "purple"
 }
 

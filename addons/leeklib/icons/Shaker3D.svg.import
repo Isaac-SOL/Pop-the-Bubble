@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0qavtsdw605p"
-path="res://.godot/imported/Shaker3D.svg-f2e84910d3b1da90bcddd9bdf4d47f8d.ctex"
+path="res://.godot/imported/Shaker3D.svg-ddc90b302c48b71621d5c582236cc24f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://leeklib/icons/Shaker3D.svg"
-dest_files=["res://.godot/imported/Shaker3D.svg-f2e84910d3b1da90bcddd9bdf4d47f8d.ctex"]
+source_file="res://addons/leeklib/icons/Shaker3D.svg"
+dest_files=["res://.godot/imported/Shaker3D.svg-ddc90b302c48b71621d5c582236cc24f.ctex"]
 
 [params]
 
