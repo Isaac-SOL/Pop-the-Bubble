@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b2sqoslmfrs0f"]
+
+[ext_resource type="Texture2D" uid="uid://b3lj5wpmd6w37" path="res://assets/models/chat_bubble/chat_bubble_normal.png" id="1_h2kaj"]
+[ext_resource type="Script" uid="uid://dkqj3hobakwsg" path="res://scripts/count/dialogue.gd" id="1_rckdv"]
+
+[node name="Dialogue" type="Node2D" unique_id=2113910368]
+script = ExtResource("1_rckdv")
+
+[node name="ChatBubbleNormal" type="Sprite2D" parent="." unique_id=797257149]
+scale = Vector2(1.026597, 0.7998045)
+texture = ExtResource("1_h2kaj")
+
+[node name="RichTextLabel_dialogue" type="RichTextLabel" parent="." unique_id=25199291]
+offset_left = -360.00003
+offset_top = -88.00001
+offset_right = 728.0
+offset_bottom = 167.0
+scale = Vector2(0.6632629, 0.6632629)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/bold_font_size = 41
+theme_override_font_sizes/bold_italics_font_size = 41
+theme_override_font_sizes/italics_font_size = 45
+theme_override_font_sizes/mono_font_size = 45
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

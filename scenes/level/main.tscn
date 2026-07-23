@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://tyntc633hxw7" path="res://scripts/ui/ui_player.gd" id="5_2hqms"]
 [ext_resource type="PackedScene" uid="uid://cjhuj6fe23xkj" path="res://scenes/count/count.tscn" id="5_gjage"]
 [ext_resource type="LabelSettings" uid="uid://b56puo2v5fv7b" path="res://assets/ressources/label_default_settings.tres" id="6_x0mk0"]
+[ext_resource type="PackedScene" uid="uid://s2ijlvkld68n" path="res://scenes/count/dialogue.tscn" id="8_1bkat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyvc"]
 size = Vector2(865, 587)
@@ -174,6 +175,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Threshold: "
 label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="Dialogue" parent="UI/ui_player" unique_id=2113910368 instance=ExtResource("8_1bkat")]
+position = Vector2(368, 48)
+scale = Vector2(0.45, 0.45)
 
 [node name="ui_gameover" type="Control" parent="UI" unique_id=1256734271]
 unique_name_in_owner = true
