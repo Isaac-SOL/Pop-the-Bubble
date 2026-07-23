@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dr8a8qudmvl5x" path="res://scripts/autoloads/AudioManager.gd" id="1_doglo"]
 [ext_resource type="AudioStream" uid="uid://os3oqx326w1g" path="res://assets/audio/sfx/others/null.ogg" id="2_vxoa6"]
 [ext_resource type="AudioStream" uid="uid://bagauqw3djj18" path="res://assets/audio/sfx/bubbles/bubble_collision.ogg" id="3_kljsu"]
-[ext_resource type="AudioStream" uid="uid://bhaserthiqedw" path="res://assets/audio/sfx/bubbles/bubble_pop.ogg" id="4_mn8lw"]
+[ext_resource type="AudioStream" uid="uid://cd0nraw48vskf" path="res://assets/audio/sfx/bubbles/bubble_pop.ogg" id="4_mn8lw"]
 [ext_resource type="AudioStream" uid="uid://blimwq0yrfvh0" path="res://assets/audio/sfx/buttons/bubble_button.ogg" id="5_rky00"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_kljsu"]
@@ -14,7 +14,7 @@ stream_0/volume = -30.0
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
 stream_count = 1
 stream_0/stream = ExtResource("4_mn8lw")
-stream_0/volume = -40.0
+stream_0/volume = 0.2
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2das6"]
 stream_count = 1
