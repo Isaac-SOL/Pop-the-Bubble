@@ -1,4 +1,4 @@
-@icon("res://leeklib/icons/Shaker2D.svg")
+@icon("uid://yocgv3g8s6b3")
 @tool
 ## [b]Node2D[/b] that can [member shake]. [br]
 ## Can also optionally follow a target [b]Node2D[/b] using framerate-independent lerp smoothing.
