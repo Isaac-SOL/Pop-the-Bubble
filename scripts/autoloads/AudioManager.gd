@@ -34,8 +34,8 @@ func _process(delta):
 
 
 func play_bubble_collision()-> void:
-	if timer > 0.0:
-		return
+	#if timer > 0.0:
+		#return
 	timer = 0.05
 	if randf() < 0.7: #70% luck to play sound
 		playAudio_stream_sfx(&"bubble_collision")

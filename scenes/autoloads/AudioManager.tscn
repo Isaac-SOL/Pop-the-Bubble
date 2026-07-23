@@ -4,19 +4,25 @@
 [ext_resource type="AudioStream" uid="uid://os3oqx326w1g" path="res://assets/audio/sfx/others/null.ogg" id="2_vxoa6"]
 [ext_resource type="AudioStream" uid="uid://bagauqw3djj18" path="res://assets/audio/sfx/bubbles/bubble_collision.ogg" id="3_kljsu"]
 [ext_resource type="AudioStream" uid="uid://cd0nraw48vskf" path="res://assets/audio/sfx/bubbles/bubble_pop.ogg" id="4_mn8lw"]
+[ext_resource type="AudioStream" uid="uid://blimwq0yrfvh0" path="res://assets/audio/sfx/buttons/bubble_button.ogg" id="5_rky00"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_kljsu"]
 stream_count = 1
 stream_0/stream = ExtResource("3_kljsu")
-stream_0/volume = -30.0
+stream_0/volume = 4.2
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
 stream_count = 1
 stream_0/stream = ExtResource("4_mn8lw")
-stream_0/volume = -40.0
+stream_0/volume = 0.2
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2das6"]
+stream_count = 1
+stream_0/stream = ExtResource("5_rky00")
+stream_0/volume = 0.0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_doglo"]
-clip_count = 3
+clip_count = 4
 clip_0/name = &"init"
 clip_0/stream = ExtResource("2_vxoa6")
 clip_0/auto_advance = 0
@@ -26,6 +32,9 @@ clip_1/auto_advance = 0
 clip_2/name = &"bubble_pop"
 clip_2/stream = SubResource("AudioStreamSynchronized_rky00")
 clip_2/auto_advance = 0
+clip_3/name = &"bubble_button"
+clip_3/stream = SubResource("AudioStreamSynchronized_2das6")
+clip_3/auto_advance = 0
 
 [node name="AudioManager" type="Node" unique_id=432899416]
 script = ExtResource("1_doglo")
@@ -35,7 +44,6 @@ process_mode = 3
 
 [node name="AudioStreamPlayer_ambiant" type="AudioStreamPlayer" parent="." unique_id=115974534]
 process_mode = 3
-bus = &"Ambiant"
 
 [node name="AudioStreamPlayer_sfx" type="AudioStreamPlayer" parent="." unique_id=1306156676]
 process_mode = 3
