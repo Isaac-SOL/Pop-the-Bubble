@@ -14,6 +14,7 @@ var rand_timer: Timer
 
 func _ready() -> void:
 	rand_timer = Timer.new()
+	rand_timer.one_shot = true
 	add_child(rand_timer)
 	rand_timer.timeout.connect(count_action)
 	rand_timer.start(randf_range(rand_range.x,rand_range.y))

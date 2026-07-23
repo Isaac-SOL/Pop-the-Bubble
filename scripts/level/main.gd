@@ -10,7 +10,7 @@ const BUBBLE_SPAWNER = preload("uid://cqjldkck6wown")
 @onready var count: Node2D = %count
 
 @export var lose_threshold: int = 200
-@export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:150}
+@export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:75, 4: 160}
 
 var spawn_rect: Rect2
 
@@ -55,7 +55,7 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			PowerManager.phase_powers = [PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 10)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 5)

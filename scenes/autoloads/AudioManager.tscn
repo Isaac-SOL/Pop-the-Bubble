@@ -36,6 +36,15 @@ clip_3/name = &"bubble_button"
 clip_3/stream = SubResource("AudioStreamSynchronized_2das6")
 clip_3/auto_advance = 0
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_rky00"]
+clip_count = 2
+clip_0/name = &"init"
+clip_0/stream = ExtResource("2_vxoa6")
+clip_0/auto_advance = 0
+clip_1/name = &"bubble_collision"
+clip_1/stream = SubResource("AudioStreamSynchronized_kljsu")
+clip_1/auto_advance = 0
+
 [node name="AudioManager" type="Node" unique_id=432899416]
 script = ExtResource("1_doglo")
 
@@ -48,5 +57,10 @@ process_mode = 3
 [node name="AudioStreamPlayer_sfx" type="AudioStreamPlayer" parent="." unique_id=1306156676]
 process_mode = 3
 stream = SubResource("AudioStreamInteractive_doglo")
-max_polyphony = 10
+max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer_bubble_col" type="AudioStreamPlayer" parent="." unique_id=311612983]
+process_mode = 3
+stream = SubResource("AudioStreamInteractive_rky00")
 bus = &"Sfx"
