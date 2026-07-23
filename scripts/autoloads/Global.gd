@@ -1,7 +1,7 @@
 extends Node
 
 
-var bubble_per_seconds : int = 0
+var bubble_per_seconds : float = 0
 
 var main_node: Node
 	

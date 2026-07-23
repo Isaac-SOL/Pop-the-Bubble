@@ -42,10 +42,11 @@ func spawn_bubble(pos: Vector2, level: int, template: PackedScene = BUBBLE_NORMA
 
 func update_bubble_count()-> void:
 	%LabelBubbles.text = "%d bubbles" % all_bubbles.size()
-	Global.bubble_per_seconds = 0
+	Global.bubble_per_seconds = 0.
 	for b: Bubble in all_bubbles:
-		Global.bubble_per_seconds += b.bubble_level
-	%LabelBubblesPerSec.text = "%d bps" % Global.bubble_per_seconds
+		if b is BubbleSpawner:
+			Global.bubble_per_seconds += b.taux_de_spawn /100. * 1./b.timer.wait_time 
+	%LabelBubblesPerSec.text = "%.2f bps" % Global.bubble_per_seconds
 	check_win()
 
 func check_lose()-> void:
