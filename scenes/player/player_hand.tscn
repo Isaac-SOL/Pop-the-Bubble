@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cwi6nrvnaw45u"]
+
+[ext_resource type="Script" uid="uid://dnr2jf5ia262o" path="res://scripts/player/player_hand.gd" id="1_lpqvf"]
+[ext_resource type="Texture2D" uid="uid://d24vyg23yrpbs" path="res://assets/models/player/hand.png" id="2_qebix"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_270sc"]
+
+[node name="player_hand" type="Area2D" unique_id=1849167851]
+collision_layer = 8
+collision_mask = 12
+script = ExtResource("1_lpqvf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1848786263]
+shape = SubResource("CircleShape2D_270sc")
+
+[node name="Sprite2D_hand" type="Sprite2D" parent="." unique_id=456674599]
+position = Vector2(39, 58)
+scale = Vector2(0.184, 0.215)
+texture = ExtResource("2_qebix")

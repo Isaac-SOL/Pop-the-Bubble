@@ -32,12 +32,6 @@ font_color = Color(1, 0, 0, 1)
 outline_size = 55
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_gjage"]
-font_size = 324
-font_color = Color(1.9492954e-06, 0.6495984, 0.088136695, 1)
-outline_size = 55
-outline_color = Color(0, 0, 0, 1)
-
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
 spawn_amount = 0
@@ -48,6 +42,8 @@ modulate = Color(0.2681376, 0.26813763, 0.2681376, 1)
 position = Vector2(631, 356.00003)
 scale = Vector2(0.7416667, 0.7416667)
 texture = ExtResource("2_855hj")
+
+[node name="player_hand" parent="." unique_id=1849167851 instance=ExtResource("3_gjage")]
 
 [node name="SpawnRect" type="CollisionShape2D" parent="." unique_id=160105361]
 unique_name_in_owner = true
@@ -84,11 +80,9 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 [node name="BubblesParent" type="Node2D" parent="." unique_id=1446199157]
 unique_name_in_owner = true
 
-[node name="player_hand" parent="." unique_id=1849167851 instance=ExtResource("3_gjage")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1149185917]
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1149185917]
-
-[node name="ui_player" type="Control" parent="UI" unique_id=1560901353]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1560901353]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,12 +91,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="UI/ui_player" unique_id=2016156264]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=2016156264]
 layout_mode = 0
 offset_right = 234.0
 offset_bottom = 374.0
 
-[node name="TextureRect" type="TextureRect" parent="UI/ui_player/ColorRect" unique_id=8285393]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/ColorRect" unique_id=8285393]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +107,7 @@ texture = ExtResource("1_o5qli")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ColorRect2" type="ColorRect" parent="UI/ui_player" unique_id=209864119]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Control" unique_id=209864119]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -122,7 +116,7 @@ offset_top = -216.0
 offset_right = 234.0
 grow_vertical = 0
 
-[node name="LabelBubbles" type="Label" parent="UI/ui_player/ColorRect2" unique_id=111042603]
+[node name="LabelBubbles" type="Label" parent="CanvasLayer/Control/ColorRect2" unique_id=111042603]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.0
@@ -132,7 +126,7 @@ offset_bottom = 56.0
 text = "100 Bulles"
 label_settings = SubResource("LabelSettings_4qyvc")
 
-[node name="LabelBubblesPerSec" type="Label" parent="UI/ui_player/ColorRect2" unique_id=1722747835]
+[node name="LabelBubblesPerSec" type="Label" parent="CanvasLayer/Control/ColorRect2" unique_id=1722747835]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.0
@@ -142,7 +136,7 @@ offset_bottom = 101.0
 text = "10 Bulles / sec"
 label_settings = SubResource("LabelSettings_4qyvc")
 
-[node name="LabelThreshold" type="Label" parent="UI/ui_player/ColorRect2" unique_id=794608758]
+[node name="LabelThreshold" type="Label" parent="CanvasLayer/Control/ColorRect2" unique_id=794608758]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.0
@@ -152,7 +146,7 @@ offset_bottom = 146.0
 text = "Threshold: "
 label_settings = SubResource("LabelSettings_0wfyh")
 
-[node name="ui_gameover" type="Control" parent="UI" unique_id=1256734271]
+[node name="ControlLose" type="Control" parent="CanvasLayer" unique_id=1256734271]
 unique_name_in_owner = true
 visible = false
 layout_mode = 3
@@ -162,7 +156,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="UI/ui_gameover" unique_id=1545265319]
+[node name="Panel" type="Panel" parent="CanvasLayer/ControlLose" unique_id=1545265319]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -170,45 +164,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/ui_gameover/Panel" unique_id=1118617675]
+[node name="Label" type="Label" parent="CanvasLayer/ControlLose/Panel" unique_id=1118617675]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Defeat"
+text = "Perdut"
 label_settings = SubResource("LabelSettings_ia6uc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ui_victory" type="Control" parent="UI" unique_id=277800119]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="UI/ui_victory" unique_id=503226468]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/ui_victory/Panel" unique_id=970884988]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Victory"
-label_settings = SubResource("LabelSettings_gjage")
 horizontal_alignment = 1
 vertical_alignment = 1
 
