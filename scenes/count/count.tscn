@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cjhuj6fe23xkj"]
+
+[ext_resource type="Script" uid="uid://cnqoiwu502ndw" path="res://scripts/count/count.gd" id="1_l74ek"]
+[ext_resource type="Texture2D" uid="uid://blx0hemdnwn1n" path="res://assets/models/count/comte_bubble_enerve.png" id="2_mgd51"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xycm"]
+atlas = ExtResource("2_mgd51")
+region = Rect2(0, 0, 2480, 3545)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l74ek"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xycm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="count" type="Node2D" unique_id=2124375082]
+script = ExtResource("1_l74ek")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=9874524]
+sprite_frames = SubResource("SpriteFrames_l74ek")

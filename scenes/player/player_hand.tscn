@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d24vyg23yrpbs" path="res://assets/models/player/hand.png" id="2_qebix"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_270sc"]
+radius = 13.038404
 
 [node name="player_hand" type="Area2D" unique_id=1849167851]
 collision_layer = 8

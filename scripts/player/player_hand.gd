@@ -1,5 +1,5 @@
 extends Area2D
-
+class_name Hand
 
 func _process(_delta: float) -> void:
 	var updated_scale : float = min(1.0+Global.bubble_per_seconds/100.0, 5.0)
