@@ -14,7 +14,7 @@ stream_0/volume = -30.0
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
 stream_count = 1
 stream_0/stream = ExtResource("4_mn8lw")
-stream_0/volume = -10.0
+stream_0/volume = -40.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2das6"]
 stream_count = 1
@@ -48,4 +48,5 @@ process_mode = 3
 [node name="AudioStreamPlayer_sfx" type="AudioStreamPlayer" parent="." unique_id=1306156676]
 process_mode = 3
 stream = SubResource("AudioStreamInteractive_doglo")
-max_polyphony = 3
+max_polyphony = 10
+bus = &"Sfx"

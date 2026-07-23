@@ -6,8 +6,9 @@ signal popped(is_deleted : bool)
 @warning_ignore("unused_signal")
 signal spawn(amount: int, pos: Vector2, level: int)
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var sprite_2d: Sprite2D = $bubble_corps/Sprite2D
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $bubble_corps/VisibleOnScreenNotifier2D
+@onready var audio_stream_player_2d_bubble_up: AudioStreamPlayer2D = $bubble_corps/AudioStreamPlayer2D_BubbleUp
 
 
 @export var bubble_level: int = 0
@@ -16,6 +17,8 @@ signal spawn(amount: int, pos: Vector2, level: int)
 var shader_material : ShaderMaterial
 var speed : float
 var velocity: Vector2
+var stonk_count: int =0
+var is_stonk: bool = false
 
 func _ready() -> void:
 	sprite_2d.material = sprite_2d.material.duplicate()
@@ -52,13 +55,28 @@ func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
 		velocity = opposite_vector * 7.0
 		
-		
+func set_bubble_stonk(stonk_value: int = 3)-> void:
+	if !is_stonk:
+		is_stonk = true
+		Global.stonk_bubble_count += 1
+		stonk_count = stonk_value
+		shader_material.set_shader_parameter("rim_color", Color.RED)
 		
 func bubble_popped()-> void:
-	AudioManager.playAudio_stream_sfx(&"bubble_pop")
-	popped.emit(false)
+	if stonk_count > 0:
+		stonk_count-=1
+		scale*=1.2
+		audio_stream_player_2d_bubble_up.play()
+		audio_stream_player_2d_bubble_up.pitch_scale += 0.2
+	else:
+		if is_stonk:
+			Global.stonk_bubble_count -= 1
+		AudioManager.playAudio_stream_sfx(&"bubble_pop")
+		popped.emit(false)
 	
 func bubble_deleted()-> void:
+	if is_stonk:
+		Global.stonk_bubble_count -= 1
 	popped.emit(true)
 
 	
