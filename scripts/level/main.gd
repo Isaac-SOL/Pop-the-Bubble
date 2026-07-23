@@ -13,7 +13,6 @@ const BUBBLE_SPAWNER = preload("uid://cqjldkck6wown")
 @export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:150}
 
 var spawn_rect: Rect2
-var all_bubbles: Array[Bubble] = []
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -34,29 +33,29 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, template: PackedScene 
 		bubble.position = pos
 		bubble.popped.connect(_on_bubble_popped, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 		bubble.spawn.connect(_on_bubble_spawn, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
-		all_bubbles.append(bubble)
+		Global.all_bubbles.append(bubble)
 		check_lose()
 
 func update_bubble_count()-> void:
-	%LabelBubbles.text = "%d bubbles" % all_bubbles.size()
+	%LabelBubbles.text = "%d bubbles" % Global.all_bubbles.size()
 	Global.bubble_per_seconds = 0
-	for b: Bubble in all_bubbles:
+	for b: Bubble in Global.all_bubbles:
 		Global.bubble_per_seconds += b.bubble_level
 	%LabelBubblesPerSec.text = "%d bps" % Global.bubble_per_seconds
 	check_win()
 
 func check_lose()-> void:
-	if all_bubbles.size() >= lose_threshold:
+	if Global.all_bubbles.size() >= lose_threshold:
 		%ui_gameover.show()
 
 func check_win()-> void:
-	if all_bubbles.size() <= 0:
+	if Global.all_bubbles.size() <= 0:
 		%ui_victory.show()
 
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			PowerManager.phase_powers = [PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 10)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 5)
@@ -85,7 +84,7 @@ func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 	var i: int = 0
 	var lvl: int 
 	bubble.queue_free()
-	all_bubbles.erase(bubble)
+	Global.all_bubbles.erase(bubble)
 	if !is_deleted:
 		while i < bbl_lvl_value[bubble.bubble_level]:
 			lvl = randi() % bubble.bubble_level

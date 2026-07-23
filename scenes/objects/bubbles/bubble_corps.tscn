@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bwnmh0vbcat1n"]
+
+[ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="1_wgbqv"]
+[ext_resource type="Texture2D" uid="uid://d0f32gphcjf01" path="res://assets/models/bubbles/bubble_1.png" id="2_qqrca"]
+[ext_resource type="AudioStream" uid="uid://bdkahj35801gl" path="res://assets/audio/sfx/bubbles/bubble_up.ogg" id="3_blb5n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1n8lo"]
+shader = ExtResource("1_wgbqv")
+shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/rim_color = Color(0.2, 0.2, 1, 1)
+shader_parameter/rim_width = 0.2
+shader_parameter/wobble_strength = 0.01
+shader_parameter/wobble_speed = 10.0
+shader_parameter/light_direction = Vector2(1, -1)
+shader_parameter/lens_radius = 5.0
+shader_parameter/lens_power = 0.2
+shader_parameter/tint_strength = 1.0
+
+[node name="bubble_corps" type="Node2D" unique_id=1286681178]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=24901897]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1n8lo")
+texture = ExtResource("2_qqrca")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=464743157]
+
+[node name="AudioStreamPlayer2D_BubbleUp" type="AudioStreamPlayer2D" parent="." unique_id=2120734624]
+stream = ExtResource("3_blb5n")
+volume_db = -30.0
+bus = &"Sfx"

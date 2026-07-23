@@ -134,33 +134,30 @@ label_settings = ExtResource("6_x0mk0")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer_bubblecount" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=799004808]
-custom_minimum_size = Vector2(0, 92.17)
+[node name="VBoxContainer_stats" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1699295287]
 layout_mode = 2
 
-[node name="LabelBubblesCount" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1135202633]
+[node name="LabelBubblesCount" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=1135202633]
 layout_mode = 2
-text = "Special Bubbles"
+text = "Bubble Count"
 label_settings = ExtResource("6_x0mk0")
 
-[node name="LabelBubblesFactory" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1072372943]
+[node name="LabelBubblesFactory" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=1072372943]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Factory Bubbles: "
 label_settings = ExtResource("6_x0mk0")
 
-[node name="LabelBubblesStonk" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1687917625]
+[node name="LabelBubblesStonk" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=1687917625]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Stonk Bubbles: "
 label_settings = ExtResource("6_x0mk0")
 
-[node name="VBoxContainer_stats" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1699295287]
-layout_mode = 2
-
 [node name="LabelBubbles" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=111042603]
 unique_name_in_owner = true
 layout_mode = 2
+text = "100 Bulles"
 label_settings = ExtResource("6_x0mk0")
 
 [node name="LabelBubblesPerSec" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=1722747835]
