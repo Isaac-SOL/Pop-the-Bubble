@@ -7,7 +7,7 @@ var duration_passed = -1.0
 
 func _ready() -> void:
 	Global.set_dialogue_reference(self)
-	visible = true
+	visible = false
 
 func _process(delta: float) -> void:
 	if duration_passed >= 0:
