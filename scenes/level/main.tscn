@@ -37,12 +37,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
-<<<<<<< HEAD
-=======
-spawn_amount = 0
-spawner_spawn_amount = 12
-lose_threshold = 200
->>>>>>> 525a91f (Spawn)
 
 [node name="background" type="Sprite2D" parent="." unique_id=1513136260]
 modulate = Color(0.2681376, 0.26813763, 0.2681376, 1)

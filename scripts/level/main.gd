@@ -61,6 +61,7 @@ func set_count_phase(phase: int)-> void:
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 10)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 5)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 2, 2)
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, BUBBLE_SPAWNER)
 		1:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
