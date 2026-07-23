@@ -112,11 +112,9 @@ theme_override_constants/separation = 15
 custom_minimum_size = Vector2(0, 375)
 layout_mode = 2
 
-[node name="count" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_count" unique_id=2124375082 node_paths=PackedStringArray("parent") instance=ExtResource("5_gjage")]
-unique_name_in_owner = true
+[node name="count" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_count" unique_id=2124375082 instance=ExtResource("5_gjage")]
 position = Vector2(152, 203)
 scale = Vector2(0.15, 0.15)
-parent = NodePath("../../../../../..")
 
 [node name="VBoxContainer_powers" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=799004808]
 custom_minimum_size = Vector2(0, 165.85)

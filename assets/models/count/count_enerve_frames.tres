@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cj2858f6qw0aj"]
+
+[ext_resource type="Texture2D" uid="uid://blx0hemdnwn1n" path="res://assets/models/count/comte_bubble_enerve.png" id="1_hb8o5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xycm"]
+atlas = ExtResource("1_hb8o5")
+region = Rect2(0, 0, 2480, 3545)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xycm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
