@@ -25,7 +25,7 @@ func _ready() -> void:
 	shader_material = sprite_2d.material
 	area_entered.connect(_on_area_2d_bubble_area_entered)
 	visible_on_screen_notifier_2d.screen_exited.connect(bubble_deleted)
-	scale = Vector2(1.0+bubble_level/2.0, 1.0+bubble_level/2.0)
+	scale = Vector2(1.0+bubble_level/1.5, 1.0+bubble_level/1.5)
 	if bubble_color == Color.WHITE:
 		match bubble_level:
 			0:
@@ -34,6 +34,10 @@ func _ready() -> void:
 				bubble_color = Color.DARK_BLUE
 			2:
 				bubble_color = Color.REBECCA_PURPLE
+			3:
+				bubble_color = Color.RED
+			4:
+				bubble_color = Color.DARK_RED
 	
 	shader_material.set_shader_parameter("bubble_color", bubble_color)
 	shader_material.set_shader_parameter("rim_color", bubble_color+Color(0.1,0.1,0.1,0.0))

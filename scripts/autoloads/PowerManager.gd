@@ -7,6 +7,7 @@ const BUBBLE_STORM : String = "Bubble Storm"
 const BUBBLE_GPT : String = "Bubble GPT"
 const BUBBLE_FACTORY : String = "Bubble Factory"
 const BUBBLE_STONK : String = "Bubble Stonk"
+const BUBBLE_METAVERSE : String = "Bubble Metaverse"
 
 var BUBBLE_POWER_TEST = BUBBLE_GPT
 
@@ -39,6 +40,9 @@ func activate_power(power_id: String)-> void:
 			var random_bubbles : Array = bubbles_copy.slice(0, min(5, bubbles_copy.size()))
 			for bubble in random_bubbles:
 				bubble.set_bubble_stonk(5)
+		BUBBLE_METAVERSE:
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 4, 1)
+			
 			
 				
 			
