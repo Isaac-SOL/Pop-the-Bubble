@@ -13,7 +13,7 @@ shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
 shader_parameter/rim_color = Color(0.2, 0.2, 1, 1)
 shader_parameter/rim_width = 0.2000000095
 shader_parameter/wobble_strength = 0.01
-shader_parameter/wobble_speed = 5.0
+shader_parameter/wobble_speed = 10.0
 shader_parameter/light_direction = Vector2(1, -1)
 shader_parameter/lens_radius = 4.99999988824
 shader_parameter/lens_power = 0.2
@@ -31,3 +31,5 @@ shape = SubResource("CircleShape2D_270sc")
 texture_filter = 1
 material = SubResource("ShaderMaterial_1n8lo")
 texture = ExtResource("3_1cufn")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=765928259]

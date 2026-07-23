@@ -15,6 +15,15 @@ run/main_scene="uid://c3nr42q8h5b57"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://lnluef5b280o"
+
+[autoload]
+
+AudioManager="*uid://bvjtus6f6qsr8"
+Global="*uid://chmfufyucxtxk"
+
 [display]
 
 window/size/viewport_width=1280
@@ -31,6 +40,19 @@ folder_colors={
 "res://scenes/": "blue",
 "res://scripts/": "purple",
 "res://shaders/": "purple"
+}
+
+[input]
+
+left_click={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(258, 33),"global_position":Vector2(274, 117),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+right_click={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(458, 29),"global_position":Vector2(474, 113),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
 }
 
 [layer_names]

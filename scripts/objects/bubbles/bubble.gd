@@ -2,11 +2,12 @@ extends Area2D
 class_name Bubble
 
 
-signal clicked
+signal popped(is_deleted : bool)
 @warning_ignore("unused_signal")
 signal spawn(amount: int)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 
 @export var bubble_level: int = 0
@@ -21,22 +22,16 @@ func _ready() -> void:
 	sprite_2d.material = sprite_2d.material.duplicate()
 	shader_material = sprite_2d.material
 	area_entered.connect(_on_area_2d_bubble_area_entered)
-	input_event.connect(_on_area_2d_bubble_input_event)
-	scale = Vector2(1.0+bubble_level/3.0, 1.0+bubble_level/3.0)
-	spawn_on_pop = 3 * bubble_level
+	visible_on_screen_notifier_2d.screen_exited.connect(bubble_deleted)
+	scale = Vector2(1.0+bubble_level/2.0, 1.0+bubble_level/2.0)
+	spawn_on_pop = bubble_level
 	if bubble_color == Color.WHITE:
 		match bubble_level:
 			0:
 				bubble_color = Color.SKY_BLUE
 			1:
-				bubble_color = Color.BLUE
-			2:
 				bubble_color = Color.DARK_BLUE
-			3:
-				bubble_color = Color.PALE_GREEN
-			4:
-				bubble_color = Color.WEB_GREEN
-			5:
+			2:
 				bubble_color = Color.REBECCA_PURPLE
 	
 	shader_material.set_shader_parameter("bubble_color", bubble_color)
@@ -48,17 +43,19 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	position += velocity * speed * delta
 	
-func bubbles_per_second() -> int:
-	return 1
 	
 func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
 	if area is Bubble:
+		AudioManager.play_bubble_collision()
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
 		velocity = opposite_vector
 		
-func _on_area_2d_bubble_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		clicked.emit()
-
+		
+func bubble_popped()-> void:
+	AudioManager.playAudio_stream_sfx(&"bubble_pop")
+	popped.emit(false)
+	
+func bubble_deleted()-> void:
+	popped.emit(true)
 
 	

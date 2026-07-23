@@ -20,37 +20,45 @@ func _ready() -> void:
 	for i in range(spawn_amount):
 		spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0)
 	for i in range(spawner_spawn_amount):
-		spawn_bubble(Util.rand_in_rectangle(spawn_rect), 5, BUBBLE_SPAWNER)
+		spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, BUBBLE_SPAWNER)
 	update_bubble_count()
+	
 
-func spawn_bubble(pos: Vector2, level: int, template: PackedScene = BUBBLE_NORMAL):
+
+func spawn_bubble(pos: Vector2, level: int, template: PackedScene = BUBBLE_NORMAL)-> void:
 	var bubble: Bubble = template.instantiate()
 	bubble.bubble_level = level
 	%BubblesParent.add_child(bubble)
 	bubble.position = pos
-	bubble.clicked.connect(_on_bubble_clicked, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
+	bubble.popped.connect(_on_bubble_popped, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 	bubble.spawn.connect(_on_bubble_spawn, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 	all_bubbles.append(bubble)
 	check_lose()
 
-func update_bubble_count():
+func update_bubble_count()-> void:
 	%LabelBubbles.text = "%d bubbles" % all_bubbles.size()
-	var total_per_sec: int = 0
+	Global.bubble_per_seconds = 0
 	for b: Bubble in all_bubbles:
-		total_per_sec += b.bubbles_per_second()
-	%LabelBubblesPerSec.text = "%d bps" % total_per_sec
+		Global.bubble_per_seconds += b.bubble_level
+	%LabelBubblesPerSec.text = "%d bps" % Global.bubble_per_seconds
+	check_win()
 
-func check_lose():
+func check_lose()-> void:
 	if all_bubbles.size() >= lose_threshold:
-		%ControlLose.show()
+		%ui_gameover.show()
+
+func check_win()-> void:
+	if all_bubbles.size() <= 0:
+		%ui_victory.show()
 
 # -- Signals --
 
-func _on_bubble_clicked(bubble: Bubble):
+func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 	bubble.queue_free()
 	all_bubbles.erase(bubble)
-	for i in range(bubble.spawn_on_pop):
-		spawn_bubble(Util.rand_in_rectangle(spawn_rect), bubble.bubble_level-1)
+	if !is_deleted:
+		for i in range(bubble.spawn_on_pop):
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), bubble.bubble_level-1)
 	update_bubble_count()
 
 func _on_bubble_spawn(amount: int, _bubble: Bubble):

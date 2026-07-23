@@ -32,12 +32,6 @@ font_color = Color(1, 0, 0, 1)
 outline_size = 55
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_gjage"]
-font_size = 324
-font_color = Color(1.9492954e-06, 0.6495984, 0.088136695, 1)
-outline_size = 55
-outline_color = Color(0, 0, 0, 1)
-
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
 spawn_amount = 0
@@ -208,7 +202,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Victory"
-label_settings = SubResource("LabelSettings_gjage")
+label_settings = SubResource("LabelSettings_ia6uc")
 horizontal_alignment = 1
 vertical_alignment = 1
 

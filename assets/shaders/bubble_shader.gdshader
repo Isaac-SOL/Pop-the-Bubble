@@ -7,8 +7,8 @@ uniform vec4 rim_color : source_color = vec4(0.2, 0.2, 1.0, 1.0);
 
 uniform float rim_width : hint_range(0.0, 0.5) = 0.2;
 
-uniform float wobble_strength : hint_range(0.0, 0.05) = 0.01;
-uniform float wobble_speed : hint_range(1.0, 15.0) = 5.0;
+uniform float wobble_strength : hint_range(0.0, 0.1) = 0.01;
+uniform float wobble_speed : hint_range(1.0, 15.0) = 10.0;
 
 uniform vec2 light_direction = vec2(1.0, -1.0);
 
