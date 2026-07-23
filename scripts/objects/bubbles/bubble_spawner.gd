@@ -1,5 +1,6 @@
 extends Bubble
 class_name BubbleSpawner
+@export var taux_de_spawn: int = 72 #pourcentage
 
 func _ready() -> void:
 	super()
@@ -11,4 +12,5 @@ func bubble_popped()-> void:
 	PowerManager.update_power_list()
 
 func _on_timer_timeout() -> void:
-	spawn.emit(1)
+	if randi() % 101 > taux_de_spawn:
+		spawn.emit(1, position, 0)

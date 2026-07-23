@@ -10,6 +10,7 @@ const BUBBLE_SPAWNER = preload("uid://cqjldkck6wown")
 @onready var count: Node2D = %count
 
 @export var lose_threshold: int = 500
+@export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:150}
 
 var spawn_rect: Rect2
 var all_bubbles: Array[Bubble] = []
@@ -60,6 +61,7 @@ func set_count_phase(phase: int)-> void:
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 10)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 5)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 2, 2)
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, BUBBLE_SPAWNER)
 		1:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
@@ -80,14 +82,18 @@ func set_count_phase(phase: int)-> void:
 # -- Signals --
 
 func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
+	var i: int = 0
+	var lvl: int 
 	bubble.queue_free()
 	all_bubbles.erase(bubble)
 	if !is_deleted:
-		for i in range(bubble.spawn_on_pop):
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), bubble.bubble_level-1)
+		while i < bbl_lvl_value[bubble.bubble_level]:
+			lvl = randi() % bubble.bubble_level
+			i += 1 + bbl_lvl_value[lvl]
+			spawn_bubble(bubble.position, lvl)
 	update_bubble_count()
 
-func _on_bubble_spawn(amount: int, _bubble: Bubble):
+func _on_bubble_spawn(amount: int, pos: Vector2, level: int, _bubble: Bubble):
 	for i in range(amount):
-		spawn_bubble(Util.rand_in_rectangle(spawn_rect), _bubble.bubble_level-1)
+		spawn_bubble(pos, level)
 	update_bubble_count()

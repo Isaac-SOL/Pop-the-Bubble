@@ -4,7 +4,7 @@ class_name Bubble
 
 signal popped(is_deleted : bool)
 @warning_ignore("unused_signal")
-signal spawn(amount: int)
+signal spawn(amount: int, pos: Vector2, level: int)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
@@ -16,7 +16,6 @@ signal spawn(amount: int)
 var shader_material : ShaderMaterial
 var speed : float
 var velocity: Vector2
-var spawn_on_pop: int = 0
 
 func _ready() -> void:
 	sprite_2d.material = sprite_2d.material.duplicate()
@@ -24,7 +23,6 @@ func _ready() -> void:
 	area_entered.connect(_on_area_2d_bubble_area_entered)
 	visible_on_screen_notifier_2d.screen_exited.connect(bubble_deleted)
 	scale = Vector2(1.0+bubble_level/2.0, 1.0+bubble_level/2.0)
-	spawn_on_pop = bubble_level
 	if bubble_color == Color.WHITE:
 		match bubble_level:
 			0:
