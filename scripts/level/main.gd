@@ -5,6 +5,8 @@ const BUBBLE_SPAWNER = preload("uid://cqjldkck6wown")
 
 @onready var area_2d_border: Area2D = $Area2D_border
 @onready var label_threshold: Label = %LabelThreshold
+@onready var player_hand: Area2D = $player_hand
+@onready var v_box_container_powers: VBoxContainer = %VBoxContainer_powers
 
 @export var spawn_amount: int = 10
 @export var spawner_spawn_amount: int = 10
@@ -14,6 +16,8 @@ var spawn_rect: Rect2
 var all_bubbles: Array[Bubble] = []
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Global.set_main_reference(self)
 	label_threshold.text += str(lose_threshold)
 	spawn_rect = %SpawnRect.shape.get_rect()
 	spawn_rect.position += %SpawnRect.global_position

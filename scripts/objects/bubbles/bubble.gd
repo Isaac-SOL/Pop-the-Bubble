@@ -41,7 +41,7 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
-	position += velocity * speed * delta
+	position += velocity * speed * PowerManager.bubble_speed_mult * delta
 	
 	
 func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
@@ -49,6 +49,11 @@ func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
 		AudioManager.play_bubble_collision()
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
 		velocity = opposite_vector
+	elif area is Hand:
+		AudioManager.play_bubble_collision()
+		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
+		velocity = opposite_vector * 7.0
+		
 		
 		
 func bubble_popped()-> void:
