@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clb76aloskcff"
-path="res://.godot/imported/ShakerControl.svg-ec54d17652bf832a7fe14c69b716d2d2.ctex"
+uid="uid://ckp6x418urgwq"
+path="res://.godot/imported/JoystickTouchpad.svg-5dd6a19828fd96b38e4e13a9ec5f3db9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://leeklib/icons/ShakerControl.svg"
-dest_files=["res://.godot/imported/ShakerControl.svg-ec54d17652bf832a7fe14c69b716d2d2.ctex"]
+source_file="res://addons/leeklib/icons/JoystickTouchpad.svg"
+dest_files=["res://.godot/imported/JoystickTouchpad.svg-5dd6a19828fd96b38e4e13a9ec5f3db9.ctex"]
 
 [params]
 

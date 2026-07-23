@@ -1,4 +1,5 @@
-class_name BubbleSpawner extends Bubble
+extends Bubble
+class_name BubbleSpawner
 
 func bubbles_per_second() -> int:
 	return 1
