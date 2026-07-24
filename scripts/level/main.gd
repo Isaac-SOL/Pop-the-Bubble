@@ -11,7 +11,7 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 
 @onready var background: Sprite2D = %background
 @onready var label_threshold: Label = %LabelThreshold
-@onready var player_hand: Area2D = $player_hand
+@onready var player_hand: Hand = $player_hand
 @onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Node2D = %count
 @onready var nugget_parent: Node2D = %NuggetParent
@@ -22,7 +22,7 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 var spawn_rect: Rect2
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Global.set_main_reference(self)
 	AudioManager.playAudio_stream_music(&"feel_the_bubble")
 	label_threshold.text += str(lose_threshold)

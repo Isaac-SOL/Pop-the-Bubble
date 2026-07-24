@@ -39,6 +39,7 @@ material = SubResource("ShaderMaterial_plh5e")
 [node name="Splash" type="Sprite2D" parent="." unique_id=1971966676]
 unique_name_in_owner = true
 visible = false
+z_index = 10
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("3_x8eid")
 

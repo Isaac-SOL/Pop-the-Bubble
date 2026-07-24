@@ -66,7 +66,7 @@ func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
 		AudioManager.play_bubble_collision()
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
 		velocity = velocity.bounce(opposite_vector)
-	elif area is Hand:
+	elif area.get_parent() is Hand:
 		AudioManager.play_bubble_collision()
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
 		velocity = opposite_vector * 7.0
