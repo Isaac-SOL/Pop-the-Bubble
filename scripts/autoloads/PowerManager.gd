@@ -27,9 +27,9 @@ func activate_power(power_id: String)-> void:
 			update_power_lists(power_id, false)
 		BUBBLE_GPT:
 			update_power_lists(power_id, true)
-			Global.main_node.player_hand.area.set_collision_layer_value(3, true)
+			Global.main_node.player_hand.area.set_collision_layer_value(5, true)
 			await get_tree().create_timer(8.0).timeout
-			Global.main_node.player_hand.area.set_collision_layer_value(3, false)
+			Global.main_node.player_hand.area.set_collision_layer_value(5, false)
 			update_power_lists(power_id, false)
 		BUBBLE_FACTORY:
 			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_FACTORY])

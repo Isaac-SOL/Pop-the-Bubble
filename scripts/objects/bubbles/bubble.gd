@@ -61,7 +61,7 @@ func _ready() -> void:
 	shader_material.set_shader_parameter("bubble_color", bubble_color)
 	shader_material.set_shader_parameter("rim_color", bubble_color+Color(0.1,0.1,0.1,0.0))
 	velocity = Vector2(randf_range(-1.0,1.0),randf_range(-1.0,1.0))
-	speed = randf_range(50.0,200.0) /scale.x
+	speed = randf_range(50.0,200.0) / scale.x
 	
 	if bubble_types.size() > 0:
 		for type in bubble_types:
@@ -94,7 +94,7 @@ func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
 	elif area.get_parent() is Hand:
 		AudioManager.play_bubble_collision()
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
-		velocity = opposite_vector * 7.0
+		velocity = opposite_vector * 5.0
 		
 func set_bubble_stonk(stonk_value: int = 3)-> void:
 	if !is_stonk:
