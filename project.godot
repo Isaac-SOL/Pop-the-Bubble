@@ -65,6 +65,7 @@ right_click={
 2d_physics/layer_2="player"
 2d_physics/layer_3="bubble"
 2d_physics/layer_4="area"
+2d_physics/layer_5="gpt_hand"
 
 [physics]
 

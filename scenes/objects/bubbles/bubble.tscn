@@ -24,7 +24,7 @@ shader_parameter/tint_strength = 1.0
 
 [node name="bubble" type="Area2D" unique_id=501984861]
 collision_layer = 12
-collision_mask = 4
+collision_mask = 20
 script = ExtResource("1_63cjf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=187371561]
