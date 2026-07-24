@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamInteractive" format=3 uid="uid://co0os802pvn5f"]
+
+[ext_resource type="AudioStream" uid="uid://cok4jv22sepjo" path="res://assets/audio/music/feel-the-bubble-test-6-160BPM.mp3" id="1_jktft"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_0ykr3"]
+stream_count = 1
+stream_0/stream = ExtResource("1_jktft")
+stream_0/volume = -20.0
+
+[resource]
+clip_count = 1
+clip_0/name = &"feel_the_bubble"
+clip_0/stream = SubResource("AudioStreamSynchronized_0ykr3")
+clip_0/auto_advance = 0
+_transitions = {
+Vector2i(0, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+}
+}

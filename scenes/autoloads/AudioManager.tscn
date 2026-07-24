@@ -1,44 +1,28 @@
 [gd_scene format=3 uid="uid://bvjtus6f6qsr8"]
 
 [ext_resource type="Script" uid="uid://dr8a8qudmvl5x" path="res://scripts/autoloads/AudioManager.gd" id="1_doglo"]
-[ext_resource type="AudioStream" uid="uid://os3oqx326w1g" path="res://assets/audio/sfx/others/null.ogg" id="2_vxoa6"]
-[ext_resource type="AudioStream" uid="uid://bagauqw3djj18" path="res://assets/audio/sfx/bubbles/bubble_collision.ogg" id="3_kljsu"]
-[ext_resource type="AudioStream" uid="uid://bhaserthiqedw" path="res://assets/audio/sfx/bubbles/bubble_pop.ogg" id="4_mn8lw"]
-
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_kljsu"]
-stream_count = 1
-stream_0/stream = ExtResource("3_kljsu")
-stream_0/volume = -30.0
-
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
-stream_count = 1
-stream_0/stream = ExtResource("4_mn8lw")
-stream_0/volume = -10.0
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_doglo"]
-clip_count = 3
-clip_0/name = &"init"
-clip_0/stream = ExtResource("2_vxoa6")
-clip_0/auto_advance = 0
-clip_1/name = &"bubble_collision"
-clip_1/stream = SubResource("AudioStreamSynchronized_kljsu")
-clip_1/auto_advance = 0
-clip_2/name = &"bubble_pop"
-clip_2/stream = SubResource("AudioStreamSynchronized_rky00")
-clip_2/auto_advance = 0
+[ext_resource type="AudioStream" uid="uid://co0os802pvn5f" path="res://assets/audio/ressource/audio_stream_music.tres" id="2_dpjih"]
+[ext_resource type="AudioStream" uid="uid://b43kw8t3fprse" path="res://assets/audio/ressource/audio_stream_sfx.tres" id="3_mn8lw"]
+[ext_resource type="AudioStream" uid="uid://d3412kcvy64c" path="res://assets/audio/ressource/audio_stream_bubble_col.tres" id="4_rky00"]
 
 [node name="AudioManager" type="Node" unique_id=432899416]
 script = ExtResource("1_doglo")
 
 [node name="AudioStreamPlayer_music" type="AudioStreamPlayer" parent="." unique_id=528200036]
 process_mode = 3
+stream = ExtResource("2_dpjih")
+bus = &"Music"
 
 [node name="AudioStreamPlayer_ambiant" type="AudioStreamPlayer" parent="." unique_id=115974534]
 process_mode = 3
-bus = &"Ambiant"
 
 [node name="AudioStreamPlayer_sfx" type="AudioStreamPlayer" parent="." unique_id=1306156676]
 process_mode = 3
-stream = SubResource("AudioStreamInteractive_doglo")
+stream = ExtResource("3_mn8lw")
 max_polyphony = 3
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer_bubble_col" type="AudioStreamPlayer" parent="." unique_id=311612983]
+process_mode = 3
+stream = ExtResource("4_rky00")
 bus = &"Sfx"

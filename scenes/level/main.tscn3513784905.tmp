@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://c3nr42q8h5b57"]
+
+[ext_resource type="Script" uid="uid://dgpkrva3urudu" path="res://scripts/level/main.gd" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://nrp7lax1nmny" path="res://assets/models/background/astroneer1920x1080.jpg" id="2_855hj"]
+[ext_resource type="Script" uid="uid://c63jtub5dv8hx" path="res://scripts/level/area_2d_borders.gd" id="3_64aob"]
+[ext_resource type="PackedScene" uid="uid://cwi6nrvnaw45u" path="res://scenes/player/player_hand.tscn" id="3_gjage"]
+[ext_resource type="PackedScene" uid="uid://cjhuj6fe23xkj" path="res://scenes/count/count.tscn" id="5_gjage"]
+[ext_resource type="LabelSettings" uid="uid://b56puo2v5fv7b" path="res://assets/ressources/label_default_settings.tres" id="6_x0mk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyvc"]
+size = Vector2(865, 587)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_270sc"]
+size = Vector2(302, 750)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_855hj"]
+size = Vector2(50, 750)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64aob"]
+size = Vector2(1380, 50)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
+font_size = 32
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ia6uc"]
+font_size = 324
+font_color = Color(1, 0, 0, 1)
+outline_size = 55
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gjage"]
+font_size = 324
+font_color = Color(1.9492954e-06, 0.6495984, 0.088136695, 1)
+outline_size = 55
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D" unique_id=1852952808]
+script = ExtResource("1_0wfyh")
+
+[node name="background" type="Sprite2D" parent="." unique_id=1513136260]
+modulate = Color(0.2681376, 0.26813763, 0.2681376, 1)
+position = Vector2(631, 356.00003)
+scale = Vector2(0.7416667, 0.7416667)
+texture = ExtResource("2_855hj")
+
+[node name="SpawnRect" type="CollisionShape2D" parent="." unique_id=160105361]
+unique_name_in_owner = true
+position = Vector2(763.5, 367.5)
+shape = SubResource("RectangleShape2D_4qyvc")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="Area2D_borders" type="Area2D" parent="." unique_id=522331046]
+position = Vector2(790, 246)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_64aob")
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=1221744345]
+position = Vector2(-685, 113.5)
+shape = SubResource("RectangleShape2D_270sc")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="RightBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=1932930284]
+position = Vector2(518.635, 113)
+shape = SubResource("RectangleShape2D_855hj")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=38358597]
+position = Vector2(-147, 501.495)
+shape = SubResource("RectangleShape2D_64aob")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="TopBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=785043669]
+position = Vector2(-147, -271.53)
+shape = SubResource("RectangleShape2D_64aob")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="BubblesParent" type="Node2D" parent="." unique_id=1446199157]
+unique_name_in_owner = true
+
+[node name="player_hand" parent="." unique_id=1849167851 instance=ExtResource("3_gjage")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1149185917]
+
+[node name="ui_player" type="Control" parent="UI" unique_id=1560901353]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/ui_player" unique_id=1350164004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 1024
+
+[node name="ColorRect" type="ColorRect" parent="UI/ui_player/MarginContainer" unique_id=2016156264]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ui_player/MarginContainer" unique_id=1280599576]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer_count" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1418498788]
+custom_minimum_size = Vector2(0, 375)
+layout_mode = 2
+
+[node name="count" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_count" unique_id=2124375082 instance=ExtResource("5_gjage")]
+position = Vector2(152, 203)
+scale = Vector2(0.15, 0.15)
+
+[node name="VBoxContainer_powers" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=799004808]
+custom_minimum_size = Vector2(0, 165.85)
+layout_mode = 2
+
+[node name="LabelBubbles" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_powers" unique_id=2105409412]
+layout_mode = 2
+text = "Count Powers:"
+label_settings = ExtResource("6_x0mk0")
+
+[node name="powers_container" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_powers" unique_id=355928154]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer_stats" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1699295287]
+layout_mode = 2
+
+[node name="LabelBubbles" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=111042603]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100 Bulles"
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesPerSec" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=1722747835]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10 Bulles / sec"
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelThreshold" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=794608758]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Threshold: "
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="ui_gameover" type="Control" parent="UI" unique_id=1256734271]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/ui_gameover" unique_id=1545265319]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/ui_gameover/Panel" unique_id=1118617675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Defeat"
+label_settings = SubResource("LabelSettings_ia6uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ui_victory" type="Control" parent="UI" unique_id=277800119]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/ui_victory" unique_id=503226468]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/ui_victory/Panel" unique_id=970884988]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Victory"
+label_settings = SubResource("LabelSettings_gjage")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_shape_entered" from="Area2D_borders" to="Area2D_borders" method="_on_area_shape_entered"]

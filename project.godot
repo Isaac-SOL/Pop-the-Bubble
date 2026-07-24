@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pop the Bubble"
-run/main_scene="uid://c3nr42q8h5b57"
+run/main_scene="uid://ba6k6sy13ikik"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://lnluef5b280o"
 AudioManager="*uid://bvjtus6f6qsr8"
 Global="*uid://chmfufyucxtxk"
 PowerManager="*uid://c1b23koh2uq1r"
+UiAudioManager="*uid://dgn48j3oxrp08"
 
 [display]
 
