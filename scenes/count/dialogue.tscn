@@ -2,19 +2,36 @@
 
 [ext_resource type="Texture2D" uid="uid://b3lj5wpmd6w37" path="res://assets/models/chat_bubble/chat_bubble_normal.png" id="1_h2kaj"]
 [ext_resource type="Script" uid="uid://dkqj3hobakwsg" path="res://scripts/count/dialogue.gd" id="1_rckdv"]
+[ext_resource type="Script" uid="uid://b038wgl6janrt" path="res://addons/leeklib/shaker_2d.gd" id="2_gfdhp"]
+[ext_resource type="Texture2D" uid="uid://dor38s3oe0g2p" path="res://assets/models/chat_bubble/chat_bubble_vener.png" id="4_g2tjv"]
 
 [node name="Dialogue" type="Node2D" unique_id=2113910368]
 script = ExtResource("1_rckdv")
+characters_per_sec = 45.0
 
-[node name="ChatBubbleNormal" type="Sprite2D" parent="." unique_id=797257149]
-scale = Vector2(1.026597, 0.7998045)
+[node name="Shaker2D" type="Node2D" parent="." unique_id=35622890]
+unique_name_in_owner = true
+script = ExtResource("2_gfdhp")
+shake_interval = 0.025
+metadata/_custom_type_script = "uid://b038wgl6janrt"
+
+[node name="ChatBubbleNormal" type="Sprite2D" parent="Shaker2D" unique_id=797257149]
+unique_name_in_owner = true
+scale = Vector2(2.054, 1.6)
 texture = ExtResource("1_h2kaj")
 
-[node name="RichTextLabel_dialogue" type="RichTextLabel" parent="." unique_id=25199291]
-offset_left = -360.00003
-offset_top = -88.00001
-offset_right = 728.0
-offset_bottom = 167.0
+[node name="ChatBubbleVener" type="Sprite2D" parent="Shaker2D" unique_id=145281027]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(2.054, 1.6)
+texture = ExtResource("4_g2tjv")
+
+[node name="RichTextLabel_dialogue" type="RichTextLabel" parent="Shaker2D" unique_id=25199291]
+unique_name_in_owner = true
+offset_left = -670.9034
+offset_top = -160.86798
+offset_right = 1354.5933
+offset_bottom = 313.8578
 scale = Vector2(0.6632629, 0.6632629)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 45
@@ -23,6 +40,8 @@ theme_override_font_sizes/bold_italics_font_size = 41
 theme_override_font_sizes/italics_font_size = 45
 theme_override_font_sizes/mono_font_size = 45
 bbcode_enabled = true
+text = "[font_size=96]esirg rghs eirugh iesug seirug oseirg soirg soeirgoie spoergh segh[/font_size]"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+visible_characters_behavior = 1

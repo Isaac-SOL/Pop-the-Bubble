@@ -13,15 +13,13 @@ const COUNT_SAIYAN_FRAMES = preload("uid://dfn82bndhgi4i")
 
 var rand_range: Vector2 = Vector2(10.0, 20.0)
 var rand_timer: Timer
-
-func _ready() -> void:
+	
+func start_doing_actions():
 	rand_timer = Timer.new()
 	rand_timer.one_shot = true
 	add_child(rand_timer)
 	rand_timer.timeout.connect(count_action)
 	rand_timer.start(randf_range(rand_range.x,rand_range.y))
-	
-
 
 func count_action()->void:
 	PowerManager.activate_random_power()

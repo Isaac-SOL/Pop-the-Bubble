@@ -4,6 +4,7 @@ class_name Hand
 const rest_pos := Vector2(1265, 707)
 
 var curr_target: Node2D
+var can_click: bool = true
 
 func _process(delta: float) -> void:
 	#var updated_scale : float = min(1.0+Global.bubble_per_seconds/100.0, 5.0)
@@ -18,7 +19,7 @@ func _process(delta: float) -> void:
 		%HandPivot.rotation = curr_target.rotation
 		%HandPivot.position = Util.decayv2(%HandPivot.position, curr_target.position, 45 * delta)
 	
-	if Input.is_action_just_pressed("left_click"):
+	if Input.is_action_just_pressed("left_click") and can_click:
 		var popped := false
 		for area in %Area.get_overlapping_areas():
 			if area is Bubble:

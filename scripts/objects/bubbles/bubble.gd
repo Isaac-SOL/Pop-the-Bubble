@@ -43,6 +43,8 @@ func _ready() -> void:
 		match bubble_level:
 			0:
 				bubble_color = Color.SKY_BLUE
+				set_collision_layer_value(3, false)
+				set_collision_mask_value(3, false)
 			1:
 				bubble_color = Color.DARK_BLUE
 			2:
@@ -51,7 +53,10 @@ func _ready() -> void:
 				bubble_color = Color.RED
 			4:
 				bubble_color = Color.DARK_RED
-				
+			5:
+				scale = Vector2.ZERO
+				var scale_tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+				scale_tween.tween_property(self, "scale", Vector2.ONE * 7, 2.0)
 	
 	shader_material.set_shader_parameter("bubble_color", bubble_color)
 	shader_material.set_shader_parameter("rim_color", bubble_color+Color(0.1,0.1,0.1,0.0))
