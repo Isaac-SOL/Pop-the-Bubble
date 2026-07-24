@@ -8,6 +8,8 @@ extends Node2D
 
 const COUNT_ENERVE_FRAMES = preload("uid://cj2858f6qw0aj")
 const COUNT_SURPRIS_FRAMES = preload("uid://kve5vfowpgq6")
+const COUNT_NORMAL_FRAMES = preload("uid://c86m61oel2afq")
+const COUNT_SAIYAN_FRAMES = preload("uid://dfn82bndhgi4i")
 
 var rand_range: Vector2 = Vector2(10.0, 20.0)
 var rand_timer: Timer

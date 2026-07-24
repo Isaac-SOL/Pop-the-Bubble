@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dfn82bndhgi4i"]
+
+[ext_resource type="Texture2D" uid="uid://u65chelvfc7w" path="res://assets/models/count/comte_saiyan.png" id="1_6777o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qe8k"]
+atlas = ExtResource("1_6777o")
+region = Rect2(0, 0, 2480, 3545)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qe8k")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

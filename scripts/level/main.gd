@@ -1,7 +1,6 @@
 class_name Main extends Node2D
 
-const BUBBLE_NORMAL = preload("uid://btrnaiw5jker4")
-const BUBBLE_SPAWNER = preload("uid://dlysmit1f5l4w")
+const BUBBLE = preload("uid://btrnaiw5jker4")
 const NUGGET_EXPLOSION = preload("uid://5hna500nh7w")
 
 const PLANETE_BUBBLE_SECHE_USINE = preload("uid://bg3oe0ctr6p6i")
@@ -34,10 +33,11 @@ func _ready() -> void:
 	
 
 
-func spawn_bubble(pos: Vector2, level: int, qty: int = 1, template: PackedScene = BUBBLE_NORMAL)-> void:
+func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = [])-> void:
 	for i in range(qty):
-		var bubble: Bubble = template.instantiate()
+		var bubble: Bubble = BUBBLE.instantiate()
 		bubble.bubble_level = level
+		bubble.bubble_types = types
 		%BubblesParent.add_child(bubble)
 		bubble.position = pos
 		bubble.popped.connect(_on_bubble_popped, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
@@ -66,25 +66,25 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			PowerManager.phase_powers = []
-			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
+			PowerManager.phase_powers = [PowerManager.BUBBLE_DIVIDEND, PowerManager.BUBBLE_SPECULATIVE, PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			count.animated_sprite_2d.sprite_frames = count.COUNT_NORMAL_FRAMES
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
 			for lvl in range(3-1):
 				for i in range(ini_spawn_bylvl[lvl]):
 					spawn_bubble(Util.rand_in_rectangle(spawn_rect), lvl, 1)
 			for i in range(ini_spawn_bylvl[3]):
-				spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 1, BUBBLE_SPAWNER)
+				spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 1, [PowerManager.BUBBLE_FACTORY])
 		1:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
-			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, BUBBLE_SPAWNER)
+			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, [PowerManager.BUBBLE_FACTORY])
 		2:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
 			background.texture = PLANETE_BUBBLE_MOUILLEE_USINE
 		3:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
-			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
+			count.animated_sprite_2d.sprite_frames = count.COUNT_SAIYAN_FRAMES
 		4:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
