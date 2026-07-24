@@ -1,4 +1,4 @@
-@icon("res://leeklib/icons/ShakerControl.svg")
+@icon("uid://clb76aloskcff")
 @tool
 ## [b]Control[/b] that can [member shake]. [br]
 ## Can also optionally follow a target [b]Control[/b] using framerate-independent lerp smoothing.

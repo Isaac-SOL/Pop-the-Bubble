@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cwi6nrvnaw45u"]
 
 [ext_resource type="Script" uid="uid://dnr2jf5ia262o" path="res://scripts/player/player_hand.gd" id="1_lpqvf"]
+[ext_resource type="Script" uid="uid://b038wgl6janrt" path="res://addons/leeklib/shaker_2d.gd" id="2_4g6u2"]
 [ext_resource type="Texture2D" uid="uid://d3b3p6bmymlc1" path="res://assets/models/player/main.png" id="2_qebix"]
 [ext_resource type="Texture2D" uid="uid://drdw7cpingv6j" path="res://assets/models/player/doigt.png" id="3_4g6u2"]
 
@@ -8,20 +9,40 @@
 radius = 15.521
 height = 42.419483
 
-[node name="player_hand" type="Area2D" unique_id=1849167851]
-collision_layer = 8
-collision_mask = 12
+[node name="PlayerHand" type="Node2D" unique_id=1693000673]
 script = ExtResource("1_lpqvf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1848786263]
+[node name="Area" type="Area2D" parent="." unique_id=1849167851]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area" unique_id=1848786263]
 position = Vector2(1, 9)
 rotation = -0.15996492
 shape = SubResource("CapsuleShape2D_qebix")
 
-[node name="Sprite2D_hand" type="Sprite2D" parent="." unique_id=456674599]
-position = Vector2(25.000002, 81)
-scale = Vector2(0.05524194, 0.06454901)
+[node name="HandPivot" type="Node2D" parent="." unique_id=504447557]
+unique_name_in_owner = true
+position = Vector2(1265, 707)
+
+[node name="HandShaker" type="Node2D" parent="HandPivot" unique_id=696095929]
+unique_name_in_owner = true
+scale = Vector2(0.99999994, 1)
+script = ExtResource("2_4g6u2")
+shake_interval = 0.025
+metadata/_custom_type_script = "uid://b038wgl6janrt"
+
+[node name="Sprite2D_hand" type="Sprite2D" parent="HandPivot/HandShaker" unique_id=456674599]
+position = Vector2(-1.3218994, -50.20215)
+rotation = 0.19450374
+scale = Vector2(0.055241942, 0.06454901)
 texture = ExtResource("2_qebix")
 
-[node name="Sprite2D_finger" type="Sprite2D" parent="Sprite2D_hand" unique_id=730873998]
+[node name="Sprite2D_finger" type="Sprite2D" parent="HandPivot/HandShaker/Sprite2D_hand" unique_id=730873998]
 texture = ExtResource("3_4g6u2")
+
+[node name="FingerPoint" type="Marker2D" parent="HandPivot" unique_id=29785080]
+unique_name_in_owner = true
+position = Vector2(-11.5477295, -127.63873)
+rotation = 0.19450375
