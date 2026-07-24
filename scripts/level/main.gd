@@ -50,8 +50,8 @@ func update_bubble_count()-> void:
 	%LabelBubbles.text = "%d bubbles" % Global.all_bubbles.size()
 	Global.bubble_per_seconds = 0.
 	for b: Bubble in Global.all_bubbles:
-		if b is BubbleSpawner:
-			Global.bubble_per_seconds += b.taux_de_spawn /100. * 1./b.timer.wait_time 
+		if b.is_factory:
+			Global.bubble_per_seconds += b.factory_spawn_rate /100. * 1./b.timer_factory.wait_time 
 	%LabelBubblesPerSec.text = "%.2f bps" % Global.bubble_per_seconds
 	check_win()
 
