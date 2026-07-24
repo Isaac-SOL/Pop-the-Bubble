@@ -21,6 +21,7 @@ func clear_dialogue() -> void:
 	duration_passed = -1
 	fadeout_time = DEFAULT_FADEOUT_TIME
 
+@warning_ignore("shadowed_variable")
 func set_dialogue(text: String, fadeout_time: float = DEFAULT_FADEOUT_TIME) -> void:
 	self.fadeout_time = fadeout_time
 	duration_passed = 0

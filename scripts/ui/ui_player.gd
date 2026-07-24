@@ -3,7 +3,6 @@ extends Control
 
 @onready var label_bubbles_factory: Label = %LabelBubblesFactory
 @onready var label_bubbles_stonk: Label = %LabelBubblesStonk
-@onready var label_nuggets: Label = %LabelNuggets
 @onready var label_bubbles: Label = %LabelBubbles
 @onready var label_bubbles_speculative: Label = %LabelBubblesSpeculative
 

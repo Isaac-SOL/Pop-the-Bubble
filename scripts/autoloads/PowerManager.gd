@@ -82,5 +82,6 @@ func update_power_lists(power_id, unable: bool) -> void:
 			label.text = power
 
 func activate_random_power():
-	var rand_power : int = randi_range(0,phase_powers.size()-1)
-	activate_power(phase_powers[rand_power])
+	if phase_powers.size() > 0:
+		var rand_power : int = randi_range(0,phase_powers.size()-1)
+		activate_power(phase_powers[rand_power])

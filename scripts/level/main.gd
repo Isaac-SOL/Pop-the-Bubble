@@ -10,7 +10,6 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 
 
 @onready var background: Sprite2D = %background
-@onready var area_2d_border: Area2D = $Area2D_border
 @onready var label_threshold: Label = %LabelThreshold
 @onready var player_hand: Area2D = $player_hand
 @onready var powers_container: VBoxContainer = %powers_container
@@ -43,6 +42,7 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, template: PackedScene 
 		bubble.popped.connect(_on_bubble_popped, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 		bubble.spawn.connect(_on_bubble_spawn, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 		Global.all_bubbles.append(bubble)
+		bubble.on_spawn()
 		check_lose()
 
 func update_bubble_count()-> void:
@@ -64,13 +64,13 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_SPECULATIVE, PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			PowerManager.phase_powers = []
 			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 10)
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 5)
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 2, 2)
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, BUBBLE_SPAWNER)
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 0)
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 0)
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 2, 0)
+			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 1, BUBBLE_SPAWNER)
 		1:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES

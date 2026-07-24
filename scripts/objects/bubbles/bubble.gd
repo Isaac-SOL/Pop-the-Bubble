@@ -13,10 +13,12 @@ signal spawn(amount: int, pos: Vector2, level: int)
 
 @export var bubble_level: int = 0
 @export var bubble_color: Color = Color.WHITE
+@export var speed_mult_at_start = 6.0
 
 var shader_material : ShaderMaterial
 var speed : float
 var velocity: Vector2
+var speed_start_mult: float = 1.0
 var stonk_count: int = 0
 var is_stonk: bool = false
 var is_speculative: bool = false
@@ -49,7 +51,7 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
-	position += velocity * speed * PowerManager.bubble_speed_mult * delta
+	position += velocity * speed * speed_start_mult * PowerManager.bubble_speed_mult * delta
 	if is_speculative:
 		scale += Vector2(delta,delta)
 	
@@ -99,4 +101,7 @@ func bubble_deleted()-> void:
 		Global.stonk_bubble_count -= 1
 	popped.emit(true)
 
-	
+func on_spawn():
+	speed_start_mult = speed_mult_at_start
+	var speed_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	speed_tween.tween_property(self, "speed_start_mult", 1.0, 2.0)

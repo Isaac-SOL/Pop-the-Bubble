@@ -24,6 +24,7 @@ material = SubResource("ShaderMaterial_1n8lo")
 texture = ExtResource("2_qqrca")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=464743157]
+rect = Rect2(-17, -17, 34, 34)
 
 [node name="AudioStreamPlayer2D_BubbleUp" type="AudioStreamPlayer2D" parent="." unique_id=2120734624]
 stream = ExtResource("3_blb5n")
