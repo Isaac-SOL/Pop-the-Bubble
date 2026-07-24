@@ -8,7 +8,7 @@ signal spawn(amount: int, pos: Vector2, level: int)
 
 @onready var sprite_2d: Sprite2D = $bubble_corps/Sprite2D
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $bubble_corps/VisibleOnScreenNotifier2D
-@onready var audio_stream_player_2d_bubble_up: AudioStreamPlayer2D = $bubble_corps/AudioStreamPlayer2D_BubbleUp
+@onready var audio_stream_player_2d_bubble_up: AudioStreamPlayer2D = %AudioBubbleUp
 
 
 @export var bubble_level: int = 0
@@ -23,9 +23,10 @@ var stonk_count: int = 0
 var is_stonk: bool = false
 var is_speculative: bool = false
 var nugget_value: int
+var dead: bool = false
 
 func _ready() -> void:
-	sprite_2d.material = sprite_2d.material.duplicate()
+	#sprite_2d.material = sprite_2d.material.duplicate()
 	shader_material = sprite_2d.material
 	area_entered.connect(_on_area_2d_bubble_area_entered)
 	visible_on_screen_notifier_2d.screen_exited.connect(bubble_deleted)
@@ -51,16 +52,20 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	position += velocity * speed * speed_start_mult * PowerManager.bubble_speed_mult * delta
 	if is_speculative:
 		scale += Vector2(delta,delta)
 	
 	
 func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
-	if area is Bubble:
+	if dead:
+		return
+	if area is Bubble and not area.dead:
 		AudioManager.play_bubble_collision()
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
-		velocity = opposite_vector
+		velocity = velocity.bounce(opposite_vector)
 	elif area is Hand:
 		AudioManager.play_bubble_collision()
 		var opposite_vector : Vector2 = (global_position - area.global_position).normalized()
@@ -81,6 +86,8 @@ func set_bubble_speculative():
 	set_collision_mask_value(3, false)
 		
 func bubble_popped()-> void:
+	if dead:
+		return
 	if stonk_count > 0:
 		stonk_count-=1
 		scale*=1.2
@@ -97,6 +104,8 @@ func bubble_popped()-> void:
 		popped.emit(false)
 	
 func bubble_deleted()-> void:
+	if dead:
+		return
 	if is_stonk:
 		Global.stonk_bubble_count -= 1
 	popped.emit(true)
@@ -105,3 +114,15 @@ func on_spawn():
 	speed_start_mult = speed_mult_at_start
 	var speed_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	speed_tween.tween_property(self, "speed_start_mult", 1.0, 2.0)
+
+func pop_animation():
+	dead = true
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	%bubble_corps.hide()
+	%Splash.show()
+	%Splash.scale = Vector2.ONE * 0.365
+	var splash_tween := create_tween().set_trans(Tween.TRANS_QUAD)
+	splash_tween.tween_property(%Splash, "scale", Vector2.ONE * 0.4, 0.16).set_ease(Tween.EASE_OUT)
+	splash_tween.tween_property(%Splash, "scale", Vector2.ONE * 0.365, 0.16).set_ease(Tween.EASE_IN)
+	splash_tween.tween_callback(queue_free)

@@ -1,7 +1,7 @@
 class_name Main extends Node2D
 
 const BUBBLE_NORMAL = preload("uid://btrnaiw5jker4")
-const BUBBLE_SPAWNER = preload("uid://cqjldkck6wown")
+const BUBBLE_SPAWNER = preload("uid://dlysmit1f5l4w")
 const NUGGET_EXPLOSION = preload("uid://5hna500nh7w")
 
 const PLANETE_BUBBLE_SECHE_USINE = preload("uid://bg3oe0ctr6p6i")
@@ -96,20 +96,31 @@ func add_nugget_explosion(qty: int, spawn_position: Vector2)-> void:
 	nugget_parent.add_child(nugget_instance)
 	nugget_instance.spawn(qty,spawn_position,count)
 
+var screenshake_tween: Tween
+func shake_vertical(strength: float, duration: float):
+	if screenshake_tween != null:
+		screenshake_tween.kill()
+	screenshake_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	const cam_center := Vector2(640, 360)
+	%Camera2D.position = cam_center + Vector2.UP * strength
+	screenshake_tween.tween_property(%Camera2D, "position", cam_center, duration)
 
 # -- Signals --
 
 func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 	var i: int = 0
 	var lvl: int 
-	bubble.queue_free()
 	Global.all_bubbles.erase(bubble)
-	if !is_deleted:
+	if is_deleted:
+		bubble.queue_free()
+	else:
 		add_nugget_explosion(bubble.nugget_value, bubble.global_position)
 		while i < bbl_lvl_value[bubble.bubble_level]:
 			lvl = randi() % bubble.bubble_level
 			i += 1 + bbl_lvl_value[lvl]
 			spawn_bubble(bubble.position, lvl)
+		bubble.pop_animation()
+		shake_vertical(bubble.bubble_level * bubble.bubble_level * 3, 0.5)
 	update_bubble_count()
 
 func _on_bubble_spawn(amount: int, pos: Vector2, level: int, _bubble: Bubble):

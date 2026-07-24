@@ -45,7 +45,7 @@ lose_threshold = 500
 unique_name_in_owner = true
 modulate = Color(0.384951, 0.38495088, 0.38495082, 1)
 position = Vector2(728, 435.00003)
-scale = Vector2(0.48474935, 0.46067983)
+scale = Vector2(0.495, 0.471)
 texture = ExtResource("2_1bkat")
 
 [node name="SpawnRect" type="CollisionShape2D" parent="." unique_id=160105361]
@@ -84,6 +84,10 @@ debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 unique_name_in_owner = true
 
 [node name="player_hand" parent="." unique_id=1849167851 instance=ExtResource("3_gjage")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1527596375]
+unique_name_in_owner = true
+position = Vector2(640, 360)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1149185917]
 

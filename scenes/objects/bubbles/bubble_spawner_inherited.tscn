@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dlysmit1f5l4w"]
+
+[ext_resource type="PackedScene" uid="uid://btrnaiw5jker4" path="res://scenes/objects/bubbles/bubble_normal.tscn" id="1_10vtu"]
+[ext_resource type="Script" uid="uid://bopospicvp6u" path="res://scripts/objects/bubbles/bubble_spawner.gd" id="2_bsdqb"]
+[ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="3_bsdqb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77ogs"]
+resource_local_to_scene = true
+shader = ExtResource("3_bsdqb")
+shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/rim_color = Color(0.2, 0.2, 1, 1)
+shader_parameter/rim_width = 0.2
+shader_parameter/wobble_strength = 0.01
+shader_parameter/wobble_speed = 10.0
+shader_parameter/light_direction = Vector2(1, -1)
+shader_parameter/lens_radius = 5.0
+shader_parameter/lens_power = 0.2
+shader_parameter/tint_strength = 1.0
+
+[node name="bubble_spawner_inherited" unique_id=501984861 instance=ExtResource("1_10vtu")]
+script = ExtResource("2_bsdqb")
+taux_de_spawn = 72
+bubble_level = 2
+bubble_color = Color(0.82816637, 1.7519593e-05, 0.56423914, 1)
+
+[node name="Sprite2D" parent="bubble_corps" parent_id_path=PackedInt32Array(1286681178) index="0" unique_id=24901897]
+material = SubResource("ShaderMaterial_77ogs")
+
+[node name="Timer" type="Timer" parent="." index="4" unique_id=72235582]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="bubble_corps"]
