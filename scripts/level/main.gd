@@ -19,6 +19,7 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 
 @export var lose_threshold: int = 200
 @export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:75, 4: 160}
+var ini_spawn_bylvl = [10,5,2,3] #Nombre de bulles initiales
 
 var spawn_rect: Rect2
 
@@ -46,9 +47,9 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, template: PackedScene 
 		check_lose()
 
 func update_bubble_count()-> void:
-	%LabelBubbles.text = "%d bubbles" % all_bubbles.size()
+	%LabelBubbles.text = "%d bubbles" % Global.all_bubbles.size()
 	Global.bubble_per_seconds = 0.
-	for b: Bubble in all_bubbles:
+	for b: Bubble in Global.all_bubbles:
 		if b is BubbleSpawner:
 			Global.bubble_per_seconds += b.taux_de_spawn /100. * 1./b.timer.wait_time 
 	%LabelBubblesPerSec.text = "%.2f bps" % Global.bubble_per_seconds
@@ -68,10 +69,11 @@ func set_count_phase(phase: int)-> void:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_SPECULATIVE, PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 10)
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 5)
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 2, 2)
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, BUBBLE_SPAWNER)
+			for lvl in range(3-1):
+				for i in range(ini_spawn_bylvl[lvl]):
+					spawn_bubble(Util.rand_in_rectangle(spawn_rect), lvl, 1)
+			for i in range(ini_spawn_bylvl[3]):
+				spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 1, BUBBLE_SPAWNER)
 		1:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
