@@ -165,6 +165,11 @@ unique_name_in_owner = true
 layout_mode = 2
 label_settings = ExtResource("6_x0mk0")
 
+[node name="LabelBubblesDividend" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=740035199]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
 [node name="VBoxContainer_stats" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1699295287]
 layout_mode = 2
 

@@ -5,8 +5,11 @@ extends Control
 @onready var label_bubbles_stonk: Label = %LabelBubblesStonk
 @onready var label_bubbles: Label = %LabelBubbles
 @onready var label_bubbles_speculative: Label = %LabelBubblesSpeculative
+@onready var label_bubbles_dividend: Label = %LabelBubblesDividend
 
 func _physics_process(_delta: float) -> void:
+	SettingsManager.apply_mouse_scale()
+	
 	if Global.factory_bubble_count > 0:
 		label_bubbles_factory.show()
 		label_bubbles_factory.text = "Factory Bubbles: "+str(Global.factory_bubble_count)
@@ -24,6 +27,12 @@ func _physics_process(_delta: float) -> void:
 		label_bubbles_speculative.text = "Speculative Bubbles: "+str(Global.speculative_bubble_count)
 	else:
 		label_bubbles_speculative.hide()
+		
+	if Global.dividend_bubble_count > 0:
+		label_bubbles_dividend.show()
+		label_bubbles_dividend.text = "Speculative Bubbles: "+str(Global.dividend_bubble_count)
+	else:
+		label_bubbles_dividend.hide()
 		
 	if Global.all_bubbles.size() > 0:
 		label_bubbles.show()
