@@ -28,7 +28,7 @@ var is_dividend: bool = false
 var timer_dividend: Timer
 var is_factory: bool = false
 var timer_factory: Timer
-var factory_spawn_rate: int = 0
+var factory_spawn_rate: int = 75
 var nugget_value: int
 var dead: bool = false
 
@@ -155,10 +155,7 @@ func bubble_popped()-> void:
 		if is_factory:
 			Global.factory_bubble_count -=1
 			
-		AudioManager.playAudio_stream_sfx(&"bubble_pop")
-		if bubble_level > 3:
-			Global.main_node.spawn_bubble(self.global_position, bubble_level-2, bubble_level, Global.main_node.BUBBLE_SPAWNER)
-			
+		AudioManager.playAudio_stream_sfx(&"bubble_pop")			
 		popped.emit(false)
 	
 func bubble_deleted()-> void:
