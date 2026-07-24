@@ -18,3 +18,7 @@ func set_main_reference(node: Node)-> void:
 var dialogue_node: DialogueNode2D
 func set_dialogue_reference(node: Node) -> void:
 	dialogue_node = node
+
+
+func seconds(t: float) -> Signal:
+	return get_tree().create_timer(t, false).timeout

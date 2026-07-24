@@ -1,5 +1,11 @@
 class_name Main extends Node2D
 
+enum State {
+	INTRO,
+	CLICK_BUBBLE_START,
+	GAMING
+}
+
 const BUBBLE = preload("uid://btrnaiw5jker4")
 const NUGGET_EXPLOSION = preload("uid://5hna500nh7w")
 
@@ -7,6 +13,7 @@ const PLANETE_BUBBLE_SECHE_USINE = preload("uid://bg3oe0ctr6p6i")
 const PLANETE_BUBBLE_MOUILLEE_USINE = preload("uid://dki4bvktbg4tj")
 const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 
+var state := State.INTRO
 
 @onready var background: Sprite2D = %background
 @onready var label_threshold: Label = %LabelThreshold
@@ -17,23 +24,53 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 
 @export var lose_threshold: int = 200
 @export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:75, 4: 160}
-var ini_spawn_bylvl = [0,0,0,1] #Nombre de bulles initiales
+var ini_spawn_bylvl = [0, 0, 0, 0] #Nombre de bulles initiales
 
 var spawn_rect: Rect2
 
 func _ready() -> void:
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Global.set_main_reference(self)
-	AudioManager.playAudio_stream_music(&"feel_the_bubble")
 	label_threshold.text += str(lose_threshold)
 	spawn_rect = %SpawnRect.shape.get_rect()
 	spawn_rect.position += %SpawnRect.global_position
-	set_count_phase(0)
 	update_bubble_count()
 	
+	%player_hand.visible = false
+	%player_hand.can_click = false
+	
+	await Global.seconds(2.0)
+	Global.dialogue_node.set_dialogue("Finally... After such a long time...", 0)
+	await Global.dialogue_node.dialogue_passed
+	await Global.seconds(0.5)
+	Global.dialogue_node.set_dialogue("I, Count Louis von Bubble, have fused all industries of the world into a single, big bubble factory!", 0)
+	var big_bubble := spawn_bubble(%SpawnRect.position, 5, 1)[0]
+	big_bubble.speed = 0.0
+	await Global.dialogue_node.dialogue_passed
+	await Global.seconds(0.5)
+	Global.dialogue_node.set_dialogue("INFINITE GROWTH ! Right at my fingertips !", 0)
+	await Global.dialogue_node.dialogue_passed
+	await Global.seconds(0.5)
+	Global.dialogue_node.set_dialogue("I just need a little bit more, and then......", 0)
+	
+	await Global.dialogue_node.dialogue_passed
+	%player_hand.can_click = true
+	
+	await big_bubble.popped
+	%player_hand.visible = true
+	await Global.seconds(0.5)
+	Global.dialogue_node.set_dialogue("YOU ! Who do you think you are !?", 5, true)
+	AudioManager.playAudio_stream_music(&"feel_the_bubble")
+	%count.start_doing_actions()
+	set_count_phase(0)
 
 
-func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = [])-> void:
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed("left_click"):
+		Global.dialogue_node.pass_dialogue()
+
+func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = []) -> Array[Bubble]:
+	var spawned: Array[Bubble] = []
 	for i in range(qty):
 		var bubble: Bubble = BUBBLE.instantiate()
 		bubble.bubble_level = level
@@ -44,7 +81,9 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = [])-> v
 		bubble.spawn.connect(_on_bubble_spawn, ConnectFlags.CONNECT_APPEND_SOURCE_OBJECT)
 		Global.all_bubbles.append(bubble)
 		bubble.on_spawn()
-		check_lose()
+		spawned.append(bubble)
+	check_lose()
+	return spawned
 
 func update_bubble_count()-> void:
 	%LabelBubbles.text = "%d bubbles" % Global.all_bubbles.size()
@@ -60,6 +99,8 @@ func check_lose()-> void:
 		%ui_gameover.show()
 
 func check_win()-> void:
+	if state != State.GAMING:
+		return
 	if Global.all_bubbles.size() <= 0:
 		%ui_victory.show()
 
