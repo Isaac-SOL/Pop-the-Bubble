@@ -1,0 +1,18 @@
+[gd_resource type="AudioStreamInteractive" format=3 uid="uid://d3412kcvy64c"]
+
+[ext_resource type="AudioStream" uid="uid://os3oqx326w1g" path="res://assets/audio/sfx/others/null.ogg" id="1_6mqhv"]
+[ext_resource type="AudioStream" uid="uid://bagauqw3djj18" path="res://assets/audio/sfx/bubbles/bubble_collision.ogg" id="2_tijoq"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_kljsu"]
+stream_count = 1
+stream_0/stream = ExtResource("2_tijoq")
+stream_0/volume = -10.0
+
+[resource]
+clip_count = 2
+clip_0/name = &"init"
+clip_0/stream = ExtResource("1_6mqhv")
+clip_0/auto_advance = 0
+clip_1/name = &"bubble_collision"
+clip_1/stream = SubResource("AudioStreamSynchronized_kljsu")
+clip_1/auto_advance = 0

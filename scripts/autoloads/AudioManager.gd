@@ -3,14 +3,19 @@ extends Node
 @onready var audio_stream_player_music: AudioStreamPlayer = $AudioStreamPlayer_music
 @onready var audio_stream_player_ambiant: AudioStreamPlayer = $AudioStreamPlayer_ambiant
 @onready var audio_stream_player_sfx: AudioStreamPlayer = $AudioStreamPlayer_sfx
+@onready var audio_stream_player_bubble_col: AudioStreamPlayer = $AudioStreamPlayer_bubble_col
+@onready var collision_timer: Timer = Timer.new()
+
 
 var interactive_stream_music : AudioStreamPlaybackInteractive
 var interactive_stream_ambiant : AudioStreamPlaybackInteractive
 var interactive_stream_sfx : AudioStreamPlaybackInteractive
+var interactive_stream_bubble_col : AudioStreamPlaybackInteractive
 
 var playing_stream_music_clip_name : String
 var playing_stream_ambiant_clip_name : String
 var playing_stream_sfx_clip_name : String
+var playing_stream_bubble_col_clip_name : String
 
 #Store last clips for resuming
 var last_stream1_clip : String
@@ -27,18 +32,33 @@ var init_volume_db: float
 var tween: Tween
 
 
-var timer := 0.0
+func _ready() -> void:
+	collision_timer.one_shot = true
+	collision_timer.wait_time = 0.05
+	add_child(collision_timer)
 
-func _process(delta):
-	timer -= delta
 
-
-func play_bubble_collision()-> void:
-	if timer > 0.0:
+func play_bubble_collision() -> void:
+	if !collision_timer.is_stopped():
 		return
-	timer = 0.05
+
+	collision_timer.start()
+
 	if randf() < 0.7: #70% luck to play sound
-		playAudio_stream_sfx(&"bubble_collision")
+		var sound_name : String = &"bubble_collision"
+		if !interactive_stream_bubble_col:
+			audio_stream_player_bubble_col.volume_db = -80
+			audio_stream_player_bubble_col.play()
+			await get_tree().process_frame  #Let audio backend catch up
+			interactive_stream_bubble_col = audio_stream_player_bubble_col.get_stream_playback() as AudioStreamPlaybackInteractive
+			if interactive_stream_bubble_col:
+				interactive_stream_bubble_col.switch_to_clip_by_name(sound_name)
+				playing_stream_bubble_col_clip_name = sound_name
+				audio_stream_player_bubble_col.volume_db = 0
+			
+		elif !pause and interactive_stream_bubble_col:
+			interactive_stream_bubble_col.switch_to_clip_by_name(sound_name)
+			playing_stream_bubble_col_clip_name = sound_name
 	
 		
 			
