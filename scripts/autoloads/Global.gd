@@ -6,6 +6,7 @@ var bubble_per_seconds : float = 0
 var all_bubbles: Array[Bubble] = []
 var bubble_count : int = 0
 var stonk_bubble_count : int = 0
+var dividend_bubble_count : int = 0
 var speculative_bubble_count : int = 0
 var factory_bubble_count : int = 0
 var nugget_collected : int = 0

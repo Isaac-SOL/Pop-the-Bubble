@@ -9,9 +9,7 @@ const BUBBLE_FACTORY : String = "Factory Bubble"
 const BUBBLE_STONK : String = "Bubble Stonk"
 const BUBBLE_METAVERSE : String = "Bubbleverse"
 const BUBBLE_SPECULATIVE : String = "Speculative Bubble"
-
-var BUBBLE_POWER_TEST = BUBBLE_GPT
-
+const BUBBLE_DIVIDEND : String = "Dividend Bubble"
 
 
 var bubble_speed_mult = 1.0
@@ -34,7 +32,7 @@ func activate_power(power_id: String)-> void:
 			Global.main_node.player_hand.set_collision_layer_value(3, false)
 			update_power_lists(power_id, false)
 		BUBBLE_FACTORY:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, Global.main_node.BUBBLE_SPAWNER)
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_FACTORY])
 		BUBBLE_STONK:
 			var bubbles_copy : Array = Global.all_bubbles.duplicate()
 			bubbles_copy.shuffle()
@@ -51,6 +49,14 @@ func activate_power(power_id: String)-> void:
 			var random_bubbles : Array = bubbles_copy.slice(0, min(7, bubbles_copy.size()))
 			for bubble in random_bubbles:
 				bubble.set_bubble_speculative()
+		BUBBLE_DIVIDEND:
+			var bubbles_copy : Array = Global.all_bubbles.duplicate()
+			bubbles_copy.shuffle()
+			#Select 2 random bubbles
+			var random_bubbles : Array = bubbles_copy.slice(0, min(2, bubbles_copy.size()))
+			for bubble in random_bubbles:
+				bubble.set_bubble_dividend()
+			
 			
 			
 			

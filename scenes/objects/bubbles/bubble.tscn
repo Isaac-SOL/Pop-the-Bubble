@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://btrnaiw5jker4"]
 
-[ext_resource type="Script" uid="uid://blavl2ak3fu6h" path="res://scripts/objects/bubbles/bubble.gd" id="1_x8eid"]
-[ext_resource type="PackedScene" uid="uid://bwnmh0vbcat1n" path="res://scenes/objects/bubbles/bubble_corps.tscn" id="2_jl6ec"]
-[ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="3_1cufn"]
-[ext_resource type="Texture2D" uid="uid://b3nr1xh517dxw" path="res://assets/models/bubbles/splach.png" id="3_x8eid"]
-[ext_resource type="AudioStream" uid="uid://bdkahj35801gl" path="res://assets/audio/sfx/bubbles/bubble_up.ogg" id="5_p1tiu"]
+[ext_resource type="Script" uid="uid://blavl2ak3fu6h" path="res://scripts/objects/bubbles/bubble.gd" id="1_63cjf"]
+[ext_resource type="PackedScene" uid="uid://bwnmh0vbcat1n" path="res://scenes/objects/bubbles/bubble_corps.tscn" id="2_orjhs"]
+[ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="3_3o7p6"]
+[ext_resource type="Texture2D" uid="uid://b3nr1xh517dxw" path="res://assets/models/bubbles/splach.png" id="4_sy5dr"]
+[ext_resource type="AudioStream" uid="uid://bdkahj35801gl" path="res://assets/audio/sfx/bubbles/bubble_up.ogg" id="5_redsc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_270sc"]
 radius = 16.03122
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_plh5e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s35st"]
 resource_local_to_scene = true
-shader = ExtResource("3_1cufn")
+shader = ExtResource("3_3o7p6")
 shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
 shader_parameter/rim_color = Color(0.2, 0.2, 1, 1)
 shader_parameter/rim_width = 0.2
@@ -22,30 +22,30 @@ shader_parameter/lens_radius = 5.0
 shader_parameter/lens_power = 0.2
 shader_parameter/tint_strength = 1.0
 
-[node name="bubble_normal" type="Area2D" unique_id=501984861]
+[node name="bubble" type="Area2D" unique_id=501984861]
 collision_layer = 12
 collision_mask = 4
-script = ExtResource("1_x8eid")
+script = ExtResource("1_63cjf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=187371561]
 shape = SubResource("CircleShape2D_270sc")
 
-[node name="bubble_corps" parent="." unique_id=1286681178 instance=ExtResource("2_jl6ec")]
+[node name="bubble_corps" parent="." unique_id=1286681178 instance=ExtResource("2_orjhs")]
 unique_name_in_owner = true
 
 [node name="Sprite2D" parent="bubble_corps" index="0" unique_id=24901897]
-material = SubResource("ShaderMaterial_plh5e")
+material = SubResource("ShaderMaterial_s35st")
 
 [node name="Splash" type="Sprite2D" parent="." unique_id=1971966676]
 unique_name_in_owner = true
 visible = false
 z_index = 10
 scale = Vector2(0.365, 0.365)
-texture = ExtResource("3_x8eid")
+texture = ExtResource("4_sy5dr")
 
 [node name="AudioBubbleUp" type="AudioStreamPlayer2D" parent="." unique_id=2078199509]
 unique_name_in_owner = true
-stream = ExtResource("5_p1tiu")
+stream = ExtResource("5_redsc")
 volume_db = -15.0
 bus = &"Sfx"
 
