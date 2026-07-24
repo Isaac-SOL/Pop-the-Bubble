@@ -46,7 +46,7 @@ bbl_lvl_value = {
 2: 12,
 3: 75,
 4: 160,
-5: 350
+5: 10
 }
 
 [node name="background" type="Sprite2D" parent="." unique_id=1513136260]

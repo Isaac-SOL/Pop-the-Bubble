@@ -31,6 +31,7 @@ var timer_factory: Timer
 var factory_spawn_rate: int = 75
 var nugget_value: int
 var dead: bool = false
+var spawn_factories: bool = false
 
 func _ready() -> void:
 	#sprite_2d.material = sprite_2d.material.duplicate()
@@ -60,8 +61,8 @@ func _ready() -> void:
 	
 	shader_material.set_shader_parameter("bubble_color", bubble_color)
 	shader_material.set_shader_parameter("rim_color", bubble_color+Color(0.1,0.1,0.1,0.0))
-	velocity = Vector2(randf_range(-1.0,1.0),randf_range(-1.0,1.0))
-	speed = randf_range(50.0,200.0) /scale.x
+	velocity = Util.rand_on_circle()
+	speed = randf_range(100.0,200.0) /scale.x
 	
 	if bubble_types.size() > 0:
 		for type in bubble_types:
@@ -130,15 +131,15 @@ func set_bubble_factory()-> void:
 	timer_factory.one_shot = true
 	add_child(timer_factory)
 	timer_factory.timeout.connect(create_factory_bubble)
-	timer_factory.start(randf_range(3.0,8.0))
+	timer_factory.start(randf_range(3.0,8.0) * 100.0 / factory_spawn_rate)
 
 func create_dividend_bubble()-> void:
 		Global.main_node.spawn_bubble(Vector2(position.x+randf_range(-1.0,1.0), position.y+randf_range(-1.0,1.0)), bubble_level, 1, [PowerManager.BUBBLE_DIVIDEND])
 		timer_dividend.start(randf_range(3.0,8.0))
 		
 func create_factory_bubble()-> void:
-		Global.main_node.spawn_bubble(Vector2(position.x+randf_range(-1.0,1.0), position.y+randf_range(-1.0,1.0)), 1, 2)
-		timer_factory.start(randf_range(3.0,8.0))
+		Global.main_node.spawn_bubble(Vector2(position.x+randf_range(-1.0,1.0), position.y+randf_range(-1.0,1.0)), 0, 1)
+		timer_factory.start(randf_range(3.0,8.0) * 100.0 / factory_spawn_rate)
 
 	
 
@@ -179,7 +180,7 @@ func bubble_deleted()-> void:
 func on_spawn():
 	speed_start_mult = speed_mult_at_start
 	var speed_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	speed_tween.tween_property(self, "speed_start_mult", 1.0, 2.0)
+	speed_tween.tween_property(self, "speed_start_mult", 1.0, randf_range(1.6, 2.3))
 
 func pop_animation():
 	dead = true

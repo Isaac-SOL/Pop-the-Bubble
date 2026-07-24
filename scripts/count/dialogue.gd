@@ -42,4 +42,5 @@ func set_dialogue(text: String, fadeout_time: float = DEFAULT_FADEOUT_TIME, vene
 	clear_dialogue()
 
 func pass_dialogue():
-	dialogue_passed.emit()
+	if %RichTextLabel_dialogue.visible_characters >= %RichTextLabel_dialogue.get_total_character_count():
+		dialogue_passed.emit()
