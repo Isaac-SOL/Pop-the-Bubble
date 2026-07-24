@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://btrnaiw5jker4"]
 
 [ext_resource type="Script" uid="uid://blavl2ak3fu6h" path="res://scripts/objects/bubbles/bubble.gd" id="1_63cjf"]
-[ext_resource type="PackedScene" uid="uid://bwnmh0vbcat1n" path="res://scenes/objects/bubbles/bubble_corps.tscn" id="2_orjhs"]
 [ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="3_3o7p6"]
 [ext_resource type="Texture2D" uid="uid://b3nr1xh517dxw" path="res://assets/models/bubbles/splach.png" id="4_sy5dr"]
+[ext_resource type="Texture2D" uid="uid://d0f32gphcjf01" path="res://assets/models/bubbles/bubble_1.png" id="5_63cjf"]
 [ext_resource type="AudioStream" uid="uid://bdkahj35801gl" path="res://assets/audio/sfx/bubbles/bubble_up.ogg" id="5_redsc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_270sc"]
@@ -30,12 +30,6 @@ script = ExtResource("1_63cjf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=187371561]
 shape = SubResource("CircleShape2D_270sc")
 
-[node name="bubble_corps" parent="." unique_id=1286681178 instance=ExtResource("2_orjhs")]
-unique_name_in_owner = true
-
-[node name="Sprite2D" parent="bubble_corps" index="0" unique_id=24901897]
-material = SubResource("ShaderMaterial_63cjf")
-
 [node name="Splash" type="Sprite2D" parent="." unique_id=1971966676]
 unique_name_in_owner = true
 visible = false
@@ -49,4 +43,12 @@ stream = ExtResource("5_redsc")
 volume_db = -15.0
 bus = &"Sfx"
 
-[editable path="bubble_corps"]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=24901897]
+unique_name_in_owner = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_63cjf")
+texture = ExtResource("5_63cjf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=464743157]
+unique_name_in_owner = true
+rect = Rect2(-17, -17, 34, 34)

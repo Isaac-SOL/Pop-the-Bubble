@@ -44,7 +44,7 @@ func _ready() -> void:
 	await Global.dialogue_node.dialogue_passed
 	await Global.seconds(0.5)
 	Global.dialogue_node.set_dialogue("I, Count Louis von Bubble, have fused all industries of the world into a single, big bubble factory!", 0)
-	var big_bubble := spawn_bubble(%SpawnRect.position, 5, 1)[0]
+	var big_bubble = Global.main_node.spawn_bubble(%SpawnRect.position, 5, 1)[0]
 	big_bubble.speed = 0.0
 	await Global.dialogue_node.dialogue_passed
 	await Global.seconds(0.5)
@@ -69,6 +69,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("left_click"):
 		Global.dialogue_node.pass_dialogue()
 
+
 func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = []) -> Array[Bubble]:
 	var spawned: Array[Bubble] = []
 	for i in range(qty):
@@ -90,7 +91,7 @@ func update_bubble_count()-> void:
 	Global.bubble_per_seconds = 0.
 	for b: Bubble in Global.all_bubbles:
 		if b.is_factory:
-			Global.bubble_per_seconds += b.factory_spawn_rate /100. * 1./b.timer_factory.wait_time 
+			Global.bubble_per_seconds += b.spawn_rate /100. * 1./b.timer_factory.wait_time 
 	%LabelBubblesPerSec.text = "%.2f bps" % Global.bubble_per_seconds
 	check_win()
 
@@ -107,31 +108,32 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_DIVIDEND, PowerManager.BUBBLE_SPECULATIVE, PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			#BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY]
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_METAVERSE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_NORMAL_FRAMES
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
 			for lvl in range(3-1):
 				for i in range(ini_spawn_bylvl[lvl]):
-					spawn_bubble(Util.rand_in_rectangle(spawn_rect), lvl, 1)
+					BubbleManager.spawn_bubble(Util.rand_in_rectangle(spawn_rect), lvl, 1)
 			for i in range(ini_spawn_bylvl[3]):
-				spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 1, [PowerManager.BUBBLE_FACTORY])
+				BubbleManager.spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 1, [BubbleManager.BUBBLE_FACTORY])
 		1:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
-			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, [PowerManager.BUBBLE_FACTORY])
+			BubbleManager.spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, [BubbleManager.BUBBLE_FACTORY])
 		2:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
 			background.texture = PLANETE_BUBBLE_MOUILLEE_USINE
 		3:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_SAIYAN_FRAMES
 		4:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
 			background.texture = PLANETE_BULLE_HERBE_USINE
 		5:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
 			
 #Instantiate a nugget explosion when a popping a bubble
@@ -162,12 +164,12 @@ func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 		while i < bbl_lvl_value[bubble.bubble_level]:
 			lvl = randi() % bubble.bubble_level
 			i += 1 + bbl_lvl_value[lvl]
-			spawn_bubble(bubble.position, lvl)
+			Global.main_node.spawn_bubble(bubble.position, lvl)
 		bubble.pop_animation()
 		shake_vertical(bubble.bubble_level * bubble.bubble_level * 3, 0.5)
 	update_bubble_count()
 
 func _on_bubble_spawn(amount: int, pos: Vector2, level: int, _bubble: Bubble):
 	for i in range(amount):
-		spawn_bubble(pos, level)
+		Global.main_node.spawn_bubble(pos, level)
 	update_bubble_count()

@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamInteractive" format=3 uid="uid://j5vpeay22tyd"]
+
+[ext_resource type="AudioStream" uid="uid://os3oqx326w1g" path="res://assets/audio/sfx/others/null.ogg" id="1_pmkp8"]
+[ext_resource type="AudioStream" uid="uid://cgpgc2f8fp3v7" path="res://assets/audio/sfx/nuggets/nugget_pickup.ogg" id="2_cmixo"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d3xll"]
+random_pitch = 1.0293022
+streams_count = 1
+stream_0/stream = ExtResource("2_cmixo")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_pmkp8"]
+stream_count = 1
+stream_0/stream = SubResource("AudioStreamRandomizer_d3xll")
+stream_0/volume = -35.0
+
+[resource]
+clip_count = 2
+clip_0/name = &"init"
+clip_0/stream = ExtResource("1_pmkp8")
+clip_0/auto_advance = 0
+clip_1/name = &"nugget_pickup"
+clip_1/stream = SubResource("AudioStreamSynchronized_pmkp8")
+clip_1/auto_advance = 0

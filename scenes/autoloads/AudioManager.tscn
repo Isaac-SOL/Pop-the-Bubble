@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://co0os802pvn5f" path="res://assets/audio/ressource/audio_stream_music.tres" id="2_dpjih"]
 [ext_resource type="AudioStream" uid="uid://b43kw8t3fprse" path="res://assets/audio/ressource/audio_stream_sfx.tres" id="3_mn8lw"]
 [ext_resource type="AudioStream" uid="uid://d3412kcvy64c" path="res://assets/audio/ressource/audio_stream_bubble_col.tres" id="4_rky00"]
+[ext_resource type="AudioStream" uid="uid://j5vpeay22tyd" path="res://assets/audio/ressource/audio_stream_nugget.tres" id="5_rky00"]
 
 [node name="AudioManager" type="Node" unique_id=432899416]
 script = ExtResource("1_doglo")
@@ -25,4 +26,9 @@ bus = &"Sfx"
 [node name="AudioStreamPlayer_bubble_col" type="AudioStreamPlayer" parent="." unique_id=311612983]
 process_mode = 3
 stream = ExtResource("4_rky00")
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer_nugget" type="AudioStreamPlayer" parent="." unique_id=1989185671]
+process_mode = 3
+stream = ExtResource("5_rky00")
 bus = &"Sfx"
