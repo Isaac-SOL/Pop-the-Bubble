@@ -2,12 +2,20 @@ class_name Main extends Node2D
 
 const BUBBLE_NORMAL = preload("uid://btrnaiw5jker4")
 const BUBBLE_SPAWNER = preload("uid://cqjldkck6wown")
+const NUGGET_EXPLOSION = preload("uid://5hna500nh7w")
 
+const PLANETE_BUBBLE_SECHE_USINE = preload("uid://bg3oe0ctr6p6i")
+const PLANETE_BUBBLE_MOUILLEE_USINE = preload("uid://dki4bvktbg4tj")
+const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
+
+
+@onready var background: Sprite2D = %background
 @onready var area_2d_border: Area2D = $Area2D_border
 @onready var label_threshold: Label = %LabelThreshold
 @onready var player_hand: Area2D = $player_hand
 @onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Node2D = %count
+@onready var nugget_parent: Node2D = %NuggetParent
 
 @export var lose_threshold: int = 200
 @export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:75, 4: 160}
@@ -17,6 +25,7 @@ var spawn_rect: Rect2
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Global.set_main_reference(self)
+	AudioManager.playAudio_stream_music(&"feel_the_bubble")
 	label_threshold.text += str(lose_threshold)
 	spawn_rect = %SpawnRect.shape.get_rect()
 	spawn_rect.position += %SpawnRect.global_position
@@ -55,8 +64,9 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			PowerManager.phase_powers = [PowerManager.BUBBLE_SPECULATIVE, PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_SURPRIS_FRAMES
+			background.texture = PLANETE_BUBBLE_SECHE_USINE
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 0, 10)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 1, 5)
 			spawn_bubble(Util.rand_in_rectangle(spawn_rect), 2, 2)
@@ -68,15 +78,24 @@ func set_count_phase(phase: int)-> void:
 		2:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
+			background.texture = PLANETE_BUBBLE_MOUILLEE_USINE
 		3:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
 		4:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
+			background.texture = PLANETE_BULLE_HERBE_USINE
 		5:
 			PowerManager.phase_powers = [PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_ENERVE_FRAMES
+			
+#Instantiate a nugget explosion when a popping a bubble
+func add_nugget_explosion(qty: int, spawn_position: Vector2)-> void:
+	var nugget_instance : Node2D = NUGGET_EXPLOSION.instantiate()
+	nugget_parent.add_child(nugget_instance)
+	nugget_instance.spawn(qty,spawn_position,count)
+
 
 # -- Signals --
 
@@ -86,6 +105,7 @@ func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 	bubble.queue_free()
 	Global.all_bubbles.erase(bubble)
 	if !is_deleted:
+		add_nugget_explosion(bubble.nugget_value, bubble.global_position)
 		while i < bbl_lvl_value[bubble.bubble_level]:
 			lvl = randi() % bubble.bubble_level
 			i += 1 + bbl_lvl_value[lvl]
