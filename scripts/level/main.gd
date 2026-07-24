@@ -107,7 +107,7 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			PowerManager.phase_powers = [PowerManager.BUBBLE_DIVIDEND, PowerManager.BUBBLE_SPECULATIVE, PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM, PowerManager.BUBBLE_GPT]
+			PowerManager.phase_powers = [PowerManager.BUBBLE_DIVIDEND, PowerManager.BUBBLE_SPECULATIVE, PowerManager.BUBBLE_METAVERSE, PowerManager.BUBBLE_STONK, PowerManager.BUBBLE_FACTORY, PowerManager.BUBBLE_STORM]
 			count.animated_sprite_2d.sprite_frames = count.COUNT_NORMAL_FRAMES
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
 			for lvl in range(3-1):
