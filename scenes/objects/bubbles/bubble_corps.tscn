@@ -27,5 +27,5 @@ texture = ExtResource("2_qqrca")
 
 [node name="AudioStreamPlayer2D_BubbleUp" type="AudioStreamPlayer2D" parent="." unique_id=2120734624]
 stream = ExtResource("3_blb5n")
-volume_db = -30.0
+volume_db = -15.0
 bus = &"Sfx"

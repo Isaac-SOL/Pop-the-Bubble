@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://c3nr42q8h5b57"]
 
 [ext_resource type="Script" uid="uid://dgpkrva3urudu" path="res://scripts/level/main.gd" id="1_0wfyh"]
-[ext_resource type="Texture2D" uid="uid://nrp7lax1nmny" path="res://assets/models/background/astroneer1920x1080.jpg" id="2_855hj"]
+[ext_resource type="Texture2D" uid="uid://bg3oe0ctr6p6i" path="res://assets/models/background/planete_bubble_seche_usine.jpg" id="2_1bkat"]
 [ext_resource type="Script" uid="uid://c63jtub5dv8hx" path="res://scripts/level/area_2d_borders.gd" id="3_64aob"]
 [ext_resource type="PackedScene" uid="uid://cwi6nrvnaw45u" path="res://scenes/player/player_hand.tscn" id="3_gjage"]
 [ext_resource type="Script" uid="uid://tyntc633hxw7" path="res://scripts/ui/ui_player.gd" id="5_2hqms"]
 [ext_resource type="PackedScene" uid="uid://cjhuj6fe23xkj" path="res://scenes/count/count.tscn" id="5_gjage"]
 [ext_resource type="LabelSettings" uid="uid://b56puo2v5fv7b" path="res://assets/ressources/label_default_settings.tres" id="6_x0mk0"]
-[ext_resource type="PackedScene" uid="uid://s2ijlvkld68n" path="res://scenes/count/dialogue.tscn" id="8_1bkat"]
+[ext_resource type="PackedScene" uid="uid://b2sqoslmfrs0f" path="res://scenes/count/dialogue.tscn" id="8_1bkat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyvc"]
 size = Vector2(865, 587)
@@ -42,10 +42,11 @@ script = ExtResource("1_0wfyh")
 lose_threshold = 500
 
 [node name="background" type="Sprite2D" parent="." unique_id=1513136260]
-modulate = Color(0.2681376, 0.26813763, 0.2681376, 1)
-position = Vector2(631, 356.00003)
-scale = Vector2(0.7416667, 0.7416667)
-texture = ExtResource("2_855hj")
+unique_name_in_owner = true
+modulate = Color(0.384951, 0.38495088, 0.38495082, 1)
+position = Vector2(728, 435.00003)
+scale = Vector2(0.48474935, 0.46067983)
+texture = ExtResource("2_1bkat")
 
 [node name="SpawnRect" type="CollisionShape2D" parent="." unique_id=160105361]
 unique_name_in_owner = true
@@ -56,28 +57,28 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 [node name="Area2D_borders" type="Area2D" parent="." unique_id=522331046]
 position = Vector2(790, 246)
 collision_layer = 8
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("3_64aob")
 
 [node name="LeftBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=1221744345]
 position = Vector2(-685, 113.5)
 shape = SubResource("RectangleShape2D_270sc")
-debug_color = Color(0, 0.6, 0.69803923, 0)
+debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 
 [node name="RightBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=1932930284]
 position = Vector2(518.635, 113)
 shape = SubResource("RectangleShape2D_855hj")
-debug_color = Color(0, 0.6, 0.69803923, 0)
+debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 
 [node name="BottomBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=38358597]
 position = Vector2(-147, 501.495)
 shape = SubResource("RectangleShape2D_64aob")
-debug_color = Color(0, 0.6, 0.69803923, 0)
+debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 
 [node name="TopBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=785043669]
 position = Vector2(-147, -271.53)
 shape = SubResource("RectangleShape2D_64aob")
-debug_color = Color(0, 0.6, 0.69803923, 0)
+debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 
 [node name="BubblesParent" type="Node2D" parent="." unique_id=1446199157]
 unique_name_in_owner = true
@@ -144,16 +145,19 @@ layout_mode = 2
 text = "Special Bubbles"
 label_settings = ExtResource("6_x0mk0")
 
-[node name="LabelBubblesFactory" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1072372943]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Factory Bubbles: "
-label_settings = ExtResource("6_x0mk0")
-
 [node name="LabelBubblesStonk" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1687917625]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Stonk Bubbles: "
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesFactory" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1072372943]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesSpeculative" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=307582450]
+unique_name_in_owner = true
+layout_mode = 2
 label_settings = ExtResource("6_x0mk0")
 
 [node name="VBoxContainer_stats" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1699295287]
@@ -175,6 +179,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Threshold: "
 label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="NuggetParent" type="Node2D" parent="UI/ui_player" unique_id=1818236243]
+unique_name_in_owner = true
 
 [node name="Dialogue" parent="UI/ui_player" unique_id=2113910368 instance=ExtResource("8_1bkat")]
 position = Vector2(368, 48)

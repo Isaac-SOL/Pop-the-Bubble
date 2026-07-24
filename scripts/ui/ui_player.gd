@@ -3,7 +3,9 @@ extends Control
 
 @onready var label_bubbles_factory: Label = %LabelBubblesFactory
 @onready var label_bubbles_stonk: Label = %LabelBubblesStonk
+@onready var label_nuggets: Label = %LabelNuggets
 @onready var label_bubbles: Label = %LabelBubbles
+@onready var label_bubbles_speculative: Label = %LabelBubblesSpeculative
 
 func _physics_process(_delta: float) -> void:
 	if Global.factory_bubble_count > 0:
@@ -17,6 +19,12 @@ func _physics_process(_delta: float) -> void:
 		label_bubbles_stonk.text = "Stonk Bubbles: "+str(Global.stonk_bubble_count)
 	else:
 		label_bubbles_stonk.hide()
+		
+	if Global.speculative_bubble_count > 0:
+		label_bubbles_speculative.show()
+		label_bubbles_speculative.text = "Speculative Bubbles: "+str(Global.speculative_bubble_count)
+	else:
+		label_bubbles_speculative.hide()
 		
 	if Global.all_bubbles.size() > 0:
 		label_bubbles.show()

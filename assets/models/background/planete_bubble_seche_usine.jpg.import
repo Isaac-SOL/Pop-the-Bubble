@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfcurfghcwwpf"
-path="res://.godot/imported/BG-Bubble.png-ce9976dba334ddd2385987878d7004d0.ctex"
+uid="uid://bg3oe0ctr6p6i"
+path="res://.godot/imported/planete_bubble_seche_usine.jpg-1de3c73042175aab21e90fc4b3daa81d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_menu/BG-Bubble.png"
-dest_files=["res://.godot/imported/BG-Bubble.png-ce9976dba334ddd2385987878d7004d0.ctex"]
+source_file="res://assets/models/background/planete_bubble_seche_usine.jpg"
+dest_files=["res://.godot/imported/planete_bubble_seche_usine.jpg-1de3c73042175aab21e90fc4b3daa81d.ctex"]
 
 [params]
 

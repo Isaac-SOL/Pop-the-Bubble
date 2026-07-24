@@ -6,6 +6,7 @@ extends Node
 @onready var audio_stream_player_bubble_col: AudioStreamPlayer = $AudioStreamPlayer_bubble_col
 @onready var collision_timer: Timer = Timer.new()
 
+
 var interactive_stream_music : AudioStreamPlaybackInteractive
 var interactive_stream_ambiant : AudioStreamPlaybackInteractive
 var interactive_stream_sfx : AudioStreamPlaybackInteractive

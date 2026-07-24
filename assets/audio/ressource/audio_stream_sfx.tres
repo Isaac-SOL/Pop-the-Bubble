@@ -1,0 +1,27 @@
+[gd_resource type="AudioStreamInteractive" format=3 uid="uid://b43kw8t3fprse"]
+
+[ext_resource type="AudioStream" uid="uid://os3oqx326w1g" path="res://assets/audio/sfx/others/null.ogg" id="1_ks5hd"]
+[ext_resource type="AudioStream" uid="uid://cd0nraw48vskf" path="res://assets/audio/sfx/bubbles/bubble_pop.ogg" id="3_nuxam"]
+[ext_resource type="AudioStream" uid="uid://blimwq0yrfvh0" path="res://assets/audio/sfx/buttons/bubble_button.ogg" id="4_p48jq"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
+stream_count = 1
+stream_0/stream = ExtResource("3_nuxam")
+stream_0/volume = -22.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2das6"]
+stream_count = 1
+stream_0/stream = ExtResource("4_p48jq")
+stream_0/volume = 0.0
+
+[resource]
+clip_count = 3
+clip_0/name = &"init"
+clip_0/stream = ExtResource("1_ks5hd")
+clip_0/auto_advance = 0
+clip_1/name = &"bubble_pop"
+clip_1/stream = SubResource("AudioStreamSynchronized_rky00")
+clip_1/auto_advance = 0
+clip_2/name = &"bubble_button"
+clip_2/stream = SubResource("AudioStreamSynchronized_2das6")
+clip_2/auto_advance = 0

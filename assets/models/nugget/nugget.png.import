@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nrp7lax1nmny"
-path="res://.godot/imported/astroneer1920x1080.jpg-2543cb77df0e76c4f3cc2e83a328abbd.ctex"
+uid="uid://b1n8ij5e01w4i"
+path="res://.godot/imported/nugget.png-ea3dc7ef32c085b2350586d2f18fe522.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/background/astroneer1920x1080.jpg"
-dest_files=["res://.godot/imported/astroneer1920x1080.jpg-2543cb77df0e76c4f3cc2e83a328abbd.ctex"]
+source_file="res://assets/models/nugget/nugget.png"
+dest_files=["res://.godot/imported/nugget.png-ea3dc7ef32c085b2350586d2f18fe522.ctex"]
 
 [params]
 

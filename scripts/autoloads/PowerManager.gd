@@ -4,10 +4,11 @@ const LABEL_DEFAULT_SETTINGS = preload("uid://b56puo2v5fv7b")
 
 #Power ID
 const BUBBLE_STORM : String = "Bubble Storm"
-const BUBBLE_GPT : String = "Bubble GPT"
-const BUBBLE_FACTORY : String = "Bubble Factory"
+const BUBBLE_GPT : String = "GPT Bubble"
+const BUBBLE_FACTORY : String = "Factory Bubble"
 const BUBBLE_STONK : String = "Bubble Stonk"
-const BUBBLE_METAVERSE : String = "Bubble Metaverse"
+const BUBBLE_METAVERSE : String = "Bubbleverse"
+const BUBBLE_SPECULATIVE : String = "Speculative Bubble"
 
 var BUBBLE_POWER_TEST = BUBBLE_GPT
 
@@ -37,11 +38,20 @@ func activate_power(power_id: String)-> void:
 		BUBBLE_STONK:
 			var bubbles_copy : Array = Global.all_bubbles.duplicate()
 			bubbles_copy.shuffle()
-			var random_bubbles : Array = bubbles_copy.slice(0, min(5, bubbles_copy.size()))
+			#Select 13 random bubbles
+			var random_bubbles : Array = bubbles_copy.slice(0, min(13, bubbles_copy.size()))
 			for bubble in random_bubbles:
 				bubble.set_bubble_stonk(5)
 		BUBBLE_METAVERSE:
 			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 4, 1)
+		BUBBLE_SPECULATIVE:
+			var bubbles_copy : Array = Global.all_bubbles.duplicate()
+			bubbles_copy.shuffle()
+			#Select 7 random bubbles
+			var random_bubbles : Array = bubbles_copy.slice(0, min(7, bubbles_copy.size()))
+			for bubble in random_bubbles:
+				bubble.set_bubble_speculative()
+			
 			
 			
 				
