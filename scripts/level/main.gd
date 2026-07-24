@@ -18,7 +18,7 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 
 @export var lose_threshold: int = 200
 @export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:75, 4: 160}
-var ini_spawn_bylvl = [10,5,2,3] #Nombre de bulles initiales
+var ini_spawn_bylvl = [0,0,0,1] #Nombre de bulles initiales
 
 var spawn_rect: Rect2
 
