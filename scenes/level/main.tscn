@@ -40,6 +40,15 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_0wfyh")
 lose_threshold = 300
 
+bbl_lvl_value = {
+0: 0,
+1: 2,
+2: 12,
+3: 75,
+4: 4,
+5: 15
+}
+
 [node name="background" type="Sprite2D" parent="." unique_id=1513136260]
 unique_name_in_owner = true
 modulate = Color(0.384951, 0.38495088, 0.38495082, 1)
@@ -125,7 +134,7 @@ layout_mode = 2
 
 [node name="count" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_count" unique_id=2124375082 node_paths=PackedStringArray("parent") instance=ExtResource("5_gjage")]
 unique_name_in_owner = true
-position = Vector2(138, 144)
+position = Vector2(113.000015, 171.00002)
 scale = Vector2(0.12, 0.12)
 parent = NodePath("../../../../../..")
 

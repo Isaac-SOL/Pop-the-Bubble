@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://fmh60m7mjv3l" path="res://scripts/objects/bubbles/bubble_popclose.gd" id="2_3ukpn"]
 [ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="3_xcpsm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_42d5r"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxkly"]
 resource_local_to_scene = true
 shader = ExtResource("3_xcpsm")
 shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
@@ -17,8 +17,23 @@ shader_parameter/lens_radius = 5.0
 shader_parameter/lens_power = 0.2
 shader_parameter/tint_strength = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3x28d"]
+radius = 87.005745
+
 [node name="bubble_popclose" unique_id=501984861 instance=ExtResource("1_hxkly")]
 script = ExtResource("2_3ukpn")
+spawn_factories = true
 
 [node name="Sprite2D" parent="." index="3" unique_id=24901897]
-material = SubResource("ShaderMaterial_42d5r")
+material = SubResource("ShaderMaterial_hxkly")
+
+[node name="PopArea" type="Area2D" parent="." index="5" unique_id=2128148201]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PopArea" index="0" unique_id=1074055051]
+shape = SubResource("CircleShape2D_3x28d")
+
+[connection signal="area_entered" from="PopArea" to="." method="_on_pop_area_area_entered"]
+[connection signal="area_exited" from="PopArea" to="." method="_on_pop_area_area_exited"]

@@ -7,7 +7,9 @@ enum State {
 }
 
 const BUBBLE = preload("uid://btrnaiw5jker4")
+const BUBBLE_POPCLOSE = preload("uid://bv6qy7md01hw4")
 const NUGGET_EXPLOSION = preload("uid://5hna500nh7w")
+
 
 const PLANETE_BUBBLE_SECHE_USINE = preload("uid://bg3oe0ctr6p6i")
 const PLANETE_BUBBLE_MOUILLEE_USINE = preload("uid://dki4bvktbg4tj")
@@ -43,7 +45,7 @@ func _ready() -> void:
 	await Global.dialogue_node.dialogue_passed
 	await Global.seconds(0.5)
 	Global.dialogue_node.set_dialogue("I, Count Louis von Bubble, have fused all industries of the world into a single, big bubble factory!", 0)
-	var big_bubble = Global.main_node.spawn_bubble(%SpawnRect.position, 3, 1)[0]
+	var big_bubble = spawn_bubble(%SpawnRect.position, 5, 1)[0]
 	big_bubble.speed = 0.0
 	await Global.dialogue_node.dialogue_passed
 	await Global.seconds(0.5)
@@ -69,12 +71,20 @@ func _ready() -> void:
 	auto_dialogue_p1()
 
 func auto_dialogue_p1():
-	await Global.seconds(15)
+	await Global.seconds(7)
 	Global.dialogue_node.set_dialogue("Hmph. An anti-bubblist stuck in the past, I see.")
 	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("Your popping is meaningless. You cannot hurt me in a way that matters.")
 	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("You think you're being smart? [color=red]If you destroy my factories willy-nilly, you're gonna destabilize everything![/color]")
+	await Global.seconds(10)
+	Global.dialogue_node.set_dialogue("Let's see you try to deal with this!", 5)
+	var popclose := spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0]
+	popclose.speed = 250
+	await popclose.popped
+	await Global.seconds(2)
+	Global.dialogue_node.set_dialogue("And another one!", 5)
+	spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
 	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("Is that all you are? A destabilizer? Tell me, have you ever *built* anything?")
 	await Global.seconds(15)
@@ -82,17 +92,19 @@ func auto_dialogue_p1():
 	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("I started with pretty much nothing! Nothing but my parents' bubble mine in the south!")
 	await Global.seconds(15)
-	Global.dialogue_node.set_dialogue("I'm a self-made Man!", 3)
+	Global.dialogue_node.set_dialogue("I'm a self-made man!", 3)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		Global.dialogue_node.pass_dialogue()
+	if Input.is_action_just_pressed("debug_spawn_popclose"):
+		spawn_bubble(%SpawnRect.position, 3, 1, [], BUBBLE_POPCLOSE)
 
 
-func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = []) -> Array[Bubble]:
+func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = [], template: PackedScene = BUBBLE) -> Array[Bubble]:
 	var spawned: Array[Bubble] = []
 	for i in range(qty):
-		var bubble: Bubble = BUBBLE.instantiate()
+		var bubble: Bubble = template.instantiate()
 		bubble.bubble_level = level
 		bubble.bubble_types = types
 		%BubblesParent.add_child(bubble)
@@ -116,12 +128,14 @@ func update_bubble_count()-> void:
 func check_lose()-> void:
 	if Global.all_bubbles.size() >= lose_threshold:
 		%ui_gameover.show()
+		get_tree().paused = true
 
 func check_win()-> void:
 	if state != State.GAMING:
 		return
 	if Global.all_bubbles.size() <= 0:
 		%ui_victory.show()
+		get_tree().paused = true
 
 func set_count_phase(phase: int)-> void:
 	match phase:
