@@ -45,3 +45,9 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 visible_characters_behavior = 1
+
+[node name="BleepTimer" type="Timer" parent="." unique_id=948992791]
+wait_time = 0.16
+autostart = true
+
+[connection signal="timeout" from="BleepTimer" to="." method="_on_bleep_timer_timeout"]

@@ -1,6 +1,7 @@
 class_name DialogueNode2D extends Node2D
 
 signal dialogue_passed
+signal bleep
 
 const DEFAULT_FADEOUT_TIME = 5 # Secondes
 
@@ -44,3 +45,7 @@ func set_dialogue(text: String, fadeout_time: float = DEFAULT_FADEOUT_TIME, vene
 func pass_dialogue():
 	if %RichTextLabel_dialogue.visible_characters >= %RichTextLabel_dialogue.get_total_character_count():
 		dialogue_passed.emit()
+
+func _on_bleep_timer_timeout() -> void:
+	if visible and %RichTextLabel_dialogue.visible_characters < %RichTextLabel_dialogue.get_total_character_count():
+		bleep.emit()
