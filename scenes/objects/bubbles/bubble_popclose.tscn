@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bv6qy7md01hw4"]
+
+[ext_resource type="PackedScene" uid="uid://btrnaiw5jker4" path="res://scenes/objects/bubbles/bubble.tscn" id="1_hxkly"]
+[ext_resource type="Script" uid="uid://fmh60m7mjv3l" path="res://scripts/objects/bubbles/bubble_popclose.gd" id="2_3ukpn"]
+[ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="3_xcpsm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42d5r"]
+resource_local_to_scene = true
+shader = ExtResource("3_xcpsm")
+shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/rim_color = Color(0.2, 0.2, 1, 1)
+shader_parameter/rim_width = 0.2
+shader_parameter/wobble_strength = 0.01
+shader_parameter/wobble_speed = 10.0
+shader_parameter/light_direction = Vector2(1, -1)
+shader_parameter/lens_radius = 5.0
+shader_parameter/lens_power = 0.2
+shader_parameter/tint_strength = 1.0
+
+[node name="bubble_popclose" unique_id=501984861 instance=ExtResource("1_hxkly")]
+script = ExtResource("2_3ukpn")
+
+[node name="Sprite2D" parent="." index="3" unique_id=24901897]
+material = SubResource("ShaderMaterial_42d5r")

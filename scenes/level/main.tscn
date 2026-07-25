@@ -39,14 +39,14 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
-lose_threshold = 500
+lose_threshold = 300
 bbl_lvl_value = {
 0: 0,
 1: 2,
 2: 12,
 3: 75,
 4: 160,
-5: 350
+5: 15
 }
 
 [node name="background" type="Sprite2D" parent="." unique_id=1513136260]
@@ -275,3 +275,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="area_shape_entered" from="Area2D_borders" to="Area2D_borders" method="_on_area_shape_entered"]
+[connection signal="bleep" from="UI/ui_player/Dialogue" to="." method="_on_dialogue_bleep"]

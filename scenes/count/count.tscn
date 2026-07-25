@@ -1,10 +1,85 @@
 [gd_scene format=3 uid="uid://cjhuj6fe23xkj"]
 
 [ext_resource type="Script" uid="uid://cnqoiwu502ndw" path="res://scripts/count/count.gd" id="1_l74ek"]
-[ext_resource type="SpriteFrames" uid="uid://kve5vfowpgq6" path="res://assets/models/count/count_surpris_frames.tres" id="2_mgd51"]
+[ext_resource type="Script" uid="uid://b038wgl6janrt" path="res://addons/leeklib/shaker_2d.gd" id="2_a7vfb"]
+[ext_resource type="Texture2D" uid="uid://8hnufh0baw0t" path="res://assets/models/count/default_avec_perruque.png" id="2_u617d"]
+[ext_resource type="Texture2D" uid="uid://u65chelvfc7w" path="res://assets/models/count/comte_saiyan.png" id="3_a7vfb"]
+[ext_resource type="Texture2D" uid="uid://ds16dlkdb8c70" path="res://assets/models/count/comte_bubble_surpris.png" id="4_mfgcw"]
+[ext_resource type="Texture2D" uid="uid://blx0hemdnwn1n" path="res://assets/models/count/comte_bubble_enerve.png" id="5_aq635"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1uji"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_u617d")
+}],
+"loop": 1,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a7vfb")
+}],
+"loop": 1,
+"name": &"saiyan",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mfgcw")
+}],
+"loop": 1,
+"name": &"surpris",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_aq635")
+}],
+"loop": 1,
+"name": &"vener",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_u617d"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3x28d"]
+gradient = SubResource("Gradient_u617d")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="count" type="Node2D" unique_id=2124375082]
 script = ExtResource("1_l74ek")
+anim_interval = 1.0
+anim_pos_accel = 11.6
+anim_rot_accel = 0.34
+anim_scale_max_der = 0.235
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=9874524]
-sprite_frames = ExtResource("2_mgd51")
+[node name="AnimPivot" type="Node2D" parent="." unique_id=1632379150]
+unique_name_in_owner = true
+
+[node name="AnimVoice" type="Node2D" parent="AnimPivot" unique_id=1059636591]
+unique_name_in_owner = true
+
+[node name="Shaker2D" type="Node2D" parent="AnimPivot/AnimVoice" unique_id=1097481303]
+unique_name_in_owner = true
+script = ExtResource("2_a7vfb")
+shake_factor = 100.0
+metadata/_custom_type_script = "uid://b038wgl6janrt"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimPivot/AnimVoice/Shaker2D" unique_id=9874524]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_f1uji")
+animation = &"normal"
+autoplay = "normal"
+
+[node name="Shadow" type="Sprite2D" parent="AnimPivot/AnimVoice/Shaker2D/AnimatedSprite2D" unique_id=1547113322]
+show_behind_parent = true
+position = Vector2(-121, -167)
+scale = Vector2(5.65625, 10.5546875)
+texture = SubResource("GradientTexture2D_3x28d")

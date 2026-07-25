@@ -1,12 +1,14 @@
 class_name DialogueNode2D extends Node2D
 
 signal dialogue_passed
+signal bleep
 
 const DEFAULT_FADEOUT_TIME = 5 # Secondes
 
 @export var characters_per_sec: float = 5.0
 var visible_characters: float = 0.0
 var vener_mode: bool = false
+var modulate_tween: Tween
 
 func _ready() -> void:
 	Global.set_dialogue_reference(self)
@@ -42,4 +44,23 @@ func set_dialogue(text: String, fadeout_time: float = DEFAULT_FADEOUT_TIME, vene
 	clear_dialogue()
 
 func pass_dialogue():
-	dialogue_passed.emit()
+	if %RichTextLabel_dialogue.visible_characters >= %RichTextLabel_dialogue.get_total_character_count():
+		dialogue_passed.emit()
+
+func _on_bleep_timer_timeout() -> void:
+	if visible and %RichTextLabel_dialogue.visible_characters < %RichTextLabel_dialogue.get_total_character_count():
+		bleep.emit()
+
+
+func _on_rich_text_label_dialogue_mouse_entered() -> void:
+	if modulate_tween != null:
+		modulate_tween.kill()
+	modulate_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	modulate_tween.tween_property(%Shaker2D, "modulate", Color(1.0, 1.0, 1.0, 0.392), 0.5)
+
+
+func _on_rich_text_label_dialogue_mouse_exited() -> void:
+	if modulate_tween != null:
+		modulate_tween.kill()
+	modulate_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	modulate_tween.tween_property(%Shaker2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)

@@ -42,6 +42,7 @@ var factory_max_range_timer : float = DEFAULT_FACTORY_MAX_RANGE_TIMER
 var spawn_rate: int = DEFAULT_SPAWN_RATE
 var nugget_value: int
 var dead: bool = false
+var spawn_factories: bool = false
 
 func _ready() -> void:
 	#sprite_2d.material = sprite_2d.material.duplicate()
@@ -69,8 +70,8 @@ func _ready() -> void:
 			var scale_tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 			scale_tween.tween_property(self, "scale", Vector2.ONE * 7, 2.0)
 	
-	velocity = Vector2(randf_range(-1.0,1.0),randf_range(-1.0,1.0))
-	speed = randf_range(50.0,200.0) / (1.0+bubble_level/1.5)
+	velocity = Util.rand_on_circle()
+	speed = randf_range(100.0,200.0) / (1.0+bubble_level/1.5)
 	
 	if bubble_types.size() > 0:
 		for type in bubble_types:
@@ -146,7 +147,7 @@ func set_bubble_factory()-> void:
 	timer_factory = Timer.new()
 	timer_factory.one_shot = true
 	add_child(timer_factory)
-	timer_factory.timeout.connect(create_bubble.bind(timer_factory, Vector2(1.0,factory_max_range_timer), true, 1, 2))
+	timer_factory.timeout.connect(create_bubble.bind(timer_factory, Vector2(1.0,factory_max_range_timer), true, 0, 2))
 	timer_factory.start(1.0)
 	
 func set_bubble_internet(activate: bool = true)-> void:
@@ -162,7 +163,7 @@ func set_bubble_internet(activate: bool = true)-> void:
 	else:
 		for bubble : Bubble in Global.all_bubbles:
 			if bubble.is_factory:
-				bubble.pawn_rate = bubble.DEFAULT_SPAWN_RATE
+				bubble.spawn_rate = bubble.DEFAULT_SPAWN_RATE
 				bubble.factory_max_range_timer = bubble.DEFAULT_FACTORY_MAX_RANGE_TIMER
 		
 	
@@ -211,7 +212,6 @@ func create_bubble(timer: Timer, timer_range : Vector2, is_self_pos : bool, leve
 			pos = Util.rand_in_rectangle(Global.main_node.spawn_rect)
 		Global.main_node.spawn_bubble(pos, level, qty, types)
 	timer.start(randf_range(timer_range.x, timer_range.y))
-
 
 	
 
@@ -266,7 +266,7 @@ func set_color(color: Color):
 func on_spawn():
 	speed_start_mult = speed_mult_at_start
 	var speed_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	speed_tween.tween_property(self, "speed_start_mult", 1.0, 2.0)
+	speed_tween.tween_property(self, "speed_start_mult", 1.0, randf_range(1.6, 2.3))
 
 func pop_animation():
 	dead = true
