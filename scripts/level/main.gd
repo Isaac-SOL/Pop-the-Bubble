@@ -18,14 +18,12 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 var state := State.INTRO
 
 @onready var background: Sprite2D = %background
-@onready var label_threshold: Label = %LabelThreshold
 @onready var player_hand: Hand = $player_hand
 #@onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Count = %count
 @onready var nugget_parent: Node2D = %NuggetParent
 
 @export var lose_threshold: int = 200
-@export var bbl_lvl_value = {0:0, 1:2, 2:12, 3:75, 4: 160}
 var ini_spawn_bylvl = [0, 0, 0, 0] #Nombre de bulles initiales
 
 var spawn_rect: Rect2
@@ -33,10 +31,11 @@ var spawn_rect: Rect2
 func _ready() -> void:
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Global.set_main_reference(self)
-	label_threshold.text += str(lose_threshold)
 	spawn_rect = %SpawnRect.shape.get_rect()
 	spawn_rect.position += %SpawnRect.global_position
 	update_bubble_count()
+	%BubbleBar.max_value = lose_threshold
+	
 	
 	%player_hand.visible = false
 	%player_hand.can_click = false
@@ -48,9 +47,6 @@ func _ready() -> void:
 	Global.dialogue_node.set_dialogue("I, Count Louis von Bubble, have fused all industries of the world into a single, big bubble factory!", 0)
 	var big_bubble = spawn_bubble(%SpawnRect.position, 5, 1)[0]
 	big_bubble.speed = 0.0
-	#big_bubble.factory_spawn_rate = 300
-	big_bubble.set_bubble_factory()
-	big_bubble.spawn_factories = true
 	await Global.dialogue_node.dialogue_passed
 	await Global.seconds(0.5)
 	Global.dialogue_node.set_dialogue("INFINITE GROWTH! Right at my fingertips!", 0)
@@ -122,7 +118,6 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = [], tem
 	return spawned
 
 func update_bubble_count()-> void:
-	%LabelBubbles.text = "%d bubbles" % Global.all_bubbles.size()
 	Global.bubble_per_seconds = 0.
 	for b: Bubble in Global.all_bubbles:
 		if b.is_factory:
@@ -145,19 +140,13 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			BubbleManager.phase_powers = []
-			#BubbleManager.phase_powers = [BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_METAVERSE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
+			#BubbleManager.phase_powers = []
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPIKE, BubbleManager.BUBBLE_CRASH, BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("normal")
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
-			for lvl in range(3-1):
-				for i in range(ini_spawn_bylvl[lvl]):
-					BubbleManager.spawn_bubble(Util.rand_in_rectangle(spawn_rect), lvl, 1)
-			for i in range(ini_spawn_bylvl[3]):
-				BubbleManager.spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 1, [BubbleManager.BUBBLE_FACTORY])
 		1:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("surpris")
-			BubbleManager.spawn_bubble(Util.rand_in_rectangle(spawn_rect), 3, 3, [BubbleManager.BUBBLE_FACTORY])
 		2:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("vener")
@@ -201,11 +190,7 @@ func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 		bubble.queue_free()
 	else:
 		add_nugget_explosion(bubble.nugget_value, bubble.global_position)
-		var bubbles_spawned := spawn_bubble(bubble.position, 3 if bubble.spawn_factories else 0, bbl_lvl_value[bubble.bubble_level])
-		if bubble.spawn_factories:
-			for b: Bubble in bubbles_spawned:
-				b.set_bubble_factory()
-				#b.factory_spawn_rate = 200
+		spawn_bubble(bubble.position, 1 if bubble.bubble_level == 3 else 0, bubble.bubble_pop_spawn_qty)
 		bubble.pop_animation()
 		shake_vertical(bubble.bubble_level * bubble.bubble_level * 3, 0.5)
 	update_bubble_count()

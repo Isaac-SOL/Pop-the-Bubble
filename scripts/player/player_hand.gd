@@ -15,6 +15,8 @@ func _process(delta: float) -> void:
 	#scale  = Vector2(updated_scale, updated_scale)
 	set_area_position(get_global_mouse_position())
 	
+	
+	
 	if Input.is_action_just_pressed("left_click") and can_click:
 		var popped := false
 		for other_area in %Area.get_overlapping_areas():

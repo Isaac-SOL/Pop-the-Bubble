@@ -3,80 +3,73 @@ extends Node
 const LABEL_DEFAULT_SETTINGS = preload("uid://b56puo2v5fv7b")
 
 #Power ID
-const BUBBLE_STORM : String = "Bubble Storm"
 const BUBBLE_GPT : String = "GPT Bubble"
-const BUBBLE_FACTORY : String = "Factory Bubble"
 const BUBBLE_STONK : String = "Bubble Stonk"
-const BUBBLE_METAVERSE : String = "Bubbleverse"
 const BUBBLE_SPECULATIVE : String = "Speculative Bubble"
 const BUBBLE_DIVIDEND : String = "Dividend Bubble"
+const BUBBLE_DIVIDEND_CHILDREN: String = "Dividend Children Bubble"
 const BUBBLE_INTERNET : String = "Internet Bubble"
+const BUBBLE_SPIKE : String = "Spike Bubble"
+const BUBBLE_SPIKE_CHILDREN : String = "Spike Children Bubble"
+const BUBBLE_CRASH : String = "Crash Bubble"
+const BUBBLE_SHIELDING : String = "Shielding Bubble"
 
 
+var special_bubble_count : int = 0
 var bubble_speed_mult = 1.0
 var phase_powers: Array
 var current_powers : Array
+var stonk_value : int = 0
 
 
 
-func activate_power(power_id: String)-> void:
-	print("New power : "+power_id)
+func spawn_special_bubble(power_id: String)-> void:
+	print("New special bubble : "+power_id)
+	if special_bubble_count >= 2:
+		return
 	match power_id:
-		BUBBLE_STORM:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_STORM])
-			
 		BUBBLE_GPT:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_GPT])
-			
-		BUBBLE_FACTORY:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 2, [BUBBLE_FACTORY])
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_GPT])
+			special_bubble_count += 1
 			
 		BUBBLE_STONK:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 1, 13, [BUBBLE_STONK])
-			
-		BUBBLE_METAVERSE:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_METAVERSE])
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_STONK])
+			special_bubble_count += 1
 			
 		BUBBLE_SPECULATIVE:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 7, [BUBBLE_SPECULATIVE])
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_SPECULATIVE])
+			special_bubble_count += 1
 			
 		BUBBLE_DIVIDEND:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 0, 2, [BUBBLE_DIVIDEND])
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_DIVIDEND])
+			special_bubble_count += 1
 				
 		BUBBLE_INTERNET:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_INTERNET])
-			
-			
-			
-			
-				
-			
-func update_power_lists(power_id, unable: bool) -> void:
-	if unable:
-		current_powers.append(power_id)
-		phase_powers.erase(power_id)
-	else:
-		current_powers.erase(power_id)
-		phase_powers.append(power_id)
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_INTERNET])
+			special_bubble_count += 1
 		
-	var power_ui = Global.main_node.powers_container
-	for child in power_ui.get_children():
-		child.queue_free()
-		
-	var counts: Dictionary = {}
-	for power in current_powers:
-		counts[power] = counts.get(power, 0) + 1
-		
-	for power in counts:
-		var label := Label.new()
-		power_ui.add_child(label)
-		label.label_settings = LABEL_DEFAULT_SETTINGS
-		if counts[power] > 1:
-			label.text = power+" x"+str(counts[power])
-		else:
-			label.text = power
+		BUBBLE_SPIKE:
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_SPIKE])
+			special_bubble_count += 1
+			
+		BUBBLE_CRASH:
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_CRASH])
+			special_bubble_count += 1
+			
+		BUBBLE_SHIELDING:
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 1, [BUBBLE_SHIELDING])
+			special_bubble_count += 1
+			
 
-func activate_random_power():
+			
+			
+func get_random_power()-> String:
 	if phase_powers.size() > 0:
 		var rand_power : int = randi_range(0,phase_powers.size()-1)
-		activate_power(phase_powers[rand_power])
+		return phase_powers[rand_power] 
+	return ""
+
+func spawn_random_special_bubble():
+	spawn_special_bubble(get_random_power())
+	
+	

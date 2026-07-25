@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cjhuj6fe23xkj" path="res://scenes/count/count.tscn" id="5_gjage"]
 [ext_resource type="LabelSettings" uid="uid://b56puo2v5fv7b" path="res://assets/ressources/label_default_settings.tres" id="6_x0mk0"]
 [ext_resource type="PackedScene" uid="uid://b2sqoslmfrs0f" path="res://scenes/count/dialogue.tscn" id="8_1bkat"]
+[ext_resource type="Texture2D" uid="uid://dg00rgrlhtjgn" path="res://assets/Interface/bubblebar/bullebar2_back.png" id="8_rjhew"]
+[ext_resource type="Texture2D" uid="uid://dir16vntvj7kw" path="res://assets/Interface/bubblebar/bullebar2.png" id="9_3lrgn"]
+[ext_resource type="Texture2D" uid="uid://cmik8vipasthi" path="res://assets/Interface/bubblebar/christopher.png" id="10_kmlpd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyvc"]
 size = Vector2(865, 587)
@@ -20,10 +23,6 @@ size = Vector2(50, 750)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64aob"]
 size = Vector2(1380, 50)
-
-[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
-font_size = 32
-font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ia6uc"]
 font_size = 324
@@ -40,6 +39,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
 lose_threshold = 300
+
 bbl_lvl_value = {
 0: 0,
 1: 2,
@@ -187,13 +187,23 @@ unique_name_in_owner = true
 layout_mode = 2
 label_settings = ExtResource("6_x0mk0")
 
-[node name="VBoxContainer_stats" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1699295287]
-layout_mode = 2
-
-[node name="LabelBubbles" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=111042603]
+[node name="LabelBubblesSpike" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=550754286]
 unique_name_in_owner = true
 layout_mode = 2
 label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesShielding" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=534450820]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesCrash" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=214342480]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="VBoxContainer_stats" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=1699295287]
+layout_mode = 2
 
 [node name="LabelBubblesPerSec" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=1722747835]
 unique_name_in_owner = true
@@ -201,11 +211,28 @@ layout_mode = 2
 text = "10 Bulles / sec"
 label_settings = ExtResource("6_x0mk0")
 
-[node name="LabelThreshold" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=794608758]
+[node name="VBoxContainer_BarBbl" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats" unique_id=241997253]
+layout_mode = 2
+
+[node name="BubbleBar" type="TextureProgressBar" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats/VBoxContainer_BarBbl" unique_id=1545703074]
+unique_name_in_owner = true
+custom_maximum_size = Vector2(0, 0)
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.172, 0.172)
+max_value = 0.0
+texture_under = ExtResource("8_rjhew")
+texture_over = ExtResource("9_3lrgn")
+texture_progress = ExtResource("10_kmlpd")
+
+[node name="LabelBubbles" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_stats/VBoxContainer_BarBbl" unique_id=111042603]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Threshold: "
-label_settings = SubResource("LabelSettings_0wfyh")
+label_settings = ExtResource("6_x0mk0")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NuggetParent" type="Node2D" parent="UI/ui_player" unique_id=1818236243]
 unique_name_in_owner = true
