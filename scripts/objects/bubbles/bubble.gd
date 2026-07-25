@@ -42,7 +42,7 @@ var factory_max_range_timer : float = DEFAULT_FACTORY_MAX_RANGE_TIMER
 var spawn_rate: int = DEFAULT_SPAWN_RATE
 var nugget_value: int
 var dead: bool = false
-var spawn_factories: bool = false
+@export var spawn_factories: bool = false
 
 func _ready() -> void:
 	#sprite_2d.material = sprite_2d.material.duplicate()
@@ -225,7 +225,7 @@ func bubble_popped()-> void:
 		audio_stream_player_2d_bubble_up.pitch_scale += 0.2
 	else:
 		remove_bubble()
-		AudioManager.playAudio_stream_sfx(&"bubble_pop")			
+		AudioManager.playAudio_stream_sfx(&"bubble_pop")
 		popped.emit(false)
 	
 func bubble_deleted()-> void:
