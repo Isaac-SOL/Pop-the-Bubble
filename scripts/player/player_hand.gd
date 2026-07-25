@@ -17,9 +17,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("left_click") and can_click:
 		var popped := false
-		for area in %Area.get_overlapping_areas():
-			if area is Bubble:
-				area.bubble_popped()
+		for other_area in %Area.get_overlapping_areas():
+			if other_area is Bubble:
+				other_area.bubble_popped()
 				popped = true
 		if popped:
 			move_hand_click(get_global_mouse_position())
@@ -62,8 +62,8 @@ func move_hand_click(pos: Vector2):
 	freeze_timer = get_tree().create_timer(0.5, false)
 	freeze_timer.timeout.connect(curr_target.queue_free)
 
-func _on_area_area_entered(area: Area2D) -> void:
+func _on_area_area_entered(other_area: Area2D) -> void:
 	if can_click and pressed_time > 0.5:
-		if area is Bubble:
-			if area.bubble_level == 0:
-				area.bubble_popped()
+		if other_area is Bubble:
+			if other_area.bubble_level == 0:
+				other_area.bubble_popped()

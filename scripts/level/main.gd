@@ -18,7 +18,7 @@ var state := State.INTRO
 @onready var background: Sprite2D = %background
 @onready var label_threshold: Label = %LabelThreshold
 @onready var player_hand: Hand = $player_hand
-@onready var powers_container: VBoxContainer = %powers_container
+#@onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Count = %count
 @onready var nugget_parent: Node2D = %NuggetParent
 
@@ -46,7 +46,7 @@ func _ready() -> void:
 	Global.dialogue_node.set_dialogue("I, Count Louis von Bubble, have fused all industries of the world into a single, big bubble factory!", 0)
 	var big_bubble = Global.main_node.spawn_bubble(%SpawnRect.position, 5, 1)[0]
 	big_bubble.speed = 0.0
-	big_bubble.factory_spawn_rate = 300
+	#big_bubble.factory_spawn_rate = 300
 	big_bubble.set_bubble_factory()
 	big_bubble.spawn_factories = true
 	await Global.dialogue_node.dialogue_passed
@@ -73,19 +73,19 @@ func _ready() -> void:
 	auto_dialogue_p1()
 
 func auto_dialogue_p1():
-	await Global.seconds(5)
+	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("Hmph. An anti-bubblist stuck in the past, I see.")
-	await Global.seconds(7)
+	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("Your popping is meaningless. You cannot hurt me in a way that matters.")
-	await Global.seconds(7)
+	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("You think you're being smart? [color=red]If you destroy my factories willy-nilly, you're gonna destabilize everything![/color]")
-	await Global.seconds(7)
+	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("Is that all you are? A destabilizer? Tell me, have you ever *built* anything?")
-	await Global.seconds(7)
+	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("I built all this with my grand intellect! My growth-focused mindset!")
-	await Global.seconds(7)
+	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("I started with pretty much nothing! Nothing but my parents' bubble mine in the south!")
-	await Global.seconds(7)
+	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("I'm a self-made Man!", 3)
 
 func _process(_delta: float) -> void:
@@ -131,8 +131,8 @@ func check_win()-> void:
 func set_count_phase(phase: int)-> void:
 	match phase:
 		0:
-			#BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY]
-			BubbleManager.phase_powers = [BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_METAVERSE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
+			BubbleManager.phase_powers = []
+			#BubbleManager.phase_powers = [BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_METAVERSE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("normal")
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
 			for lvl in range(3-1):
@@ -191,7 +191,7 @@ func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 		if bubble.spawn_factories:
 			for b: Bubble in bubbles_spawned:
 				b.set_bubble_factory()
-				b.factory_spawn_rate = 200
+				#b.factory_spawn_rate = 200
 		bubble.pop_animation()
 		shake_vertical(bubble.bubble_level * bubble.bubble_level * 3, 0.5)
 	update_bubble_count()

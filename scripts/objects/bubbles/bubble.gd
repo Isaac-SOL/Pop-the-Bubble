@@ -147,7 +147,7 @@ func set_bubble_factory()-> void:
 	timer_factory = Timer.new()
 	timer_factory.one_shot = true
 	add_child(timer_factory)
-	timer_factory.timeout.connect(create_bubble.bind(timer_factory, Vector2(1.0,factory_max_range_timer), true, 1, 2))
+	timer_factory.timeout.connect(create_bubble.bind(timer_factory, Vector2(1.0,factory_max_range_timer), true, 0, 2))
 	timer_factory.start(1.0)
 	
 func set_bubble_internet(activate: bool = true)-> void:
@@ -163,7 +163,7 @@ func set_bubble_internet(activate: bool = true)-> void:
 	else:
 		for bubble : Bubble in Global.all_bubbles:
 			if bubble.is_factory:
-				bubble.pawn_rate = bubble.DEFAULT_SPAWN_RATE
+				bubble.spawn_rate = bubble.DEFAULT_SPAWN_RATE
 				bubble.factory_max_range_timer = bubble.DEFAULT_FACTORY_MAX_RANGE_TIMER
 		
 	
