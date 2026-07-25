@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bwnmh0vbcat1n"]
 
 [ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="1_wgbqv"]
-[ext_resource type="Texture2D" uid="uid://d0f32gphcjf01" path="res://assets/models/bubbles/bubble_1.png" id="2_qqrca"]
+[ext_resource type="Texture2D" uid="uid://d0f32gphcjf01" path="res://assets/models/bubbles/bubble_normal.png" id="2_qqrca"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1n8lo"]
 resource_local_to_scene = true

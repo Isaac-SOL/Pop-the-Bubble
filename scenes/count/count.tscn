@@ -75,7 +75,7 @@ metadata/_custom_type_script = "uid://b038wgl6janrt"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimPivot/AnimVoice/Shaker2D" unique_id=9874524]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_f1uji")
-animation = &"normal"
+animation = &"saiyan"
 autoplay = "normal"
 
 [node name="Shadow" type="Sprite2D" parent="AnimPivot/AnimVoice/Shaker2D/AnimatedSprite2D" unique_id=1547113322]
