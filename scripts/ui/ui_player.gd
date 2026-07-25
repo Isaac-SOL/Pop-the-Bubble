@@ -10,6 +10,7 @@ extends Control
 @onready var label_bubbles_storm: Label = %LabelBubblesStorm
 @onready var label_bubbles_gpt: Label = %LabelBubblesGPT
 @onready var label_bubbles_metaverse: Label = %LabelBubblesMetaverse
+#@onready var bubble_bar : TextureProgressBar = %BubbleBar
 
 func _physics_process(_delta: float) -> void:
 	SettingsManager.apply_mouse_scale()
@@ -62,4 +63,5 @@ func _physics_process(_delta: float) -> void:
 	else:
 		label_bubbles_metaverse.hide()
 		
-	label_bubbles.text = "Total Bubbles: "+str(Global.all_bubbles.size())
+	label_bubbles.text = str(Global.all_bubbles.size()) +" / "+ str(int(%BubbleBar.max_value))
+	%BubbleBar.value = Global.all_bubbles.size()

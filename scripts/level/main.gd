@@ -16,7 +16,6 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 var state := State.INTRO
 
 @onready var background: Sprite2D = %background
-@onready var label_threshold: Label = %LabelThreshold
 @onready var player_hand: Hand = $player_hand
 #@onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Count = %count
@@ -31,10 +30,11 @@ var spawn_rect: Rect2
 func _ready() -> void:
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Global.set_main_reference(self)
-	label_threshold.text += str(lose_threshold)
 	spawn_rect = %SpawnRect.shape.get_rect()
 	spawn_rect.position += %SpawnRect.global_position
 	update_bubble_count()
+	%BubbleBar.max_value = lose_threshold
+	
 	
 	%player_hand.visible = false
 	%player_hand.can_click = false
@@ -110,7 +110,6 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = []) -> 
 	return spawned
 
 func update_bubble_count()-> void:
-	%LabelBubbles.text = "%d bubbles" % Global.all_bubbles.size()
 	Global.bubble_per_seconds = 0.
 	for b: Bubble in Global.all_bubbles:
 		if b.is_factory:
