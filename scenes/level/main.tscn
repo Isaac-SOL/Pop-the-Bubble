@@ -138,21 +138,8 @@ position = Vector2(138, 144)
 scale = Vector2(0.12, 0.12)
 parent = NodePath("../../../../../..")
 
-[node name="VBoxContainer_powers" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=362869488]
-custom_minimum_size = Vector2(0, 188.65)
-layout_mode = 2
-
-[node name="Labelpowers" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_powers" unique_id=216329411]
-layout_mode = 2
-text = "Count Powers"
-label_settings = ExtResource("6_x0mk0")
-
-[node name="powers_container" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_powers" unique_id=532316031]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="VBoxContainer_bubblecount" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer" unique_id=799004808]
-custom_minimum_size = Vector2(0, 92.17)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
 [node name="LabelBubblesCount" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1135202633]
@@ -171,6 +158,31 @@ layout_mode = 2
 label_settings = ExtResource("6_x0mk0")
 
 [node name="LabelBubblesSpeculative" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=307582450]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesDividend" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=740035199]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesIternet" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=1914537317]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesStorm" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=971603648]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesGPT" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=668412977]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesMetaverse" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=487855649]
 unique_name_in_owner = true
 layout_mode = 2
 label_settings = ExtResource("6_x0mk0")

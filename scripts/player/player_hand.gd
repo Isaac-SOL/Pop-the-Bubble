@@ -1,6 +1,8 @@
 extends Node2D
 class_name Hand
 
+@onready var area: Area2D = %Area
+
 const rest_pos := Vector2(1265, 707)
 
 var curr_target: Node2D

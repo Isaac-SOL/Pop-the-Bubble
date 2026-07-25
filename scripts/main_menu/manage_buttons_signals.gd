@@ -1,5 +1,8 @@
 extends VBoxContainer
 
+func _ready() -> void:
+	SettingsManager.apply_mouse_scale()
+
 func _on_custom_button_play_button_up() -> void:
 	get_tree().change_scene_to_file("res://scenes/level/main.tscn")
 

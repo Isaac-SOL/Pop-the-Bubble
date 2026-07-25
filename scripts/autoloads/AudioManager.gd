@@ -4,18 +4,22 @@ extends Node
 @onready var audio_stream_player_ambiant: AudioStreamPlayer = $AudioStreamPlayer_ambiant
 @onready var audio_stream_player_sfx: AudioStreamPlayer = $AudioStreamPlayer_sfx
 @onready var audio_stream_player_bubble_col: AudioStreamPlayer = $AudioStreamPlayer_bubble_col
+@onready var audio_stream_player_nugget: AudioStreamPlayer = $AudioStreamPlayer_nugget
 @onready var collision_timer: Timer = Timer.new()
+@onready var nugget_timer: Timer = Timer.new()
 
 
 var interactive_stream_music : AudioStreamPlaybackInteractive
 var interactive_stream_ambiant : AudioStreamPlaybackInteractive
 var interactive_stream_sfx : AudioStreamPlaybackInteractive
 var interactive_stream_bubble_col : AudioStreamPlaybackInteractive
+var interactive_stream_nugget : AudioStreamPlaybackInteractive
 
 var playing_stream_music_clip_name : String
 var playing_stream_ambiant_clip_name : String
 var playing_stream_sfx_clip_name : String
 var playing_stream_bubble_col_clip_name : String
+var playing_stream_nugget_clip_name : String
 
 #Store last clips for resuming
 var last_stream1_clip : String
@@ -36,6 +40,10 @@ func _ready() -> void:
 	collision_timer.one_shot = true
 	collision_timer.wait_time = 0.05
 	add_child(collision_timer)
+	
+	nugget_timer.one_shot = true
+	nugget_timer.wait_time = 0.05
+	add_child(nugget_timer)
 
 
 func play_bubble_collision() -> void:
@@ -59,6 +67,29 @@ func play_bubble_collision() -> void:
 		elif !pause and interactive_stream_bubble_col:
 			interactive_stream_bubble_col.switch_to_clip_by_name(sound_name)
 			playing_stream_bubble_col_clip_name = sound_name
+			
+			
+func play_nugget_pickup() -> void:
+	if !nugget_timer.is_stopped():
+		return
+
+	nugget_timer.start()
+
+	if randf() < 0.7: #70% luck to play sound
+		var sound_name : String = &"nugget_pickup"
+		if !interactive_stream_nugget:
+			audio_stream_player_nugget.volume_db = -80
+			audio_stream_player_nugget.play()
+			await get_tree().process_frame  #Let audio backend catch up
+			interactive_stream_nugget = audio_stream_player_nugget.get_stream_playback() as AudioStreamPlaybackInteractive
+			if interactive_stream_nugget:
+				interactive_stream_nugget.switch_to_clip_by_name(sound_name)
+				playing_stream_nugget_clip_name = sound_name
+				audio_stream_player_nugget.volume_db = 0
+			
+		elif !pause and interactive_stream_nugget:
+			interactive_stream_nugget.switch_to_clip_by_name(sound_name)
+			playing_stream_nugget_clip_name = sound_name
 	
 		
 			

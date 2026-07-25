@@ -23,8 +23,9 @@ buses/default_bus_layout="uid://lnluef5b280o"
 
 AudioManager="*uid://bvjtus6f6qsr8"
 Global="*uid://chmfufyucxtxk"
-PowerManager="*uid://c1b23koh2uq1r"
+BubbleManager="*uid://c1b23koh2uq1r"
 UiAudioManager="*uid://dgn48j3oxrp08"
+SettingsManager="*uid://bqe6xkxolt8gs"
 
 [display]
 
@@ -32,6 +33,8 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://dg3pat0tp4e7j"
+mouse_cursor/custom_image_hotspot=Vector2(64, 64)
 
 [file_customization]
 
@@ -62,6 +65,7 @@ right_click={
 2d_physics/layer_2="player"
 2d_physics/layer_3="bubble"
 2d_physics/layer_4="area"
+2d_physics/layer_5="gpt_hand"
 
 [physics]
 

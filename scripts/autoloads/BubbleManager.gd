@@ -10,52 +10,41 @@ const BUBBLE_STONK : String = "Bubble Stonk"
 const BUBBLE_METAVERSE : String = "Bubbleverse"
 const BUBBLE_SPECULATIVE : String = "Speculative Bubble"
 const BUBBLE_DIVIDEND : String = "Dividend Bubble"
+const BUBBLE_INTERNET : String = "Internet Bubble"
 
 
 var bubble_speed_mult = 1.0
 var phase_powers: Array
 var current_powers : Array
 
+
+
 func activate_power(power_id: String)-> void:
 	print("New power : "+power_id)
 	match power_id:
 		BUBBLE_STORM:
-			update_power_lists(power_id, true)
-			bubble_speed_mult = 3.0
-			await get_tree().create_timer(8.0).timeout
-			bubble_speed_mult = 1.0
-			update_power_lists(power_id, false)
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_STORM])
+			
 		BUBBLE_GPT:
-			update_power_lists(power_id, true)
-			Global.main_node.player_hand.set_collision_layer_value(3, true)
-			await get_tree().create_timer(8.0).timeout
-			Global.main_node.player_hand.set_collision_layer_value(3, false)
-			update_power_lists(power_id, false)
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_GPT])
+			
 		BUBBLE_FACTORY:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_FACTORY])
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 2, [BUBBLE_FACTORY])
+			
 		BUBBLE_STONK:
-			var bubbles_copy : Array = Global.all_bubbles.duplicate()
-			bubbles_copy.shuffle()
-			#Select 13 random bubbles
-			var random_bubbles : Array = bubbles_copy.slice(0, min(13, bubbles_copy.size()))
-			for bubble in random_bubbles:
-				bubble.set_bubble_stonk(5)
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 1, 13, [BUBBLE_STONK])
+			
 		BUBBLE_METAVERSE:
-			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 4, 1)
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_METAVERSE])
+			
 		BUBBLE_SPECULATIVE:
-			var bubbles_copy : Array = Global.all_bubbles.duplicate()
-			bubbles_copy.shuffle()
-			#Select 7 random bubbles
-			var random_bubbles : Array = bubbles_copy.slice(0, min(7, bubbles_copy.size()))
-			for bubble in random_bubbles:
-				bubble.set_bubble_speculative()
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 2, 7, [BUBBLE_SPECULATIVE])
+			
 		BUBBLE_DIVIDEND:
-			var bubbles_copy : Array = Global.all_bubbles.duplicate()
-			bubbles_copy.shuffle()
-			#Select 2 random bubbles
-			var random_bubbles : Array = bubbles_copy.slice(0, min(2, bubbles_copy.size()))
-			for bubble in random_bubbles:
-				bubble.set_bubble_dividend()
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 0, 2, [BUBBLE_DIVIDEND])
+				
+		BUBBLE_INTERNET:
+			Global.main_node.spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 3, 1, [BUBBLE_INTERNET])
 			
 			
 			

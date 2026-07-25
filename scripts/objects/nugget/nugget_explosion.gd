@@ -51,6 +51,7 @@ func _physics_process(delta):
 		nugget.rotation += nugget.rotation_speed * delta
 		if nugget.position.distance_to(collect_target.global_position) < 10.0:
 			#Add something to decrease the BPS
+			AudioManager.play_nugget_pickup()
 			Global.nugget_collected += 1
 			nuggets_list.remove_at(i)
 	queue_redraw()
