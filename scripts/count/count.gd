@@ -50,7 +50,7 @@ func start_doing_actions():
 	rand_timer.start(randf_range(rand_range.x,rand_range.y))
 
 func count_action()->void:
-	BubbleManager.activate_random_power()
+	BubbleManager.spawn_random_special_bubble()
 	rand_timer.start(randf_range(rand_range.x,rand_range.y))
 
 func voice_bleep():

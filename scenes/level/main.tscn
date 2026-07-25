@@ -39,14 +39,6 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
 lose_threshold = 300
-bbl_lvl_value = {
-0: 0,
-1: 2,
-2: 12,
-3: 75,
-4: 160,
-5: 15
-}
 
 [node name="background" type="Sprite2D" parent="." unique_id=1513136260]
 unique_name_in_owner = true
@@ -182,6 +174,21 @@ layout_mode = 2
 label_settings = ExtResource("6_x0mk0")
 
 [node name="LabelBubblesMetaverse" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=487855649]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesSpike" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=550754286]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesShielding" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=534450820]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("6_x0mk0")
+
+[node name="LabelBubblesCrash" type="Label" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount" unique_id=214342480]
 unique_name_in_owner = true
 layout_mode = 2
 label_settings = ExtResource("6_x0mk0")

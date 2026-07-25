@@ -10,7 +10,9 @@ extends Control
 @onready var label_bubbles_storm: Label = %LabelBubblesStorm
 @onready var label_bubbles_gpt: Label = %LabelBubblesGPT
 @onready var label_bubbles_metaverse: Label = %LabelBubblesMetaverse
-#@onready var bubble_bar : TextureProgressBar = %BubbleBar
+@onready var label_bubbles_spike: Label = %LabelBubblesSpike
+@onready var label_bubbles_shielding: Label = %LabelBubblesShielding
+@onready var label_bubbles_crash: Label = %LabelBubblesCrash
 
 func _physics_process(_delta: float) -> void:
 	SettingsManager.apply_mouse_scale()
@@ -45,11 +47,23 @@ func _physics_process(_delta: float) -> void:
 	else:
 		label_bubbles_iternet.hide()
 		
-	if Global.storm_bubble_count > 0:
-		label_bubbles_storm.show()
-		label_bubbles_storm.text = "Storm Bubbles: "+str(Global.storm_bubble_count)
+	if Global.shielding_bubble_count > 0:
+		label_bubbles_shielding.show()
+		label_bubbles_shielding.text = "Shielding Bubbles: "+str(Global.shielding_bubble_count)
 	else:
-		label_bubbles_storm.hide()
+		label_bubbles_shielding.hide()
+		
+	if Global.crash_bubble_count > 0:
+		label_bubbles_crash.show()
+		label_bubbles_crash.text = "Crash Bubbles: "+str(Global.crash_bubble_count)
+	else:
+		label_bubbles_crash.hide()
+		
+	#if Global.storm_bubble_count > 0:
+		#label_bubbles_storm.show()
+		#label_bubbles_storm.text = "Storm Bubbles: "+str(Global.storm_bubble_count)
+	#else:
+		#label_bubbles_storm.hide()
 		
 	if Global.gpt_bubble_count > 0:
 		label_bubbles_gpt.show()
@@ -57,11 +71,17 @@ func _physics_process(_delta: float) -> void:
 	else:
 		label_bubbles_gpt.hide()
 		
-	if Global.metaverse_bubble_count > 0:
-		label_bubbles_metaverse.show()
-		label_bubbles_metaverse.text = "Metaverse Bubbles: "+str(Global.metaverse_bubble_count)
+	#if Global.metaverse_bubble_count > 0:
+		#label_bubbles_metaverse.show()
+		#label_bubbles_metaverse.text = "Metaverse Bubbles: "+str(Global.metaverse_bubble_count)
+	#else:
+		#label_bubbles_metaverse.hide()
+		
+	if Global.spike_bubble_count > 0:
+		label_bubbles_spike.show()
+		label_bubbles_spike.text = "Spike Bubbles: "+str(Global.spike_bubble_count)
 	else:
-		label_bubbles_metaverse.hide()
+		label_bubbles_spike.hide()
 		
 	label_bubbles.text = str(Global.all_bubbles.size()) +" / "+ str(int(%BubbleBar.max_value))
 	%BubbleBar.value = Global.all_bubbles.size()
