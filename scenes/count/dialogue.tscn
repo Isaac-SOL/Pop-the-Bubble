@@ -50,4 +50,6 @@ visible_characters_behavior = 1
 wait_time = 0.16
 autostart = true
 
+[connection signal="mouse_entered" from="Shaker2D/RichTextLabel_dialogue" to="." method="_on_rich_text_label_dialogue_mouse_entered"]
+[connection signal="mouse_exited" from="Shaker2D/RichTextLabel_dialogue" to="." method="_on_rich_text_label_dialogue_mouse_exited"]
 [connection signal="timeout" from="BleepTimer" to="." method="_on_bleep_timer_timeout"]

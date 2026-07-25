@@ -63,13 +63,30 @@ func _ready() -> void:
 	await big_bubble.popped
 	%player_hand.visible = true
 	await Global.seconds(0.5)
-	Global.dialogue_node.set_dialogue("YOU ! Who do you think you are !?", 3, true)
+	Global.dialogue_node.set_dialogue("YOU! Who do you think you are!?", 3, true)
 	%count.shake()
 	AudioManager.playAudio_stream_music(&"feel_the_bubble")
 	%count.start_doing_actions()
 	set_count_phase(0)
 	state = State.GAMING
+	
+	auto_dialogue_p1()
 
+func auto_dialogue_p1():
+	await Global.seconds(5)
+	Global.dialogue_node.set_dialogue("Hmph. An anti-bubblist stuck in the past, I see.")
+	await Global.seconds(7)
+	Global.dialogue_node.set_dialogue("Your popping is meaningless. You cannot hurt me in a way that matters.")
+	await Global.seconds(7)
+	Global.dialogue_node.set_dialogue("You think you're being smart? [color=red]If you destroy my factories willy-nilly, you're gonna destabilize everything![/color]")
+	await Global.seconds(7)
+	Global.dialogue_node.set_dialogue("Is that all you are? A destabilizer? Tell me, have you ever *built* anything?")
+	await Global.seconds(7)
+	Global.dialogue_node.set_dialogue("I built all this with my grand intellect! My growth-focused mindset!")
+	await Global.seconds(7)
+	Global.dialogue_node.set_dialogue("I started with pretty much nothing! Nothing but my parents' bubble mine in the south!")
+	await Global.seconds(7)
+	Global.dialogue_node.set_dialogue("I'm a self-made Man!", 3)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
