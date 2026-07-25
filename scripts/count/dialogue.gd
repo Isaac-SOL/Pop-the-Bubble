@@ -55,12 +55,12 @@ func _on_bleep_timer_timeout() -> void:
 func _on_rich_text_label_dialogue_mouse_entered() -> void:
 	if modulate_tween != null:
 		modulate_tween.kill()
-	modulate_tween = create_tween().set_trans(Tween.TRANS_QUAD)
+	modulate_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	modulate_tween.tween_property(%Shaker2D, "modulate", Color(1.0, 1.0, 1.0, 0.392), 0.5)
 
 
 func _on_rich_text_label_dialogue_mouse_exited() -> void:
 	if modulate_tween != null:
 		modulate_tween.kill()
-	modulate_tween = create_tween().set_trans(Tween.TRANS_QUAD)
+	modulate_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	modulate_tween.tween_property(%Shaker2D, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)
