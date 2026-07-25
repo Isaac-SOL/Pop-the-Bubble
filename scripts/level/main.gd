@@ -96,7 +96,7 @@ func auto_dialogue_p1():
 	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("I started with pretty much nothing! Nothing but my parents' bubble mine in the south!")
 	await Global.seconds(15)
-	Global.dialogue_node.set_dialogue("I'm a self-made Man!", 3)
+	Global.dialogue_node.set_dialogue("I'm a self-made man!", 3)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
@@ -133,12 +133,14 @@ func update_bubble_count()-> void:
 func check_lose()-> void:
 	if Global.all_bubbles.size() >= lose_threshold:
 		%ui_gameover.show()
+		get_tree().paused = true
 
 func check_win()-> void:
 	if state != State.GAMING:
 		return
 	if Global.all_bubbles.size() <= 0:
 		%ui_victory.show()
+		get_tree().paused = true
 
 func set_count_phase(phase: int)-> void:
 	match phase:
