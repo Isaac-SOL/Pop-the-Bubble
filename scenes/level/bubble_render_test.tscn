@@ -86,7 +86,7 @@ material = SubResource("ShaderMaterial_kb5y1")
 visible = false
 
 [node name="bubble3" parent="." unique_id=346565236 instance=ExtResource("2_dlns0")]
-position = Vector2(242, -284.00003)
+position = Vector2(226, -261)
 scale = Vector2(5.105, 5.105)
 
 [node name="CollisionShape2D" parent="bubble3" index="0" unique_id=187371561]
