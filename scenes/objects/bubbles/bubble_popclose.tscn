@@ -22,9 +22,8 @@ radius = 87.005745
 
 [node name="bubble_popclose" unique_id=501984861 instance=ExtResource("1_hxkly")]
 script = ExtResource("2_3ukpn")
-spawn_factories = true
 
-[node name="Sprite2D" parent="." index="3" unique_id=24901897]
+[node name="Sprite2D" parent="." index="4" unique_id=24901897]
 material = SubResource("ShaderMaterial_hxkly")
 
 [node name="PopArea" type="Area2D" parent="." index="5" unique_id=2128148201]
