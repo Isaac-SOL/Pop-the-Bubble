@@ -78,3 +78,4 @@ func _on_area_area_entered(other_area: Area2D) -> void:
 				other_area.bubble_popped()
 	else:
 		%Sprite2D_filet.visible = false
+		%Sprite2D_finger.visible = false
