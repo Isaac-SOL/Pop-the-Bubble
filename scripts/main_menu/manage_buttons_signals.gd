@@ -11,7 +11,7 @@ func _on_custom_button_play_button_up() -> void:
 
 
 func _on_custom_button_credits_button_up() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scenes/level/credits.tscn")
 
 
 func _on_custom_button_exit_button_up() -> void:
