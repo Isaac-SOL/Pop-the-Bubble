@@ -104,7 +104,7 @@ func set_music_phase(phase: int) -> void:
 		3:
 			AudioManager.playAudio_stream_music("last_bubble_intro")
 		4:
-			AudioManager.playAudio_stream_music("")
+			AudioManager.playAudio_stream_music("victory_congratulations")
 			
 func playAudio_stream_music(sound_name: String) -> void:
 	#Start the AudioStreamPlayer if it isn't already playing
