@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0f32gphcjf01" path="res://assets/models/bubbles/bubble_normal.png" id="5_63cjf"]
 [ext_resource type="AudioStream" uid="uid://bdkahj35801gl" path="res://assets/audio/sfx/bubbles/bubble_up.ogg" id="5_redsc"]
 [ext_resource type="FontFile" uid="uid://od25h2h1grcf" path="res://assets/fonts/ChelaOne-Regular.ttf" id="7_3o7p6"]
+[ext_resource type="Texture2D" uid="uid://bnq1hff7dt7xx" path="res://assets/models/bubbles/tete.png" id="8_sy5dr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_270sc"]
 radius = 16.03122
@@ -83,6 +84,12 @@ text = "1"
 label_settings = SubResource("LabelSettings_63cjf")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Head" type="Sprite2D" parent="." unique_id=555339143]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("8_sy5dr")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=464743157]
 unique_name_in_owner = true

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://u65chelvfc7w" path="res://assets/models/count/comte_saiyan.png" id="3_a7vfb"]
 [ext_resource type="Texture2D" uid="uid://dfstrr0oqowuh" path="res://assets/models/count/comte_bubble_mepris.png" id="3_mfgcw"]
 [ext_resource type="Texture2D" uid="uid://ds16dlkdb8c70" path="res://assets/models/count/comte_bubble_surpris.png" id="4_mfgcw"]
+[ext_resource type="Texture2D" uid="uid://ckxfgw3fm7e8l" path="res://assets/models/count/comte_bubble_defaite.png" id="5_1r0ut"]
 [ext_resource type="Texture2D" uid="uid://blx0hemdnwn1n" path="res://assets/models/count/comte_bubble_enerve.png" id="5_aq635"]
 [ext_resource type="AudioStream" uid="uid://nqu3kroi4o04" path="res://assets/audio/sfx/count/bark3.ogg" id="7_3kt1r"]
 [ext_resource type="Texture2D" uid="uid://xdj2jsq7l8eh" path="res://assets/models/count/perruque_surpris.png" id="8_33rje"]
@@ -39,6 +40,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1r0ut")
+}],
+"loop": 1,
+"name": &"pls",
 "speed": 5.0
 }, {
 "frames": [{

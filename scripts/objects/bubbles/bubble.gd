@@ -106,6 +106,13 @@ func _ready() -> void:
 			scale = Vector2.ZERO
 			var scale_tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 			scale_tween.tween_property(self, "scale", Vector2.ONE * 7, 2.0)
+			
+		#Tête à la fin
+		8:
+			scale = Vector2.ONE * 2.0
+			speed = 200
+			%Sprite2D.hide()
+			%Head.show()
 	
 	
 	if bubble_types.size() > 0:
