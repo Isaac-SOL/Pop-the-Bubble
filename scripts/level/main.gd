@@ -299,4 +299,5 @@ func _on_dialogue_bleep() -> void:
 
 
 func _on_button_pressed() -> void:
+	print("coucou")
 	get_tree().change_scene_to_file("res://scenes/level/main_menu.tscn")

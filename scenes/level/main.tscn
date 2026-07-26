@@ -14,13 +14,13 @@
 [ext_resource type="LabelSettings" uid="uid://b56puo2v5fv7b" path="res://assets/ressources/label_default_settings.tres" id="6_x0mk0"]
 [ext_resource type="FontFile" uid="uid://od25h2h1grcf" path="res://assets/fonts/ChelaOne-Regular.ttf" id="7_wsmwk"]
 [ext_resource type="PackedScene" uid="uid://b2sqoslmfrs0f" path="res://scenes/count/dialogue.tscn" id="8_1bkat"]
-[ext_resource type="Texture2D" uid="uid://dg00rgrlhtjgn" path="res://assets/Interface/bubblebar/bullebar2_back.png" id="8_rjhew"]
 [ext_resource type="Texture2D" uid="uid://dir16vntvj7kw" path="res://assets/Interface/bubblebar/bullebar2.png" id="9_3lrgn"]
 [ext_resource type="Texture2D" uid="uid://cmik8vipasthi" path="res://assets/Interface/bubblebar/christopher.png" id="10_kmlpd"]
+[ext_resource type="Texture2D" uid="uid://de1sxglgiji2g" path="res://assets/Interface/bubblebar/found sombre2.png" id="14_eilf0"]
 [ext_resource type="AudioStream" uid="uid://ddbdal67g6hfs" path="res://assets/audio/music/victory_congratulations.ogg" id="18_eilf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyvc"]
-size = Vector2(865, 587)
+size = Vector2(865, 532)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_270sc"]
 size = Vector2(302, 750)
@@ -49,15 +49,9 @@ outline_size = 9
 outline_color = Color(0, 0, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m6pyt"]
-font_size = 28
+font_size = 36
 font_color = Color(1, 0, 0, 1)
-outline_size = 6
-outline_color = Color(4.235506e-06, 0.5535566, 0.6752405, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ia6uc"]
-font_size = 324
-font_color = Color(1, 0, 0, 1)
-outline_size = 55
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gjage"]
@@ -195,6 +189,12 @@ _data = {
 &"count down": SubResource("Animation_eilf0")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_ia6uc"]
+font_size = 324
+font_color = Color(1, 0, 0, 1)
+outline_size = 55
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
 lose_threshold = 300
@@ -232,7 +232,7 @@ texture = ExtResource("6_g2k0t")
 
 [node name="SpawnRect" type="CollisionShape2D" parent="." unique_id=160105361]
 unique_name_in_owner = true
-position = Vector2(763.5, 367.5)
+position = Vector2(763.5, 340)
 shape = SubResource("RectangleShape2D_4qyvc")
 debug_color = Color(0, 0.6, 0.69803923, 0)
 
@@ -253,7 +253,7 @@ shape = SubResource("RectangleShape2D_855hj")
 debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 
 [node name="BottomBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=38358597]
-position = Vector2(-147, 501.495)
+position = Vector2(-146, 451)
 shape = SubResource("RectangleShape2D_64aob")
 debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 
@@ -428,9 +428,9 @@ horizontal_alignment = 1
 [node name="VBoxContainer_BarBbl" type="VBoxContainer" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount/Control" unique_id=241997253]
 layout_mode = 0
 offset_left = -20.0
-offset_top = 293.0
-offset_right = 236.0
-offset_bottom = 325.0
+offset_top = 328.0
+offset_right = 1264.0
+offset_bottom = 366.0
 
 [node name="BubbleBar" type="TextureProgressBar" parent="UI/ui_player/MarginContainer/VBoxContainer/VBoxContainer_bubblecount/Control/VBoxContainer_BarBbl" unique_id=1545703074]
 unique_name_in_owner = true
@@ -439,9 +439,9 @@ propagate_maximum_size = true
 layout_mode = 2
 size_flags_vertical = 3
 offset_transform_enabled = true
-offset_transform_scale = Vector2(0.172, 0.172)
+offset_transform_scale = Vector2(0.857, 0.192)
 max_value = 0.0
-texture_under = ExtResource("8_rjhew")
+texture_under = ExtResource("14_eilf0")
 texture_over = ExtResource("9_3lrgn")
 texture_progress = ExtResource("10_kmlpd")
 
@@ -461,52 +461,6 @@ unique_name_in_owner = true
 [node name="Dialogue" parent="UI/ui_player" unique_id=2113910368 instance=ExtResource("8_1bkat")]
 position = Vector2(545, 80)
 scale = Vector2(0.45, 0.45)
-
-[node name="ui_gameover" type="Control" parent="UI" unique_id=1256734271]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="UI/ui_gameover" unique_id=1545265319]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/ui_gameover/Panel" unique_id=1118617675]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Defeat"
-label_settings = SubResource("LabelSettings_ia6uc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="UI/ui_gameover" unique_id=110045385]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -178.5
-offset_top = -106.0
-offset_right = 178.5
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 64
-text = "Main Menu"
 
 [node name="ui_victory" type="Control" parent="UI" unique_id=277800119]
 unique_name_in_owner = true
@@ -559,6 +513,55 @@ unique_name_in_owner = true
 stream = ExtResource("18_eilf0")
 volume_db = -5.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1063695081]
+
+[node name="ui_gameover" type="Control" parent="CanvasLayer" unique_id=1256734271]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ui_gameover" unique_id=1545265319]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ui_gameover/Panel" unique_id=1118617675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Defeat"
+label_settings = SubResource("LabelSettings_ia6uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/ui_gameover" unique_id=110045385]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.5
+offset_top = -106.0
+offset_right = 178.5
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Main Menu"
+
 [connection signal="area_shape_entered" from="Area2D_borders" to="Area2D_borders" method="_on_area_shape_entered"]
 [connection signal="bleep" from="UI/ui_player/Dialogue" to="." method="_on_dialogue_bleep"]
-[connection signal="pressed" from="UI/ui_gameover/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ui_gameover/Button" to="." method="_on_button_pressed"]
