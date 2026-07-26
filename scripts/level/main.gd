@@ -76,10 +76,12 @@ func auto_dialogue_p1():
 	Global.dialogue_node.set_dialogue("Your popping is meaningless. You cannot hurt me in a way that matters.")
 	count.animated_sprite_2d.play("mepris")
 	await Global.seconds(5)
+	spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 1, 1)
 	count.animated_sprite_2d.play("normal")
 	await Global.seconds(9)
 	Global.dialogue_node.set_dialogue("You think you're being smart? [color=red]If you destroy my factories willy-nilly, you're gonna destabilize everything![/color]")
 	await Global.seconds(5)
+	spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 1, 1)
 	Global.dialogue_node.set_dialogue("Also, you can't [color=red]keep popping my bubbles without lifting your finger.[/color] It doesn't work!")
 	await Global.seconds(6)
 	Global.dialogue_node.set_dialogue("Let's see you try to deal with this!", 5)
@@ -95,6 +97,7 @@ func auto_dialogue_p1():
 	await Global.seconds(10)
 	Global.dialogue_node.set_dialogue("I built all this with my grand intellect! My growth-focused mindset!")
 	#spawn_bubble(%SpawnRect.position, 1, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
+	spawn_bubble(Util.rand_in_rectangle(Global.main_node.spawn_rect), 1, 1)
 	await Global.seconds(10)
 	Global.dialogue_node.set_dialogue("I started with pretty much nothing! Nothing but my parents' bubble mine in the south!")
 	#spawn_bubble(%SpawnRect.position, 1, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
