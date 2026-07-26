@@ -20,12 +20,14 @@ var state := State.INTRO
 @onready var background_0: Sprite2D = %background_0
 @onready var background_1: Sprite2D = %background_1
 @onready var background_2: Sprite2D = %background_2
+@onready var background_3: Sprite2D = %background_3
+@onready var background_4: Sprite2D = %background_4
 @onready var player_hand: Hand = $player_hand
 #@onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Count = %count
 @onready var nugget_parent: Node2D = %NuggetParent
 
-@export var lose_threshold: int = 200
+@export var lose_threshold: int = 400
 var ini_spawn_bylvl = [0, 0, 0, 0] #Nombre de bulles initiales
 
 var spawn_rect: Rect2
@@ -65,7 +67,6 @@ func _ready() -> void:
 	%player_hand.visible = true
 	set_count_phase(1)
 	state = State.GAMING
-	%count.start_doing_actions()
 
 func auto_dialogue_p1():
 	spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
@@ -172,8 +173,8 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = [], tem
 func update_bubble_count()-> void:
 	Global.bubble_per_seconds = 0.
 	for b: Bubble in Global.all_bubbles:
-		if not b.overlaps_area(%AliveArea):
-			b.bubble_deleted()
+		#if not b.overlaps_area(%AliveArea):
+			#b.bubble_deleted()
 		if b.is_factory:
 			Global.bubble_per_seconds += b.spawn_rate /100. * 1./b.timer_factory.wait_time 
 	%LabelBubblesPerSec.text = "%.2f bps" % Global.bubble_per_seconds
@@ -187,7 +188,7 @@ func check_lose()-> void:
 func check_win()-> void:
 	if state != State.GAMING or not Global.can_advance_phase:
 		return
-	if BubbleManager.special_bubble_count == 0 and Global.factory_bubble_count == 0:
+	if BubbleManager.special_bubble_count <= 0 and Global.factory_bubble_count <= 0:
 		if (Global.count_phase == 3 and Global.all_bubbles.size() == 0) or (Global.count_phase < 3 and Global.all_bubbles.size() <= (%BubbleBar.max_value * 0.1)): 
 			Global.count_phase += 1
 			set_count_phase(Global.count_phase)
@@ -201,6 +202,7 @@ func set_count_phase(phase: int)-> void:
 		1:
 			#BubbleManager.phase_powers = []
 			BubbleManager.phase_powers = []
+			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_0,"modulate",Color.TRANSPARENT,4)
 			count.animated_sprite_2d.play("surpris")
 			await Global.seconds(1)
 			count.animated_sprite_2d.play("vener")
@@ -213,17 +215,19 @@ func set_count_phase(phase: int)-> void:
 			
 		2:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
-			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_0,"modulate",Color.TRANSPARENT,4)
+			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_1,"modulate",Color.TRANSPARENT,4)
+			%count.start_doing_actions()
 			count.animated_sprite_2d.play("surpris")
 			%count.shake()
 			auto_dialogue_p2()
 		3:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPIKE, BubbleManager.BUBBLE_CRASH, BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
-			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_1,"modulate",Color.TRANSPARENT,4)
+			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_2,"modulate",Color.TRANSPARENT,4)
 			%count.shake()
 			auto_dialogue_p3()
 		4:
 			BubbleManager.phase_powers = []
+			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_3,"modulate",Color.TRANSPARENT,4)
 			end_cutscene()
 
 			

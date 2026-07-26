@@ -11,10 +11,6 @@ func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://scenes/level/main.tscn\")
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_4qyvc"]
-font = ExtResource("2_ib0iv")
-font_size = 48
-
 [node name="Help" type="Control" unique_id=1052707757]
 layout_mode = 3
 anchors_preset = 15
@@ -29,15 +25,20 @@ position = Vector2(616, 376)
 scale = Vector2(0.6929597, 0.6929597)
 texture = ExtResource("1_l45bn")
 
-[node name="Label" type="Label" parent="." unique_id=818490037]
+[node name="Label" type="RichTextLabel" parent="." unique_id=433943225]
 layout_mode = 0
-offset_left = 608.0
-offset_top = 409.0
-offset_right = 1246.0
-offset_bottom = 528.0
-text = "Left click to pop bubbles
-HOLD left click to pop small bubbles"
-label_settings = SubResource("LabelSettings_4qyvc")
+offset_left = 595.0
+offset_top = 194.0
+offset_right = 1233.0
+offset_bottom = 557.0
+theme_override_fonts/normal_font = ExtResource("2_ib0iv")
+bbcode_enabled = true
+text = "[font_size=38][color=yellow]Left click[/color] to pop bubbles
+[color=yellow]HOLD left click[/color] to pop small bubbles
+Big bubbles make smaller bubbles when popped
+Do [color=red]not[/color] let the total number of bubbles get [color=red]over the Threshold![/color]
+[/font_size]"
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="." unique_id=1620737302]
 layout_mode = 0

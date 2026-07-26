@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb7kuaj552ywc"
-path="res://.godot/imported/title2.png-3182e89af6c6bb8e8bb510158ce5d3dd.ctex"
+uid="uid://cepo4me0n3yni"
+path="res://.godot/imported/take_the_count_down_bulle.png-20c5f588f1d722057aa5c190685221ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_menu/title2.png"
-dest_files=["res://.godot/imported/title2.png-3182e89af6c6bb8e8bb510158ce5d3dd.ctex"]
+source_file="res://assets/main_menu/take_the_count_down_bulle.png"
+dest_files=["res://.godot/imported/take_the_count_down_bulle.png-20c5f588f1d722057aa5c190685221ee.ctex"]
 
 [params]
 

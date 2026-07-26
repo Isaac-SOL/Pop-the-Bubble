@@ -23,7 +23,7 @@
 size = Vector2(865, 532)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_270sc"]
-size = Vector2(302, 750)
+size = Vector2(46, 750)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_855hj"]
 size = Vector2(50, 750)
@@ -197,14 +197,15 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
-lose_threshold = 300
 
 [node name="background_4" type="Sprite2D" parent="." unique_id=1951687208]
+unique_name_in_owner = true
 position = Vector2(728, 435.00003)
 scale = Vector2(0.495, 0.471)
 texture = ExtResource("2_rxdet")
 
 [node name="background_3" type="Sprite2D" parent="." unique_id=1030873646]
+unique_name_in_owner = true
 position = Vector2(728, 435.00003)
 scale = Vector2(0.495, 0.471)
 texture = ExtResource("3_cnmaw")
@@ -243,7 +244,7 @@ collision_mask = 12
 script = ExtResource("3_64aob")
 
 [node name="LeftBorder" type="CollisionShape2D" parent="Area2D_borders" unique_id=1221744345]
-position = Vector2(-685, 113.5)
+position = Vector2(-813, 113.5)
 shape = SubResource("RectangleShape2D_270sc")
 debug_color = Color(0.71968424, 0.24930221, 0.99999994, 0)
 
