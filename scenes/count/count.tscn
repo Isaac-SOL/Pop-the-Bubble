@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b038wgl6janrt" path="res://addons/leeklib/shaker_2d.gd" id="2_a7vfb"]
 [ext_resource type="Texture2D" uid="uid://8hnufh0baw0t" path="res://assets/models/count/default_avec_perruque.png" id="2_u617d"]
 [ext_resource type="Texture2D" uid="uid://u65chelvfc7w" path="res://assets/models/count/comte_saiyan.png" id="3_a7vfb"]
+[ext_resource type="Texture2D" uid="uid://dfstrr0oqowuh" path="res://assets/models/count/comte_bubble_mepris.png" id="3_mfgcw"]
 [ext_resource type="Texture2D" uid="uid://ds16dlkdb8c70" path="res://assets/models/count/comte_bubble_surpris.png" id="4_mfgcw"]
 [ext_resource type="Texture2D" uid="uid://blx0hemdnwn1n" path="res://assets/models/count/comte_bubble_enerve.png" id="5_aq635"]
 [ext_resource type="AudioStream" uid="uid://nqu3kroi4o04" path="res://assets/audio/sfx/count/bark3.ogg" id="7_3kt1r"]
@@ -23,6 +24,14 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1uji"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mfgcw")
+}],
+"loop": 1,
+"name": &"mepris",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_u617d")
@@ -112,7 +121,7 @@ metadata/_custom_type_script = "uid://b038wgl6janrt"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimPivot/AnimVoice/Shaker2D" unique_id=9874524]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_f1uji")
-animation = &"saiyan"
+animation = &"mepris"
 autoplay = "normal"
 flip_h = true
 

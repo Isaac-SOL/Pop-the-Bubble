@@ -2,6 +2,7 @@ class_name DialogueNode2D extends Node2D
 
 signal dialogue_passed
 signal bleep
+signal dialogue_cleared
 
 const DEFAULT_FADEOUT_TIME = 5 # Secondes
 
@@ -21,6 +22,7 @@ func _process(delta: float) -> void:
 func clear_dialogue() -> void:
 	visible = false
 	%RichTextLabel_dialogue.text = ""
+	dialogue_cleared.emit()
 
 func set_dialogue(text: String, fadeout_time: float = DEFAULT_FADEOUT_TIME, vener: bool = false) -> void:
 	visible_characters = 0.0
