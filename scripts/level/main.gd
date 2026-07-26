@@ -17,7 +17,9 @@ const PLANETE_BULLE_HERBE_USINE = preload("uid://dppwxq54fw3w3")
 
 var state := State.INTRO
 
-@onready var background: Sprite2D = %background
+@onready var background_0: Sprite2D = %background_0
+@onready var background_1: Sprite2D = %background_1
+@onready var background_2: Sprite2D = %background_2
 @onready var player_hand: Hand = $player_hand
 #@onready var powers_container: VBoxContainer = %powers_container
 @onready var count: Count = %count
@@ -45,8 +47,9 @@ func _ready() -> void:
 	await Global.dialogue_node.dialogue_passed
 	await Global.seconds(0.5)
 	Global.dialogue_node.set_dialogue("I, Count Louis von Bubble, have fused all industries of the world into a single, big bubble factory!", 0)
-	var big_bubble = spawn_bubble(%SpawnRect.position, 5, 1)[0]
+	var big_bubble = spawn_bubble(%SpawnRect.position, 3, 1)[0]
 	big_bubble.speed = 0.0
+	big_bubble.spawn_factories = true
 	await Global.dialogue_node.dialogue_passed
 	await Global.seconds(0.5)
 	Global.dialogue_node.set_dialogue("INFINITE GROWTH! Right at my fingertips!", 0)
@@ -60,39 +63,51 @@ func _ready() -> void:
 	
 	await big_bubble.popped
 	%player_hand.visible = true
-	await Global.seconds(0.5)
-	Global.dialogue_node.set_dialogue("YOU! Who do you think you are!?", 3, true)
-	%count.shake()
-	%count.start_doing_actions()
 	set_count_phase(1)
 	state = State.GAMING
-	
-	auto_dialogue_p1()
 
 func auto_dialogue_p1():
-	await Global.seconds(7)
+	spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
+	await Global.seconds(4)
 	Global.dialogue_node.set_dialogue("Hmph. An anti-bubblist stuck in the past, I see.")
 	await Global.seconds(15)
 	Global.dialogue_node.set_dialogue("Your popping is meaningless. You cannot hurt me in a way that matters.")
-	await Global.seconds(15)
+	count.animated_sprite_2d.play("mepris")
+	await Global.seconds(5)
+	count.animated_sprite_2d.play("normal")
+	await Global.seconds(9)
 	Global.dialogue_node.set_dialogue("You think you're being smart? [color=red]If you destroy my factories willy-nilly, you're gonna destabilize everything![/color]")
-	await Global.seconds(10)
+	await Global.seconds(5)
+	Global.dialogue_node.set_dialogue("Also, you can't [color=red]keep popping my bubbles without lifting your finger.[/color] It doesn't work!")
+	await Global.seconds(6)
 	Global.dialogue_node.set_dialogue("Let's see you try to deal with this!", 5)
-	var popclose := spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0]
+	var popclose := spawn_bubble(%SpawnRect.position, 1, 1, [], BUBBLE_POPCLOSE)[0]
 	popclose.speed = 250
-	await popclose.popped
-	await Global.seconds(2)
+	#await popclose.popped
+	await Global.seconds(6)
 	Global.dialogue_node.set_dialogue("And another one!", 5)
-	spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
-	await Global.seconds(15)
+	spawn_bubble(%SpawnRect.position, 1, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
+	await Global.seconds(10)
 	Global.dialogue_node.set_dialogue("Is that all you are? A destabilizer? Tell me, have you ever *built* anything?")
-	await Global.seconds(15)
+	#spawn_bubble(%SpawnRect.position, 1, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
+	await Global.seconds(10)
 	Global.dialogue_node.set_dialogue("I built all this with my grand intellect! My growth-focused mindset!")
-	await Global.seconds(15)
+	#spawn_bubble(%SpawnRect.position, 1, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
+	await Global.seconds(10)
 	Global.dialogue_node.set_dialogue("I started with pretty much nothing! Nothing but my parents' bubble mine in the south!")
-	await Global.seconds(15)
+	#spawn_bubble(%SpawnRect.position, 1, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
+	await Global.seconds(10)
 	Global.dialogue_node.set_dialogue("I'm a self-made man!", 3)
+	spawn_bubble(%SpawnRect.position, 1, 2, [], BUBBLE_POPCLOSE)[0].speed = 250
+	Global.can_advance_phase = true
 
+func auto_dialogue_p2():
+	await Global.seconds(5)
+	Global.can_advance_phase = true
+func auto_dialogue_p3():
+	await Global.seconds(5)
+	Global.can_advance_phase = true
+	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		Global.dialogue_node.pass_dialogue()
@@ -132,35 +147,48 @@ func check_lose()-> void:
 		get_tree().paused = true
 
 func check_win()-> void:
-	if state != State.GAMING:
+	if state != State.GAMING or not Global.can_advance_phase:
 		return
-	if Global.all_bubbles.size() <= 0:
-		%ui_victory.show()
-		get_tree().paused = true
+	if BubbleManager.special_bubble_count == 0 and Global.factory_bubble_count == 0:
+		if (Global.count_phase == 3 and Global.all_bubbles.size() == 0) or (Global.count_phase < 3 and Global.all_bubbles.size() <= (%BubbleBar.max_value * 0.1)): 
+			Global.count_phase += 1
+			set_count_phase(Global.count_phase)
 
 func set_count_phase(phase: int)-> void:
 	Global.count_phase = phase
 	AudioManager.set_music_phase(phase)
+	Global.can_advance_phase = false
 	match phase:
 		1:
 			#BubbleManager.phase_powers = []
-			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPIKE, BubbleManager.BUBBLE_CRASH, BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
-			count.animated_sprite_2d.play("normal")
-			background.texture = PLANETE_BUBBLE_SECHE_USINE
-		2:
-			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
+			BubbleManager.phase_powers = []
 			count.animated_sprite_2d.play("surpris")
-		3:
-			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
+			await Global.seconds(1)
 			count.animated_sprite_2d.play("vener")
-			background.texture = PLANETE_BUBBLE_MOUILLEE_USINE
-		4:
-			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
-			background.texture = PLANETE_BULLE_HERBE_USINE
+			Global.dialogue_node.set_dialogue("YOU! Who do you think you are!?", 3, true)
+			%count.shake()
+			await Global.dialogue_node.dialogue_cleared
+			%count.start_doing_actions()
+			await Global.seconds(1)
+			count.animated_sprite_2d.play("normal")
+			auto_dialogue_p1()
+			
+		2:
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
+			var tween = create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_0,"modulate",Color.TRANSPARENT,4)
+			count.animated_sprite_2d.play("surpris")
+			auto_dialogue_p2()
+		3:
+			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPIKE, BubbleManager.BUBBLE_CRASH, BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("saiyan")
-		5:
-			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
-			count.animated_sprite_2d.play("victoire")
+			var tween = create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_1,"modulate",Color.TRANSPARENT,4)
+			auto_dialogue_p3()
+		4:
+			BubbleManager.phase_powers = []
+			#background.texture = PLANETE_BULLE_HERBE_NO_USINE
+			#count.animated_sprite_2d.play("victoire")
+			%ui_victory.show()
+			get_tree().paused = true
 
 			
 #Instantiate a nugget explosion when a popping a bubble

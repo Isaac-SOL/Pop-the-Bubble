@@ -16,6 +16,7 @@ var spike_bubble_count : int = 0
 var crash_bubble_count : int = 0
 var shielding_bubble_count : int = 0
 var count_phase : int = 0
+var can_advance_phase : bool = false
 
 var main_node: Node
 func set_main_reference(node: Node)-> void:
@@ -24,7 +25,6 @@ func set_main_reference(node: Node)-> void:
 var dialogue_node: DialogueNode2D
 func set_dialogue_reference(node: Node) -> void:
 	dialogue_node = node
-
 
 func seconds(t: float) -> Signal:
 	return get_tree().create_timer(t, false).timeout
