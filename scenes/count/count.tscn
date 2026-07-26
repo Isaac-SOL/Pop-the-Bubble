@@ -77,9 +77,10 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_f1uji")
 animation = &"saiyan"
 autoplay = "normal"
+flip_h = true
 
 [node name="Shadow" type="Sprite2D" parent="AnimPivot/AnimVoice/Shaker2D/AnimatedSprite2D" unique_id=1547113322]
 show_behind_parent = true
-position = Vector2(-121, -167)
+position = Vector2(121, -167)
 scale = Vector2(5.65625, 10.5546875)
 texture = SubResource("GradientTexture2D_3x28d")

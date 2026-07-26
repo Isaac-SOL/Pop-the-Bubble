@@ -83,4 +83,5 @@ func _physics_process(_delta: float) -> void:
 	else:
 		label_bubbles_spike.hide()
 		
-	label_bubbles.text = "Total Bubbles: "+str(Global.all_bubbles.size())
+	label_bubbles.text = str(Global.all_bubbles.size()) +" / "+ str(int(%BubbleBar.max_value))
+	%BubbleBar.value = Global.all_bubbles.size()

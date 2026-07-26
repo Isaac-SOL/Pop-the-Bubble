@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dxcm58nww0fg6"]
+
+[node name="WarningLine" type="Line2D" unique_id=1593706525]
+points = PackedVector2Array(0, 0, 0, 100)
+width = 1.0
