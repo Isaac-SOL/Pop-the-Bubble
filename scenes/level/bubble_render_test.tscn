@@ -13,7 +13,7 @@ shader_parameter/rim_width = 0.2
 shader_parameter/wobble_strength = 0.01
 shader_parameter/wobble_speed = 10.0
 shader_parameter/light_direction = Vector2(1, -1)
-shader_parameter/lens_radius = 5.0
+shader_parameter/lens_radius = 4.99999988824
 shader_parameter/lens_power = 0.2
 shader_parameter/tint_strength = 1.0
 
@@ -60,7 +60,7 @@ shader_parameter/tint_strength = 1.0
 texture = ExtResource("1_kb5y1")
 
 [node name="bubble" parent="." unique_id=501984861 instance=ExtResource("2_dlns0")]
-position = Vector2(50, -152)
+position = Vector2(58.999996, -117)
 scale = Vector2(6.285, 6.285)
 
 [node name="CollisionShape2D" parent="bubble" index="0" unique_id=187371561]

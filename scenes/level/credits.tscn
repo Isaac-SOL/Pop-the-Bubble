@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bepvacp1xev6q"]
+
+[ext_resource type="Texture2D" uid="uid://dppwxq54fw3w3" path="res://assets/models/background/planete_bulle_herbe_usine.jpg" id="1_gir44"]
+[ext_resource type="Texture2D" uid="uid://ds8xqkw855bda" path="res://assets/main_menu/credits.png" id="2_sffkf"]
+
+[sub_resource type="GDScript" id="GDScript_gir44"]
+script/source = "extends Control
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/level/main_menu.tscn\")
+"
+
+[node name="Credits" type="Control" unique_id=1046202689]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_gir44")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1351034494]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gir44")
+expand_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=502348431]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=316397317]
+custom_maximum_size = Vector2(1000, -1)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=2077648334]
+layout_mode = 2
+texture = ExtResource("2_sffkf")
+stretch_mode = 3
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/TextureRect" unique_id=1630998547]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer" unique_id=907212126]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[color=purple]Ark_Studio:[/color] Gameplay programming, shaders, game design
+[color=purple]Cryptal:[/color] UI, game design, programming help
+[color=purple]Dironiil:[/color] Main menu
+[color=purple]Jananass:[/color] Music, SFX
+[color=purple]Nisha:[/color] Count concept
+[color=purple]Haru:[/color] Voice acting
+[color=purple]SaltyIsaac:[/color] Gameplay programming, game design
+[color=purple]Vitelotte:[/color] Art, character design"
+fit_content = true
+
+[node name="Button" type="Button" parent="." unique_id=899490069]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -277.0
+offset_top = -81.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Main menu
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
