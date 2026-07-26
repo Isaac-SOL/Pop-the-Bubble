@@ -1,22 +1,109 @@
 [gd_resource type="AudioStreamInteractive" format=3 uid="uid://co0os802pvn5f"]
 
-[ext_resource type="AudioStream" uid="uid://cok4jv22sepjo" path="res://assets/audio/music/feel-the-bubble-test-6-160BPM.mp3" id="1_jktft"]
+[ext_resource type="AudioStream" uid="uid://2wqtctc73ws1" path="res://assets/audio/music/feel-the-bubble-v1-intro.ogg" id="1_77g75"]
+[ext_resource type="AudioStream" uid="uid://ca8uccc76cktg" path="res://assets/audio/music/bubble_lullaby.ogg" id="1_bfi4f"]
+[ext_resource type="AudioStream" uid="uid://dxok80yryspvn" path="res://assets/audio/music/feel-the-bubble-v1-loop.ogg" id="2_62f8x"]
+[ext_resource type="AudioStream" uid="uid://cf8a8n0ahggk8" path="res://assets/audio/music/bubble_my_sole_friend-v1-intro.ogg" id="3_62f8x"]
+[ext_resource type="AudioStream" uid="uid://b8j8gwmrlg0yw" path="res://assets/audio/music/bubble_my_sole_friend-v1-loop.ogg" id="4_p1mt4"]
+[ext_resource type="AudioStream" uid="uid://ban4ixr4yj78" path="res://assets/audio/music/last_bubble-v1-intro.ogg" id="5_y8ur5"]
+[ext_resource type="AudioStream" uid="uid://dy1l2omoid5xw" path="res://assets/audio/music/last_bubble-v1-loop.ogg" id="6_bfi4f"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_62ecl"]
+stream_count = 1
+stream_0/stream = ExtResource("1_bfi4f")
+stream_0/volume = -20.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_sbqql"]
+stream_count = 1
+stream_0/stream = ExtResource("1_77g75")
+stream_0/volume = -10.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_0ykr3"]
 stream_count = 1
-stream_0/stream = ExtResource("1_jktft")
+stream_0/stream = ExtResource("2_62f8x")
+stream_0/volume = -10.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qq385"]
+stream_count = 1
+stream_0/stream = ExtResource("3_62f8x")
+stream_0/volume = -20.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_p1mt4"]
+stream_count = 1
+stream_0/stream = ExtResource("4_p1mt4")
+stream_0/volume = -20.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
+stream_count = 1
+stream_0/stream = ExtResource("5_y8ur5")
+stream_0/volume = -20.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_dpjih"]
+stream_count = 1
+stream_0/stream = ExtResource("6_bfi4f")
 stream_0/volume = -20.0
 
 [resource]
-clip_count = 1
-clip_0/name = &"feel_the_bubble"
-clip_0/stream = SubResource("AudioStreamSynchronized_0ykr3")
+clip_count = 7
+clip_0/name = &"bubble_lullaby"
+clip_0/stream = SubResource("AudioStreamSynchronized_62ecl")
 clip_0/auto_advance = 0
+clip_1/name = &"feel_the_bubble_intro"
+clip_1/stream = SubResource("AudioStreamSynchronized_sbqql")
+clip_1/auto_advance = 1
+clip_1/next_clip = 2
+clip_2/name = &"feel_the_bubble"
+clip_2/stream = SubResource("AudioStreamSynchronized_0ykr3")
+clip_2/auto_advance = 0
+clip_3/name = &"bubble_my_sole_friend_intro"
+clip_3/stream = SubResource("AudioStreamSynchronized_qq385")
+clip_3/auto_advance = 1
+clip_3/next_clip = 4
+clip_4/name = &"bubble_my_sole_friend"
+clip_4/stream = SubResource("AudioStreamSynchronized_p1mt4")
+clip_4/auto_advance = 0
+clip_5/name = &"last_bubble_intro"
+clip_5/stream = SubResource("AudioStreamSynchronized_rky00")
+clip_5/auto_advance = 1
+clip_5/next_clip = 6
+clip_6/name = &"last_bubble"
+clip_6/stream = SubResource("AudioStreamSynchronized_dpjih")
+clip_6/auto_advance = 0
 _transitions = {
-Vector2i(0, 0): {
-"fade_beats": 1.0,
-"fade_mode": 4,
+Vector2i(0, 1): {
+"fade_beats": 4.0,
+"fade_mode": 2,
 "from_time": 0,
-"to_time": 0
+"to_time": 1
+},
+Vector2i(1, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 3): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 2,
+"to_time": 1
+},
+Vector2i(3, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 5): {
+"fade_beats": 4.0,
+"fade_mode": 3,
+"from_time": 2,
+"to_time": 1
+},
+Vector2i(5, 6): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
 }
 }

@@ -61,7 +61,7 @@ func _ready() -> void:
 	await Global.seconds(0.5)
 	Global.dialogue_node.set_dialogue("YOU! Who do you think you are!?", 3, true)
 	%count.shake()
-	AudioManager.playAudio_stream_music(&"feel_the_bubble")
+	AudioManager.advanceMusic()
 	%count.start_doing_actions()
 	set_count_phase(0)
 	state = State.GAMING
