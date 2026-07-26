@@ -12,7 +12,7 @@ class_name Count extends Node2D
 @export var anim_rot_max_der: float = 2.0
 @export var anim_scale_max_der: float = 1.0
 
-var rand_range: Vector2 = Vector2(10.0, 20.0)
+var rand_range: Vector2 = Vector2(15.0, 30.0)
 var rand_timer: Timer
 
 var voice_tween: Tween
