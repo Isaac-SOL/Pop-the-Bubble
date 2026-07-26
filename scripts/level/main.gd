@@ -27,7 +27,7 @@ var state := State.INTRO
 @onready var count: Count = %count
 @onready var nugget_parent: Node2D = %NuggetParent
 
-@export var lose_threshold: int = 200
+@export var lose_threshold: int = 400
 var ini_spawn_bylvl = [0, 0, 0, 0] #Nombre de bulles initiales
 
 var spawn_rect: Rect2
@@ -67,7 +67,6 @@ func _ready() -> void:
 	%player_hand.visible = true
 	set_count_phase(1)
 	state = State.GAMING
-	%count.start_doing_actions()
 
 func auto_dialogue_p1():
 	spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
@@ -217,6 +216,7 @@ func set_count_phase(phase: int)-> void:
 		2:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
 			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_1,"modulate",Color.TRANSPARENT,4)
+			%count.start_doing_actions()
 			count.animated_sprite_2d.play("surpris")
 			%count.shake()
 			auto_dialogue_p2()

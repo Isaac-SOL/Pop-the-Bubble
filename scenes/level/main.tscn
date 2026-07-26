@@ -197,7 +197,6 @@ _data = {
 
 [node name="Main" type="Node2D" unique_id=1852952808]
 script = ExtResource("1_0wfyh")
-lose_threshold = 300
 
 [node name="background_4" type="Sprite2D" parent="." unique_id=1951687208]
 unique_name_in_owner = true
