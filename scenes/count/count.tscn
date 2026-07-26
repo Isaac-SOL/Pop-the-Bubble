@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ds16dlkdb8c70" path="res://assets/models/count/comte_bubble_surpris.png" id="4_mfgcw"]
 [ext_resource type="Texture2D" uid="uid://blx0hemdnwn1n" path="res://assets/models/count/comte_bubble_enerve.png" id="5_aq635"]
 [ext_resource type="AudioStream" uid="uid://nqu3kroi4o04" path="res://assets/audio/sfx/count/bark3.ogg" id="7_3kt1r"]
+[ext_resource type="Texture2D" uid="uid://xdj2jsq7l8eh" path="res://assets/models/count/perruque_surpris.png" id="8_33rje"]
 [ext_resource type="AudioStream" uid="uid://b1f4887enn32j" path="res://assets/audio/sfx/count/bark4.ogg" id="8_m1rwd"]
 [ext_resource type="AudioStream" uid="uid://r42nk6yvdijt" path="res://assets/audio/sfx/count/bark16.ogg" id="9_33rje"]
 [ext_resource type="AudioStream" uid="uid://cq7f5cs6qq82p" path="res://assets/audio/sfx/count/bark18.ogg" id="10_1r0ut"]
@@ -121,7 +122,7 @@ metadata/_custom_type_script = "uid://b038wgl6janrt"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimPivot/AnimVoice/Shaker2D" unique_id=9874524]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_f1uji")
-animation = &"mepris"
+animation = &"surpris"
 autoplay = "normal"
 flip_h = true
 
@@ -131,9 +132,16 @@ position = Vector2(121, -167)
 scale = Vector2(5.65625, 10.5546875)
 texture = SubResource("GradientTexture2D_3x28d")
 
+[node name="Perruque" type="Sprite2D" parent="AnimPivot/AnimVoice/Shaker2D/AnimatedSprite2D" unique_id=898517707]
+unique_name_in_owner = true
+texture = ExtResource("8_33rje")
+flip_h = true
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1009410940]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_4qyvc")
 volume_db = 3.0
 max_polyphony = 16
 bus = &"Sfx"
+
+[connection signal="animation_changed" from="AnimPivot/AnimVoice/Shaker2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]

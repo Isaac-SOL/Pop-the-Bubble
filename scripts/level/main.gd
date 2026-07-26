@@ -175,13 +175,13 @@ func set_count_phase(phase: int)-> void:
 			
 		2:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
-			var tween = create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_0,"modulate",Color.TRANSPARENT,4)
+			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_0,"modulate",Color.TRANSPARENT,4)
 			count.animated_sprite_2d.play("surpris")
 			auto_dialogue_p2()
 		3:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPIKE, BubbleManager.BUBBLE_CRASH, BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("saiyan")
-			var tween = create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_1,"modulate",Color.TRANSPARENT,4)
+			create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_1,"modulate",Color.TRANSPARENT,4)
 			auto_dialogue_p3()
 		4:
 			BubbleManager.phase_powers = []
