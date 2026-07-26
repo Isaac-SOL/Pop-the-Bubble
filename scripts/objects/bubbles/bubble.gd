@@ -285,27 +285,6 @@ func set_bubble_shielded(activate: bool = true)-> void:
 		shader_material.set_shader_parameter("rim_color", bubble_color+Color(0.1,0.1,0.1,0.0))
 	
 	
-#func set_bubble_metaverse()-> void:
-	#is_metaverse = true
-	#Global.metaverse_bubble_count += 1
-	#spawn_rate = 75
-	#set_color(Color.ORANGE)
-	#timer_metaverse = Timer.new()
-	#timer_metaverse.one_shot = true
-	#add_child(timer_metaverse)
-	#timer_metaverse.timeout.connect(create_bubble.bind(timer_metaverse, Vector2(7.0,9.0), false, 4, 1))
-	#timer_metaverse.start(3.0)
-		
-	
-#func set_bubble_storm(activate: bool = true)-> void:
-	#if activate:
-		#is_storm = true
-		#Global.storm_bubble_count += 1
-		#set_color(Color.YELLOW)
-		#BubbleManager.bubble_speed_mult = 3.0
-	#else:
-		#BubbleManager.bubble_speed_mult = 1.0
-	
 
 
 func create_bubble(timer: Timer, timer_range : Vector2, is_self_pos : bool, level: int, qty: int = 1, types: Array = [])-> void:
@@ -362,12 +341,6 @@ func bubble_deleted()-> void:
 	remove_bubble(true)
 	
 func remove_bubble(is_deleted : bool = false)-> void:
-	#if is_storm:
-		#Global.storm_bubble_count -=1
-		#if Global.storm_bubble_count <= 0:
-			#set_bubble_storm(false)
-	#if is_metaverse:
-		#Global.metaverse_bubble_count -=1
 	if bubble_level == 2:
 		BubbleManager.special_bubble_count -= 1
 	if is_stonk:
@@ -407,6 +380,7 @@ func remove_bubble(is_deleted : bool = false)-> void:
 		if shielded_bubble:
 			shielded_bubble.set_bubble_shielded(false)
 	if is_crash:
+		Global.crash_bubble_count -= 1
 		#show explosion visual
 		var nearby_bubbles : Array[Bubble] = get_nearby_bubble(explosion_radius)
 		print(nearby_bubbles)
