@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://c7jwq2yccyw0n"]
+
+[ext_resource type="Texture2D" uid="uid://c2wc51anu4srq" path="res://assets/main_menu/BG-planet.png" id="1_kb5y1"]
+[ext_resource type="PackedScene" uid="uid://btrnaiw5jker4" path="res://scenes/objects/bubbles/bubble.tscn" id="2_dlns0"]
+[ext_resource type="Shader" uid="uid://31wsj26wc0o6" path="res://assets/shaders/bubble_shader.gdshader" id="3_sm310"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5e16o"]
+resource_local_to_scene = true
+shader = ExtResource("3_sm310")
+shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/rim_color = Color(0.2, 0.2, 1, 1)
+shader_parameter/rim_width = 0.2
+shader_parameter/wobble_strength = 0.01
+shader_parameter/wobble_speed = 10.0
+shader_parameter/light_direction = Vector2(1, -1)
+shader_parameter/lens_radius = 4.99999988824
+shader_parameter/lens_power = 0.2
+shader_parameter/tint_strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kb5y1"]
+resource_local_to_scene = true
+shader = ExtResource("3_sm310")
+shader_parameter/bubble_color = Color(0.101960786, 0.6, 1, 1)
+shader_parameter/rim_color = Color(0.43137255, 0.78431374, 0.98039216, 1)
+shader_parameter/rim_width = 0.2
+shader_parameter/wobble_strength = 0.01
+shader_parameter/wobble_speed = 10.0
+shader_parameter/light_direction = Vector2(1, -1)
+shader_parameter/lens_radius = 5.0
+shader_parameter/lens_power = 0.2
+shader_parameter/tint_strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlns0"]
+resource_local_to_scene = true
+shader = ExtResource("3_sm310")
+shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/rim_color = Color(0.3882353, 0.20392157, 0.6862745, 1)
+shader_parameter/rim_width = 0.2
+shader_parameter/wobble_strength = 0.01
+shader_parameter/wobble_speed = 10.0
+shader_parameter/light_direction = Vector2(1, -1)
+shader_parameter/lens_radius = 5.0
+shader_parameter/lens_power = 0.2
+shader_parameter/tint_strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm310"]
+resource_local_to_scene = true
+shader = ExtResource("3_sm310")
+shader_parameter/bubble_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/rim_color = Color(0.43137255, 0.78431374, 0.98039216, 1)
+shader_parameter/rim_width = 0.2
+shader_parameter/wobble_strength = 0.01
+shader_parameter/wobble_speed = 10.0
+shader_parameter/light_direction = Vector2(1, -1)
+shader_parameter/lens_radius = 5.0
+shader_parameter/lens_power = 0.2
+shader_parameter/tint_strength = 1.0
+
+[node name="BubbleRenderTest" type="Sprite2D" unique_id=924244048]
+texture = ExtResource("1_kb5y1")
+
+[node name="bubble" parent="." unique_id=501984861 instance=ExtResource("2_dlns0")]
+position = Vector2(58.999996, -117)
+scale = Vector2(6.285, 6.285)
+
+[node name="CollisionShape2D" parent="bubble" index="0" unique_id=187371561]
+visible = false
+
+[node name="Sprite2D" parent="bubble" index="4" unique_id=24901897]
+material = SubResource("ShaderMaterial_5e16o")
+
+[node name="VisibleOnScreenNotifier2D" parent="bubble" index="5" unique_id=464743157]
+visible = false
+
+[node name="bubble2" parent="." unique_id=1455712679 instance=ExtResource("2_dlns0")]
+position = Vector2(-156, -206)
+scale = Vector2(3.06, 3.06)
+
+[node name="CollisionShape2D" parent="bubble2" index="0" unique_id=187371561]
+visible = false
+
+[node name="Sprite2D" parent="bubble2" index="4" unique_id=24901897]
+material = SubResource("ShaderMaterial_kb5y1")
+
+[node name="VisibleOnScreenNotifier2D" parent="bubble2" index="5" unique_id=464743157]
+visible = false
+
+[node name="bubble3" parent="." unique_id=346565236 instance=ExtResource("2_dlns0")]
+position = Vector2(242, -284.00003)
+scale = Vector2(5.105, 5.105)
+
+[node name="CollisionShape2D" parent="bubble3" index="0" unique_id=187371561]
+visible = false
+
+[node name="Sprite2D" parent="bubble3" index="4" unique_id=24901897]
+material = SubResource("ShaderMaterial_dlns0")
+
+[node name="VisibleOnScreenNotifier2D" parent="bubble3" index="5" unique_id=464743157]
+visible = false
+
+[node name="bubble4" parent="." unique_id=343670644 instance=ExtResource("2_dlns0")]
+position = Vector2(435.00003, -136)
+scale = Vector2(6.285, 6.285)
+
+[node name="CollisionShape2D" parent="bubble4" index="0" unique_id=187371561]
+visible = false
+
+[node name="Sprite2D" parent="bubble4" index="4" unique_id=24901897]
+material = SubResource("ShaderMaterial_sm310")
+position = Vector2(-3.8186207, -5.7279234)
+
+[node name="VisibleOnScreenNotifier2D" parent="bubble4" index="5" unique_id=464743157]
+visible = false
+
+[editable path="bubble"]
+[editable path="bubble2"]
+[editable path="bubble3"]
+[editable path="bubble4"]
