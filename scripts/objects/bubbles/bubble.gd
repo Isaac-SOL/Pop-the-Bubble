@@ -155,20 +155,20 @@ func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
 		velocity = opposite_vector * 5.0
 		
 func set_bubble_stonk(stonk_value: int = 3)-> void:
-	if !is_stonk:
-		is_stonk = true
-		Global.stonk_bubble_count += 1
-		set_color(Color.DARK_GREEN)
-		BubbleManager.stonk_value = stonk_value
-		for bubble in Global.all_bubbles:
-			if bubble.bubble_level == 0:
-				bubble.stonk_count = BubbleManager.stonk_value
-				bubble.set_color(Color.DARK_GREEN)
+	is_stonk = true
+	Global.stonk_bubble_count += 1
+	set_color(Color.DARK_GREEN)
+	set_bubble_pop_spawn_qty(175)
+	BubbleManager.stonk_value = stonk_value
+	for bubble in Global.all_bubbles:
+		if bubble.bubble_level == 0:
+			bubble.stonk_count = BubbleManager.stonk_value
+			bubble.set_color(Color.DARK_GREEN)
 		
 func set_bubble_speculative()-> void:
 	is_speculative = true
 	Global.speculative_bubble_count += 1
-	bubble_pop_spawn_qty = 75
+	set_bubble_pop_spawn_qty(75)
 	set_color(Color.GREEN)
 	set_collision_layer_value(3, false)
 	set_collision_mask_value(3, false)
@@ -222,6 +222,7 @@ func set_bubble_internet(activate: bool = true)-> void:
 		is_internet = true
 		Global.internet_bubble_count += 1
 		set_color(Color.GRAY)
+		set_bubble_pop_spawn_qty(175)
 		for bubble : Bubble in Global.all_bubbles:
 			if bubble.is_factory:
 				bubble.spawn_rate = 0
@@ -336,7 +337,6 @@ func grow_speculative_bubble():
 	var grow_sacle = scale + Vector2(1.0,1.0)
 	var scale_tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	scale_tween.tween_property(self, "scale", grow_sacle, 1.0)
-	print(bubble_pop_spawn_qty)
 
 	
 
@@ -450,6 +450,7 @@ func pop_animation():
 
 
 func _on_mouse_entered() -> void:
+	label_pop_spawn_qty.text = str(bubble_pop_spawn_qty)
 	label_pop_spawn_qty.show()
 	if is_crash:
 		update_range_explosion_sprite(explosion_radius)
