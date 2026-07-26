@@ -194,7 +194,8 @@ func check_win()-> void:
 
 func set_count_phase(phase: int)-> void:
 	Global.count_phase = phase
-	AudioManager.set_music_phase(phase)
+	if phase != 4:
+		AudioManager.set_music_phase(phase)
 	Global.can_advance_phase = false
 	match phase:
 		1:
@@ -223,10 +224,7 @@ func set_count_phase(phase: int)-> void:
 			auto_dialogue_p3()
 		4:
 			BubbleManager.phase_powers = []
-			#background.texture = PLANETE_BULLE_HERBE_NO_USINE
-			#count.animated_sprite_2d.play("victoire")
-			%ui_victory.show()
-			get_tree().paused = true
+			end_cutscene()
 
 			
 #Instantiate a nugget explosion when a popping a bubble
@@ -247,6 +245,35 @@ func shake_vertical(strength: float, duration: float):
 	%Camera2D.position = cam_center + Vector2.UP * strength
 	screenshake_tween.tween_property(%Camera2D, "position", cam_center, duration)
 	screenshake_priority = strength
+
+func end_cutscene():
+	await Global.seconds(2)
+	Global.dialogue_node.set_dialogue("...No...", 3)
+	await Global.seconds(6)
+	Global.dialogue_node.set_dialogue("...NO!!!!!!", 4)
+	%count.shake()
+	shake_vertical(100.0, 1.0)
+	await Global.seconds(5)
+	Global.dialogue_node.set_dialogue("THIS ISN'T OVER YET!!!", 5)
+	await Global.seconds(3)
+	var tete := spawn_bubble(%SpawnRect.position, 8)[0]
+	count.hide()
+	await tete.popped
+	count.animated_sprite_2d.play("pls")
+	count.show()
+	AudioManager.fade_out(AudioManager.audio_stream_player_music)
+	await Global.seconds(2)
+	Global.dialogue_node.set_dialogue("No...... My bubulles......", 4)
+	await Global.dialogue_node.dialogue_cleared
+	await Global.seconds(0.5)
+	%ui_victory.show()
+	%AnimationPlayer.play("count down")
+
+func final_final():
+	#jouer le son
+	%AudioVictoire.play()
+	await %AudioVictoire.finished
+	get_tree().change_scene_to_file("res://scenes/level/credits.tscn")
 
 # -- Signals --
 
@@ -269,3 +296,7 @@ func _on_bubble_spawn(amount: int, pos: Vector2, level: int, _bubble: Bubble):
 
 func _on_dialogue_bleep() -> void:
 	%count.voice_bleep()
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/level/main_menu.tscn")
