@@ -92,15 +92,19 @@ func play_nugget_pickup() -> void:
 		elif !pause and interactive_stream_nugget:
 			interactive_stream_nugget.switch_to_clip_by_name(sound_name)
 			playing_stream_nugget_clip_name = sound_name
-	
-func advanceMusic() -> void:
-	music_state += 1
-	if music_state == 1 :
-		AudioManager.playAudio_stream_music("feel_the_bubble_intro")
-	elif music_state == 2 :
-		AudioManager.playAudio_stream_music("bubble_my_sole_friend_intro")
-	elif music_state == 3 :
-		AudioManager.playAudio_stream_music("last_bubble_intro")
+
+func set_music_phase(phase: int) -> void:
+	match phase:
+		0:
+			AudioManager.playAudio_stream_music("bubble_lullaby")
+		1:
+			AudioManager.playAudio_stream_music("feel_the_bubble_intro")
+		2:
+			AudioManager.playAudio_stream_music("bubble_my_sole_friend_intro")
+		3:
+			AudioManager.playAudio_stream_music("last_bubble_intro")
+		4:
+			AudioManager.playAudio_stream_music("")
 			
 func playAudio_stream_music(sound_name: String) -> void:
 	#Start the AudioStreamPlayer if it isn't already playing

@@ -63,9 +63,8 @@ func _ready() -> void:
 	await Global.seconds(0.5)
 	Global.dialogue_node.set_dialogue("YOU! Who do you think you are!?", 3, true)
 	%count.shake()
-	AudioManager.advanceMusic()
 	%count.start_doing_actions()
-	set_count_phase(0)
+	set_count_phase(1)
 	state = State.GAMING
 	
 	auto_dialogue_p1()
@@ -138,29 +137,28 @@ func check_win()-> void:
 		get_tree().paused = true
 
 func set_count_phase(phase: int)-> void:
+	Global.count_phase = phase
+	AudioManager.set_music_phase(phase)
 	match phase:
-		0:
+		1:
 			#BubbleManager.phase_powers = []
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPIKE, BubbleManager.BUBBLE_CRASH, BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("normal")
 			background.texture = PLANETE_BUBBLE_SECHE_USINE
-		1:
+		2:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("surpris")
-		2:
+		3:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
 			count.animated_sprite_2d.play("vener")
 			background.texture = PLANETE_BUBBLE_MOUILLEE_USINE
-		3:
-			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
-			count.animated_sprite_2d.play("saiyan")
 		4:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
-			count.animated_sprite_2d.play("vener")
 			background.texture = PLANETE_BULLE_HERBE_USINE
+			count.animated_sprite_2d.play("saiyan")
 		5:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_FACTORY, BubbleManager.BUBBLE_STORM, BubbleManager.BUBBLE_GPT]
-			count.animated_sprite_2d.play("vener")
+			count.animated_sprite_2d.play("victoire")
 
 			
 #Instantiate a nugget explosion when a popping a bubble
