@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://bepvacp1xev6q"]
 
 [ext_resource type="Texture2D" uid="uid://dppwxq54fw3w3" path="res://assets/models/background/planete_bulle_herbe_usine.jpg" id="1_gir44"]
+[ext_resource type="FontFile" uid="uid://od25h2h1grcf" path="res://assets/fonts/ChelaOne-Regular.ttf" id="1_sffkf"]
 [ext_resource type="Texture2D" uid="uid://ds8xqkw855bda" path="res://assets/main_menu/credits.png" id="2_sffkf"]
+
+[sub_resource type="Theme" id="Theme_jp4x3"]
+default_font = ExtResource("1_sffkf")
 
 [sub_resource type="GDScript" id="GDScript_gir44"]
 script/source = "extends Control
@@ -18,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_jp4x3")
 script = SubResource("GDScript_gir44")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1351034494]
@@ -48,6 +53,7 @@ texture = ExtResource("2_sffkf")
 stretch_mode = 3
 
 [node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/TextureRect" unique_id=1630998547]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15

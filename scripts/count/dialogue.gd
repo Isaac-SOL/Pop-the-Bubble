@@ -26,7 +26,7 @@ func clear_dialogue() -> void:
 
 func set_dialogue(text: String, fadeout_time: float = DEFAULT_FADEOUT_TIME, vener: bool = false) -> void:
 	visible_characters = 0.0
-	%RichTextLabel_dialogue.text = "[font_size=96]%s[/font_size]" % text
+	%RichTextLabel_dialogue.text = "[font_size=128]%s[/font_size]" % text
 	visible = true
 	
 	vener_mode = vener
