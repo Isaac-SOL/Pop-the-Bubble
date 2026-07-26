@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b3nr1xh517dxw" path="res://assets/models/bubbles/splach.png" id="4_sy5dr"]
 [ext_resource type="Texture2D" uid="uid://d0f32gphcjf01" path="res://assets/models/bubbles/bubble_normal.png" id="5_63cjf"]
 [ext_resource type="AudioStream" uid="uid://bdkahj35801gl" path="res://assets/audio/sfx/bubbles/bubble_up.ogg" id="5_redsc"]
+[ext_resource type="FontFile" uid="uid://od25h2h1grcf" path="res://assets/fonts/ChelaOne-Regular.ttf" id="7_3o7p6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_270sc"]
 radius = 16.03122
@@ -24,8 +25,9 @@ shader_parameter/lens_power = 0.2
 shader_parameter/tint_strength = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_63cjf"]
-font_size = 12
-outline_size = 4
+font = ExtResource("7_3o7p6")
+font_size = 48
+outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [node name="bubble" type="Area2D" unique_id=501984861]
@@ -64,6 +66,7 @@ texture = ExtResource("5_63cjf")
 [node name="Label_pop_spawn_qty" type="Label" parent="Sprite2D" unique_id=611801009]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -73,7 +76,10 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.44, 0.44)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
+text = "1"
 label_settings = SubResource("LabelSettings_63cjf")
 horizontal_alignment = 1
 vertical_alignment = 1

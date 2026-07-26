@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://dkqj3hobakwsg" path="res://scripts/count/dialogue.gd" id="1_rckdv"]
 [ext_resource type="Script" uid="uid://b038wgl6janrt" path="res://addons/leeklib/shaker_2d.gd" id="2_gfdhp"]
 [ext_resource type="Texture2D" uid="uid://dor38s3oe0g2p" path="res://assets/models/chat_bubble/chat_bubble_vener.png" id="4_g2tjv"]
+[ext_resource type="FontFile" uid="uid://od25h2h1grcf" path="res://assets/fonts/ChelaOne-Regular.ttf" id="5_g2tjv"]
+
+[sub_resource type="Theme" id="Theme_sy5dr"]
+default_font = ExtResource("5_g2tjv")
 
 [node name="Dialogue" type="Node2D" unique_id=2113910368]
 script = ExtResource("1_rckdv")
@@ -33,6 +37,7 @@ offset_top = -160.86798
 offset_right = 1354.5933
 offset_bottom = 313.8578
 scale = Vector2(0.6632629, 0.6632629)
+theme = SubResource("Theme_sy5dr")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 45
 theme_override_font_sizes/bold_font_size = 41
@@ -40,7 +45,7 @@ theme_override_font_sizes/bold_italics_font_size = 41
 theme_override_font_sizes/italics_font_size = 45
 theme_override_font_sizes/mono_font_size = 45
 bbcode_enabled = true
-text = "[font_size=96]esirg rghs eirugh iesug seirug oseirg soirg soeirgoie spoergh segh[/font_size]"
+text = "[font_size=128]esirg rghs eirugh iesug seirug oseirg soirg soeirgoie spoergh segh[/font_size]"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1

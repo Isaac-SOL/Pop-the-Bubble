@@ -3,19 +3,55 @@
 [ext_resource type="AudioStream" uid="uid://os3oqx326w1g" path="res://assets/audio/sfx/others/null.ogg" id="1_ks5hd"]
 [ext_resource type="AudioStream" uid="uid://cd0nraw48vskf" path="res://assets/audio/sfx/bubbles/bubble_pop.ogg" id="3_nuxam"]
 [ext_resource type="AudioStream" uid="uid://blimwq0yrfvh0" path="res://assets/audio/sfx/buttons/bubble_button.ogg" id="4_p48jq"]
+[ext_resource type="AudioStream" uid="uid://c610tv1gkfxjb" path="res://assets/audio/sfx/bubbles/big_pop-01.ogg" id="4_tyh12"]
+[ext_resource type="AudioStream" uid="uid://bsjntxgw3rp4" path="res://assets/audio/sfx/bubbles/big_pop-02.ogg" id="5_mfrpj"]
+[ext_resource type="AudioStream" uid="uid://ce51pt1wpw8yc" path="res://assets/audio/sfx/bubbles/big_pop-03.ogg" id="6_usd7l"]
+[ext_resource type="AudioStream" uid="uid://c5uj3mhjdco4q" path="res://assets/audio/sfx/bubbles/big_pop-04.ogg" id="7_hatl3"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
 stream_count = 1
 stream_0/stream = ExtResource("3_nuxam")
-stream_0/volume = -22.0
+stream_0/volume = -12.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2das6"]
 stream_count = 1
 stream_0/stream = ExtResource("4_p48jq")
 stream_0/volume = 0.0
 
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ks5hd"]
+stream_count = 1
+stream_0/stream = ExtResource("4_tyh12")
+stream_0/volume = -5.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_yrk30"]
+stream_count = 1
+stream_0/stream = ExtResource("5_mfrpj")
+stream_0/volume = -5.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_tyh12"]
+stream_count = 1
+stream_0/stream = ExtResource("6_usd7l")
+stream_0/volume = -5.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_nuxam"]
+stream_count = 1
+stream_0/stream = SubResource("AudioStreamSynchronized_tyh12")
+stream_0/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_p48jq"]
+stream_count = 1
+stream_0/stream = ExtResource("7_hatl3")
+stream_0/volume = -5.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u6oo2"]
+streams_count = 4
+stream_0/stream = SubResource("AudioStreamSynchronized_ks5hd")
+stream_1/stream = SubResource("AudioStreamSynchronized_yrk30")
+stream_2/stream = SubResource("AudioStreamSynchronized_nuxam")
+stream_3/stream = SubResource("AudioStreamSynchronized_p48jq")
+
 [resource]
-clip_count = 3
+clip_count = 4
 clip_0/name = &"init"
 clip_0/stream = ExtResource("1_ks5hd")
 clip_0/auto_advance = 0
@@ -25,3 +61,6 @@ clip_1/auto_advance = 0
 clip_2/name = &"bubble_button"
 clip_2/stream = SubResource("AudioStreamSynchronized_2das6")
 clip_2/auto_advance = 0
+clip_3/name = &"bubble_pop_big"
+clip_3/stream = SubResource("AudioStreamRandomizer_u6oo2")
+clip_3/auto_advance = 0

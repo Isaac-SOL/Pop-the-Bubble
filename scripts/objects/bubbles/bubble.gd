@@ -332,7 +332,7 @@ func bubble_popped()-> void:
 		return
 	else:
 		remove_bubble()
-		AudioManager.playAudio_stream_sfx(&"bubble_pop")
+		AudioManager.playAudio_stream_sfx(&"bubble_pop" if bubble_level == 0 else &"bubble_pop_big")
 		popped.emit(false)
 	
 func bubble_deleted()-> void:
