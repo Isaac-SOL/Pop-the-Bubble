@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+#include "res://addons/leeklib/shader_util.gdshaderinc"
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 uniform vec4 bubble_color : source_color = vec4(0.35, 0.75, 1.0, 1.0);
@@ -66,7 +68,8 @@ void fragment() {
 	vec3 color = texture(SCREEN_TEXTURE, warped_uv).rgb;
 
 	//Tint
-	color *= mix(vec3(1.0), bubble_color.rgb, tint_strength);
+	//color *= mix(vec3(1.0), bubble_color.rgb, tint_strength);
+	color = mix(color, vec3(1.0), 0.5);
 
 
 	//Sphere lighting
@@ -81,15 +84,20 @@ void fragment() {
 	diffuse = floor(diffuse * 3.0) / 3.0;
 
 	//Painted highlight
-	vec2 highlight_uv = uv + vec2(0.25, 0.25);
+	float highlight_angle = turnsToX(uv);
+	float highlight_dist = smoothstep(0.5, 0.65, length(uv))
+	                       - smoothstep(0.65, 0.8, length(uv));
+	float highlight_angled = (smoothstep(0.15, 0.35, highlight_angle)
+	                         - smoothstep(0.35, 0.55, highlight_angle))
+							 + (smoothstep(0.5, 0.55, highlight_angle)
+	                            - smoothstep(0.55, 0.6, highlight_angle))
+							 + (smoothstep(0.75, 0.9, highlight_angle)
+	                            - smoothstep(0.9, 1.0, highlight_angle));
 
-	float highlight = smoothstep(
-		0.35,
-		0.0,
-		length(highlight_uv)
-	);
+	float highlight = highlight_angled * highlight_dist;
 
 	highlight *= 0.8;
+	highlight = smoothstep(0.2, 0.35, highlight);
 
 
 	//Rim
@@ -100,8 +108,8 @@ void fragment() {
 		sin(angle * 9.0 + TIME * 0.5) * 0.01;
 
 	float rim =
-		smoothstep(0.84, 0.92, edge) -
-		smoothstep(0.92, 0.985, edge);
+		smoothstep(0.80, 0.92, edge) -
+		smoothstep(0.92, .98, edge);
 
 	//Ink outline
 	float outline =
@@ -115,13 +123,13 @@ void fragment() {
 	color += vec3(highlight);
 
 	//Rim
-	color = mix(color, rim_color.rgb, rim * 0.8);
+	color = mix(color, rim_color.rgb, rim * 2.0);
 
 	//Outline
 	color = mix(color, vec3(0.12, 0.18, 0.30), outline);
 
 	//Posterize
-	color = floor(color * 6.0) / 6.0;
+	color = floor(color * 8.0) / 8.0;
 
 
 	//Alpha
@@ -129,6 +137,7 @@ void fragment() {
 	alpha += fresnel * 0.25;
 	alpha += highlight * 0.4;
 	alpha += rim * 0.25;
+	alpha *= 1.0 - smoothstep(0.92, .98, edge);
 
 	COLOR = vec4(color, clamp(alpha, 0.0, 1.0));
 }
