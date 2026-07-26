@@ -45,6 +45,11 @@ func _process(delta: float) -> void:
 	else:
 		%HandPivot.rotation = curr_target.rotation
 		%HandPivot.position = Util.decayv2(%HandPivot.position, curr_target.position, 45 * delta)
+		
+	if Input.is_action_just_pressed("key_k"):
+		Global.count_phase += 1
+		AudioManager.set_music_phase(Global.count_phase)
+		
 
 func set_area_position(pos: Vector2):
 	%Area.global_position = pos
