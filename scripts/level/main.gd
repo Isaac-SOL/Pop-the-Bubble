@@ -194,7 +194,8 @@ func check_win()-> void:
 
 func set_count_phase(phase: int)-> void:
 	Global.count_phase = phase
-	AudioManager.set_music_phase(phase)
+	if phase != 4:
+		AudioManager.set_music_phase(phase)
 	Global.can_advance_phase = false
 	match phase:
 		1:
@@ -270,7 +271,8 @@ func end_cutscene():
 
 func final_final():
 	#jouer le son
-	await Global.seconds(5)
+	%AudioVictoire.play()
+	await %AudioVictoire.finished
 	get_tree().change_scene_to_file("res://scenes/level/credits.tscn")
 
 # -- Signals --

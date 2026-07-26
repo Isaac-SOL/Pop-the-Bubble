@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dg00rgrlhtjgn" path="res://assets/Interface/bubblebar/bullebar2_back.png" id="8_rjhew"]
 [ext_resource type="Texture2D" uid="uid://dir16vntvj7kw" path="res://assets/Interface/bubblebar/bullebar2.png" id="9_3lrgn"]
 [ext_resource type="Texture2D" uid="uid://cmik8vipasthi" path="res://assets/Interface/bubblebar/christopher.png" id="10_kmlpd"]
+[ext_resource type="AudioStream" uid="uid://ddbdal67g6hfs" path="res://assets/audio/music/victory_congratulations.ogg" id="18_eilf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyvc"]
 size = Vector2(865, 587)
@@ -552,6 +553,11 @@ vertical_alignment = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/ui_victory" unique_id=917830476]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_bhdtg")
+
+[node name="AudioVictoire" type="AudioStreamPlayer" parent="UI/ui_victory" unique_id=529572420]
+unique_name_in_owner = true
+stream = ExtResource("18_eilf0")
+volume_db = -5.0
 
 [connection signal="area_shape_entered" from="Area2D_borders" to="Area2D_borders" method="_on_area_shape_entered"]
 [connection signal="bleep" from="UI/ui_player/Dialogue" to="." method="_on_dialogue_bleep"]
