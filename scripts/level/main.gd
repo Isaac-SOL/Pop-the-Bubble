@@ -113,7 +113,7 @@ func auto_dialogue_p2():
 	await Global.seconds(18)
 	Global.dialogue_node.set_dialogue("Go do something else, I don't know, go take a trip in your private jet?")
 	await Global.seconds(10)
-	Global.dialogue_node.set_dialogue("What do you mean you not have one, everyone has!")
+	Global.dialogue_node.set_dialogue("What do you mean you don't have one, everyone has!")
 	await Global.seconds(10)
 	Global.dialogue_node.set_dialogue("Anyway, shoo, shoo!")
 	await Global.seconds(10)
