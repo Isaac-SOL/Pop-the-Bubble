@@ -17,6 +17,7 @@ var gpt_bubble_count : int = 0
 var spike_bubble_count : int = 0
 var crash_bubble_count : int = 0
 var shielding_bubble_count : int = 0
+var count_phase : int = 0
 
 var main_node: Node
 func set_main_reference(node: Node)-> void:

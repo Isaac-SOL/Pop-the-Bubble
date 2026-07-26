@@ -5,43 +5,43 @@
 [ext_resource type="AudioStream" uid="uid://dxok80yryspvn" path="res://assets/audio/music/feel-the-bubble-v1-loop.ogg" id="2_62f8x"]
 [ext_resource type="AudioStream" uid="uid://cf8a8n0ahggk8" path="res://assets/audio/music/bubble_my_sole_friend-v1-intro.ogg" id="3_62f8x"]
 [ext_resource type="AudioStream" uid="uid://b8j8gwmrlg0yw" path="res://assets/audio/music/bubble_my_sole_friend-v1-loop.ogg" id="4_p1mt4"]
-[ext_resource type="AudioStream" uid="uid://ban4ixr4yj78" path="res://assets/audio/music/last_bubble-v1-intro.ogg" id="5_y8ur5"]
-[ext_resource type="AudioStream" uid="uid://dy1l2omoid5xw" path="res://assets/audio/music/last_bubble-v1-loop.ogg" id="6_bfi4f"]
+[ext_resource type="AudioStream" uid="uid://dcifwlayde16" path="res://assets/audio/music/last_bubble-v2-intro.ogg" id="6_bfi4f"]
+[ext_resource type="AudioStream" uid="uid://jnxeich2gxlt" path="res://assets/audio/music/last_bubble-v2-loop.ogg" id="7_3x1v1"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_62ecl"]
 stream_count = 1
 stream_0/stream = ExtResource("1_bfi4f")
-stream_0/volume = -20.0
+stream_0/volume = -5.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_sbqql"]
 stream_count = 1
 stream_0/stream = ExtResource("1_77g75")
-stream_0/volume = -10.0
+stream_0/volume = 0.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_0ykr3"]
 stream_count = 1
 stream_0/stream = ExtResource("2_62f8x")
-stream_0/volume = -10.0
+stream_0/volume = 0.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qq385"]
 stream_count = 1
 stream_0/stream = ExtResource("3_62f8x")
-stream_0/volume = -20.0
+stream_0/volume = -5.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_p1mt4"]
 stream_count = 1
 stream_0/stream = ExtResource("4_p1mt4")
-stream_0/volume = -20.0
+stream_0/volume = -5.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rky00"]
 stream_count = 1
-stream_0/stream = ExtResource("5_y8ur5")
-stream_0/volume = -20.0
+stream_0/stream = ExtResource("6_bfi4f")
+stream_0/volume = -5.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_dpjih"]
 stream_count = 1
-stream_0/stream = ExtResource("6_bfi4f")
-stream_0/volume = -20.0
+stream_0/stream = ExtResource("7_3x1v1")
+stream_0/volume = -5.0
 
 [resource]
 clip_count = 7
@@ -72,7 +72,7 @@ clip_6/auto_advance = 0
 _transitions = {
 Vector2i(0, 1): {
 "fade_beats": 4.0,
-"fade_mode": 2,
+"fade_mode": 0,
 "from_time": 0,
 "to_time": 1
 },
@@ -80,6 +80,12 @@ Vector2i(1, 2): {
 "fade_beats": 1.0,
 "fade_mode": 0,
 "from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 3): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 2,
 "to_time": 1
 },
 Vector2i(2, 3): {
@@ -92,6 +98,12 @@ Vector2i(3, 4): {
 "fade_beats": 1.0,
 "fade_mode": 0,
 "from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 5): {
+"fade_beats": 4.0,
+"fade_mode": 3,
+"from_time": 2,
 "to_time": 1
 },
 Vector2i(4, 5): {
