@@ -119,6 +119,8 @@ func spawn_bubble(pos: Vector2, level: int, qty: int = 1, types: Array = [], tem
 func update_bubble_count()-> void:
 	Global.bubble_per_seconds = 0.
 	for b: Bubble in Global.all_bubbles:
+		if not b.overlaps_area(%AliveArea):
+			b.bubble_deleted()
 		if b.is_factory:
 			Global.bubble_per_seconds += b.spawn_rate /100. * 1./b.timer_factory.wait_time 
 	%LabelBubblesPerSec.text = "%.2f bps" % Global.bubble_per_seconds
@@ -190,7 +192,7 @@ func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 		#add_nugget_explosion(bubble.nugget_value, bubble.global_position)
 		spawn_bubble(bubble.position, 1 if bubble.bubble_level == 3 else 0, bubble.bubble_pop_spawn_qty)
 		bubble.pop_animation()
-		shake_vertical(bubble.bubble_level * bubble.bubble_level * 3, 0.5)
+		shake_vertical(bubble.scale.x * bubble.scale.x * 5.0, 0.5)
 	update_bubble_count()
 
 func _on_bubble_spawn(amount: int, pos: Vector2, level: int, _bubble: Bubble):
