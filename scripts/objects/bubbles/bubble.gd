@@ -155,20 +155,20 @@ func _on_area_2d_bubble_area_entered(area: Area2D) -> void:
 		velocity = opposite_vector * 5.0
 		
 func set_bubble_stonk(stonk_value: int = 3)-> void:
-	if !is_stonk:
-		is_stonk = true
-		Global.stonk_bubble_count += 1
-		set_color(Color.DARK_GREEN)
-		BubbleManager.stonk_value = stonk_value
-		for bubble in Global.all_bubbles:
-			if bubble.bubble_level == 0:
-				bubble.stonk_count = BubbleManager.stonk_value
-				bubble.set_color(Color.DARK_GREEN)
+	is_stonk = true
+	Global.stonk_bubble_count += 1
+	set_color(Color.DARK_GREEN)
+	set_bubble_pop_spawn_qty(175)
+	BubbleManager.stonk_value = stonk_value
+	for bubble in Global.all_bubbles:
+		if bubble.bubble_level == 0:
+			bubble.stonk_count = BubbleManager.stonk_value
+			bubble.set_color(Color.DARK_GREEN)
 		
 func set_bubble_speculative()-> void:
 	is_speculative = true
 	Global.speculative_bubble_count += 1
-	bubble_pop_spawn_qty = 75
+	set_bubble_pop_spawn_qty(75)
 	set_color(Color.GREEN)
 	set_collision_layer_value(3, false)
 	set_collision_mask_value(3, false)
@@ -222,6 +222,7 @@ func set_bubble_internet(activate: bool = true)-> void:
 		is_internet = true
 		Global.internet_bubble_count += 1
 		set_color(Color.GRAY)
+		set_bubble_pop_spawn_qty(175)
 		for bubble : Bubble in Global.all_bubbles:
 			if bubble.is_factory:
 				bubble.spawn_rate = 0
@@ -284,27 +285,6 @@ func set_bubble_shielded(activate: bool = true)-> void:
 		shader_material.set_shader_parameter("rim_color", bubble_color+Color(0.1,0.1,0.1,0.0))
 	
 	
-#func set_bubble_metaverse()-> void:
-	#is_metaverse = true
-	#Global.metaverse_bubble_count += 1
-	#spawn_rate = 75
-	#set_color(Color.ORANGE)
-	#timer_metaverse = Timer.new()
-	#timer_metaverse.one_shot = true
-	#add_child(timer_metaverse)
-	#timer_metaverse.timeout.connect(create_bubble.bind(timer_metaverse, Vector2(7.0,9.0), false, 4, 1))
-	#timer_metaverse.start(3.0)
-		
-	
-#func set_bubble_storm(activate: bool = true)-> void:
-	#if activate:
-		#is_storm = true
-		#Global.storm_bubble_count += 1
-		#set_color(Color.YELLOW)
-		#BubbleManager.bubble_speed_mult = 3.0
-	#else:
-		#BubbleManager.bubble_speed_mult = 1.0
-	
 
 
 func create_bubble(timer: Timer, timer_range : Vector2, is_self_pos : bool, level: int, qty: int = 1, types: Array = [])-> void:
@@ -336,7 +316,6 @@ func grow_speculative_bubble():
 	var grow_sacle = scale + Vector2(1.0,1.0)
 	var scale_tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	scale_tween.tween_property(self, "scale", grow_sacle, 1.0)
-	print(bubble_pop_spawn_qty)
 
 	
 
@@ -362,12 +341,6 @@ func bubble_deleted()-> void:
 	remove_bubble(true)
 	
 func remove_bubble(is_deleted : bool = false)-> void:
-	#if is_storm:
-		#Global.storm_bubble_count -=1
-		#if Global.storm_bubble_count <= 0:
-			#set_bubble_storm(false)
-	#if is_metaverse:
-		#Global.metaverse_bubble_count -=1
 	if bubble_level == 2:
 		BubbleManager.special_bubble_count -= 1
 	if is_stonk:
@@ -407,6 +380,7 @@ func remove_bubble(is_deleted : bool = false)-> void:
 		if shielded_bubble:
 			shielded_bubble.set_bubble_shielded(false)
 	if is_crash:
+		Global.crash_bubble_count -= 1
 		#show explosion visual
 		var nearby_bubbles : Array[Bubble] = get_nearby_bubble(explosion_radius)
 		print(nearby_bubbles)
@@ -450,6 +424,7 @@ func pop_animation():
 
 
 func _on_mouse_entered() -> void:
+	label_pop_spawn_qty.text = str(bubble_pop_spawn_qty)
 	label_pop_spawn_qty.show()
 	if is_crash:
 		update_range_explosion_sprite(explosion_radius)

@@ -71,6 +71,10 @@ func move_hand_click(pos: Vector2):
 
 func _on_area_area_entered(other_area: Area2D) -> void:
 	if can_click and pressed_time > 0.5:
+		%Sprite2D_finger.visible = false
+		%Sprite2D_filet.visible = true
 		if other_area is Bubble:
 			if other_area.bubble_level == 0:
 				other_area.bubble_popped()
+	else:
+		%Sprite2D_filet.visible = false

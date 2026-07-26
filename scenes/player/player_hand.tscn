@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b038wgl6janrt" path="res://addons/leeklib/shaker_2d.gd" id="2_4g6u2"]
 [ext_resource type="Texture2D" uid="uid://d3b3p6bmymlc1" path="res://assets/models/player/main.png" id="2_qebix"]
 [ext_resource type="Texture2D" uid="uid://drdw7cpingv6j" path="res://assets/models/player/doigt.png" id="3_4g6u2"]
+[ext_resource type="Texture2D" uid="uid://dnyh0r1op1s55" path="res://assets/models/player/doigtfilet2.png" id="5_15gtf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qebix"]
 radius = 15.521
@@ -40,7 +41,13 @@ scale = Vector2(0.055241942, 0.06454901)
 texture = ExtResource("2_qebix")
 
 [node name="Sprite2D_finger" type="Sprite2D" parent="HandPivot/HandShaker/Sprite2D_hand" unique_id=730873998]
+unique_name_in_owner = true
 texture = ExtResource("3_4g6u2")
+
+[node name="Sprite2D_filet" type="Sprite2D" parent="HandPivot/HandShaker/Sprite2D_hand" unique_id=1366751817]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("5_15gtf")
 
 [node name="FingerPoint" type="Marker2D" parent="HandPivot" unique_id=29785080]
 unique_name_in_owner = true

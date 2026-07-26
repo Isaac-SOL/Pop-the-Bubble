@@ -59,6 +59,7 @@ func voice_bleep():
 	%AnimVoice.scale = Vector2.ONE * 1.1
 	voice_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 	voice_tween.tween_property(%AnimVoice, "scale", Vector2.ONE, 0.2)
+	%AudioStreamPlayer.play()
 
 func shake():
 	%Shaker2D.shake(1.0, 1.0)
