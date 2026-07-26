@@ -346,6 +346,7 @@ func bubble_deleted()-> void:
 	if dead:
 		return
 	remove_bubble(true)
+	popped.emit(true)
 	
 func remove_bubble(is_deleted : bool = false)-> void:
 	if bubble_level == 2:
