@@ -7,7 +7,7 @@ func _ready() -> void:
 	Global.count_phase = 0
 
 func _on_custom_button_play_button_up() -> void:
-	get_tree().change_scene_to_file("res://scenes/level/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/level/help.tscn")
 
 
 func _on_custom_button_credits_button_up() -> void:
