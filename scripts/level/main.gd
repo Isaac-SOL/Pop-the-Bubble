@@ -65,6 +65,7 @@ func _ready() -> void:
 	%player_hand.visible = true
 	set_count_phase(1)
 	state = State.GAMING
+	%count.start_doing_actions()
 
 func auto_dialogue_p1():
 	spawn_bubble(%SpawnRect.position, 4, 1, [], BUBBLE_POPCLOSE)[0].speed = 250
@@ -102,10 +103,47 @@ func auto_dialogue_p1():
 	Global.can_advance_phase = true
 
 func auto_dialogue_p2():
+	Global.dialogue_node.set_dialogue("OUCH!")
 	await Global.seconds(5)
+	count.animated_sprite_2d.play("vener")
+	Global.dialogue_node.set_dialogue("You are still not done yet? What have I done to you to deserve this?")
+	await Global.seconds(12)
+	Global.dialogue_node.set_dialogue("And what is it? A fanfare? Does that make you the triangle player?")
+	await Global.seconds(18)
+	Global.dialogue_node.set_dialogue("Go do something else, I don't know, go take a trip in your private jet?")
+	await Global.seconds(10)
+	Global.dialogue_node.set_dialogue("What do you mean you not have one, everyone has!")
+	await Global.seconds(10)
+	Global.dialogue_node.set_dialogue("Anyway, shoo, shoo!")
+	await Global.seconds(10)
+	count.animated_sprite_2d.play("mepris")
+	Global.dialogue_node.set_dialogue("Why don't you just go and get a job, huh!? It's easy, just go across the street over there!")
+	await Global.seconds(10)
+	count.animated_sprite_2d.play("normal")
+	Global.dialogue_node.set_dialogue("For God's sake, just let the rich be rich...")
+	await Global.seconds(10)
+	Global.dialogue_node.set_dialogue("Counting can actually help you feel better. It’s as simple as Count, Breathe, Relax!")
+	
 	Global.can_advance_phase = true
 func auto_dialogue_p3():
+	Global.dialogue_node.set_dialogue("...")
 	await Global.seconds(5)
+	Global.dialogue_node.set_dialogue("Now you've done it.")
+	await Global.seconds(5)
+	Global.dialogue_node.set_dialogue("I'm going to take this seriously.")
+	await Global.seconds(5)
+	Global.dialogue_node.set_dialogue("[color=red]Goodbye.[/color]")
+	await Global.seconds(5)
+	count.animated_sprite_2d.play("saiyan")
+	%count.shake()
+	shake_vertical(200, 2)
+	spawn_bubble(%SpawnRect.position, 2, 3, [], BUBBLE_POPCLOSE)[0].speed = 250
+	await Global.seconds(10)
+	Global.dialogue_node.set_dialogue("THE LIFE WORK OF A CENTURY!!!")
+	await Global.seconds(10)
+	Global.dialogue_node.set_dialogue("ALL GOING AWAY BECAUSE OF A MEASLY PEASANT!!!")
+	await Global.seconds(10)
+	Global.dialogue_node.set_dialogue("[color=red]I WILL END YOU RIGHT NOW!!![/color]")
 	Global.can_advance_phase = true
 	
 func _process(_delta: float) -> void:
@@ -166,7 +204,6 @@ func set_count_phase(phase: int)-> void:
 			Global.dialogue_node.set_dialogue("YOU! Who do you think you are!?", 3, true)
 			%count.shake()
 			await Global.dialogue_node.dialogue_cleared
-			%count.start_doing_actions()
 			await Global.seconds(1)
 			count.animated_sprite_2d.play("normal")
 			auto_dialogue_p1()
@@ -175,11 +212,12 @@ func set_count_phase(phase: int)-> void:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
 			var tween = create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_0,"modulate",Color.TRANSPARENT,4)
 			count.animated_sprite_2d.play("surpris")
+			%count.shake()
 			auto_dialogue_p2()
 		3:
 			BubbleManager.phase_powers = [BubbleManager.BUBBLE_SHIELDING, BubbleManager.BUBBLE_SPIKE, BubbleManager.BUBBLE_CRASH, BubbleManager.BUBBLE_INTERNET, BubbleManager.BUBBLE_DIVIDEND, BubbleManager.BUBBLE_SPECULATIVE, BubbleManager.BUBBLE_STONK, BubbleManager.BUBBLE_GPT]
-			count.animated_sprite_2d.play("saiyan")
 			var tween = create_tween().set_trans(Tween.TRANS_QUAD).tween_property(background_1,"modulate",Color.TRANSPARENT,4)
+			%count.shake()
 			auto_dialogue_p3()
 		4:
 			BubbleManager.phase_powers = []
