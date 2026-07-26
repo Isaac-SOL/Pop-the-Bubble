@@ -187,7 +187,7 @@ func _on_bubble_popped(is_deleted: bool, bubble: Bubble):
 	if is_deleted:
 		bubble.queue_free()
 	else:
-		add_nugget_explosion(bubble.nugget_value, bubble.global_position)
+		#add_nugget_explosion(bubble.nugget_value, bubble.global_position)
 		spawn_bubble(bubble.position, 1 if bubble.bubble_level == 3 else 0, bubble.bubble_pop_spawn_qty)
 		bubble.pop_animation()
 		shake_vertical(bubble.bubble_level * bubble.bubble_level * 3, 0.5)
